@@ -10,11 +10,14 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				// "mikestead.dotenv",
-				// "amiralizadeh9480.laravel-extra-intellisense",
-				// "ryannaddy.laravel-artisan",
-				// "onecentlin.laravel5-snippets",
-				// "onecentlin.laravel-blade"
+				"mutantdino.resourcemonitor",
+				"bmewburn.vscode-intelephense-client",
+				"xdebug.php-debug",
+				"esbenp.prettier-vscode",
+				"dbaeumer.vscode-eslint",
+				"editorconfig.editorconfig",
+				"Vue.volar",
+				"GitHub.copilot"
 			],
 			"settings": {}
 		}
