@@ -13,10 +13,11 @@ chmod -R ugo+rw /.composer
 if [ $# -gt 0 ]; then
     exec gosu $WWWUSER "$@"
 else
-   # Add custom Git branch name and status to ~/.bashrc
+    # Add custom Git branch name and status to ~/.bashrc
     echo 'parse_git_branch() {
-        branch=$(git symbolic-ref HEAD 2> /dev/null | cut -d "/" -f 3)
+        branch=$(git symbolic-ref HEAD 2> /dev/null || git describe --tags --exact-match 2> /dev/null || git rev-parse --short HEAD 2> /dev/null)
         if [[ -n $branch ]]; then
+            branch=$(basename "${branch}")
             status=$(git status --porcelain 2> /dev/null)
             if [[ -n $status ]]; then
                 echo "($branch*)"
@@ -33,6 +34,6 @@ else
 
     # Alias for 'php artisan'
     echo 'alias pa="php artisan"' >> /home/sail/.bashrc
-    
+
     exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
 fi
