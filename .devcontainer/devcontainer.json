@@ -15,7 +15,8 @@
         "dbaeumer.vscode-eslint",
         "editorconfig.editorconfig",
         "Vue.volar",
-        "GitHub.copilot"
+        "GitHub.copilot",
+        "damms005.devdb"
       ],
       "settings": {
         "editor.formatOnSave": true,
