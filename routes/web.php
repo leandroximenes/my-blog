@@ -20,6 +20,10 @@ Route::get('/', function () {
     return Inertia::render('Home');
 });
 
+Route::get('teste', function () {
+    return 'teste';
+});
+
 Route::get('/posts', [PostController::class, 'index'])->name('post.index');
 Route::get('/post', [PostController::class, 'create'])->name('post.create');
 Route::post('/post', [PostController::class, 'store'])->name('post.store');
