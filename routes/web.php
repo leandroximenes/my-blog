@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -21,13 +22,27 @@ Route::get('/', function () {
 });
 
 Route::get('teste', function () {
-    return 'teste';
+    $post = new Post([
+        'title' => 'Meu primeiro post',
+        'excerpt' => 'Excerto do meu primeiro post',
+        'slug' => 'meu-primeiro-post',
+        'content' => 'Conteúdo do meu primeiro post'
+    ]);
+
+    $post->save();
+
+
+    $posts = \App\Models\Post::all();
+    return [
+        'posts' => $posts,
+        'message' => 'ok'
+    ];
 });
 
-// Route::get('/posts', [PostController::class, 'index'])->name('post.index');
-// Route::get('/post', [PostController::class, 'create'])->name('post.create');
-// Route::post('/post', [PostController::class, 'store'])->name('post.store');
+Route::get('/posts', [PostController::class, 'index'])->name('post.index');
+Route::get('/post', [PostController::class, 'create'])->name('post.create');
+Route::post('/post', [PostController::class, 'store'])->name('post.store');
 
-// Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('show');
-// Route::get('/posts/{post:slug}/edit', [PostController::class, 'edit'])->name('post.edit');
-// Route::put('/posts/{post:slug}', [PostController::class, 'update'])->name('post.update');
+Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('show');
+Route::get('/posts/{post:slug}/edit', [PostController::class, 'edit'])->name('post.edit');
+Route::put('/posts/{post:slug}', [PostController::class, 'update'])->name('post.update');
