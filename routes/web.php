@@ -22,15 +22,9 @@ Route::get('/', function () {
 });
 
 Route::get('teste', function () {
-    $post = new Post([
-        'title' => 'Meu primeiro post',
-        'excerpt' => 'Excerto do meu primeiro post',
-        'slug' => 'meu-primeiro-post',
-        'content' => 'Conteúdo do meu primeiro post'
-    ]);
+    $post = Post::factory()->create();
 
     $post->save();
-
 
     $posts = \App\Models\Post::all();
     return [
