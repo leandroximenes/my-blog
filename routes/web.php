@@ -22,9 +22,9 @@ Route::get('/', function () {
 });
 
 Route::get('teste', function () {
-    $post = Post::factory()->create();
+    // $post = Post::factory()->create();
 
-    $post->save();
+    // $post->save();
 
     $posts = \App\Models\Post::all();
     return [
