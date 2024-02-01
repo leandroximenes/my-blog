@@ -21,7 +21,6 @@ Route::get('/', function () {
 });
 Route::get('/old', function () {
     return view('welcome');
-    // return Inertia::render('Home');
 });
 
 Route::get('teste', function () {
