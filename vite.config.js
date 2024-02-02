@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import laravel from 'laravel-vite-plugin'
 import vue from '@vitejs/plugin-vue'
+import WindiCSS from 'vite-plugin-windicss';
 
 export default defineConfig({
   plugins: [
@@ -9,6 +10,7 @@ export default defineConfig({
       ssr: ['resources/css/app.css', 'resources/js/ssr.js'],
       refresh: true
     }),
-    vue()
+    vue(),
+    WindiCSS(),
   ]
 })

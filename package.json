@@ -2,7 +2,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "node server",
     "build": "vite build && vite build --ssr",
     "start": "vite",
     "format": "prettier --write .",
@@ -24,5 +24,8 @@
     "tailwindcss": "^3.4.1",
     "vite": "^5.0.0",
     "vue": "^3.4.15"
+  },
+  "devDependencies": {
+    "vite-plugin-windicss": "^1.9.3"
   }
 }
