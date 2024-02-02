@@ -9,7 +9,6 @@ export default defineConfig({
       ssr: ['resources/css/app.css', 'resources/js/ssr.js'],
       refresh: true
     }),
-    vue(),
-    WindiCSS()
+    vue()
   ]
 })
