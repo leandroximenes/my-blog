@@ -1,4 +1,3 @@
-import { createApp, h } from 'vue'
 import { createSSRApp } from 'vue'
 
 createInertiaApp({
