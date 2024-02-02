@@ -3,6 +3,10 @@
   ],
   "resources/js/Pages/Home.vue": [
   ],
+  "resources/js/Pages/Post/Form.vue": [
+  ],
+  "resources/js/Pages/Post/Index.vue": [
+  ],
   "resources/js/ssr.js": [
   ]
 }
