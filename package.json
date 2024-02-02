@@ -5,7 +5,6 @@
     "dev": "vite",
     "build": "vite build && vite build --ssr",
     "start": "vite",
-    "postinstall": "npm run build",
     "format": "prettier --write .",
     "fix:eslint": "eslint --ext .js,.vue resources/js/ --fix"
   },
