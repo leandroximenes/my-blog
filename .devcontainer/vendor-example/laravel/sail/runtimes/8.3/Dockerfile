@@ -58,10 +58,7 @@ RUN apt-get update \
     && apt update \
     && apt install gh -y
 
-RUN apt-get update \
-    apt-get upgrade -y \
-    curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
-
+RUN npm install -g heroku
 
 RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.3
 
