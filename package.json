@@ -2,9 +2,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node server",
+    "dev": "vite",
     "build": "vite build && vite build --ssr",
-    "start": "vite",
     "format": "prettier --write .",
     "fix:eslint": "eslint --ext .js,.vue resources/js/ --fix"
   },
