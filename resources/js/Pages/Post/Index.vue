@@ -19,9 +19,7 @@ const props = defineProps({
     <hr class="my-4" />
     <ul>
       <li v-for="post in posts" :key="post.id">
-        <a :href="'post/' + post.slug">
-          {{ post.title }}
-        </a>
+        <a :href="'post/' + post.slug"> {{ post.title }} - {{ post.excerpt }}</a>
       </li>
     </ul>
   </div>

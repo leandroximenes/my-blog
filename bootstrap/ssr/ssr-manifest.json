@@ -1,6 +1,8 @@
 {
   "\u0000plugin-vue:export-helper": [
   ],
+  "resources/js/Layout/MainLayout.vue": [
+  ],
   "resources/js/Pages/Home.vue": [
   ],
   "resources/js/Pages/Post/Form.vue": [
