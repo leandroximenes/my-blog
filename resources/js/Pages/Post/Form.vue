@@ -32,7 +32,7 @@ let submit = (e) => {
       <h1 class="text-3xl font-bold underline">Create Post</h1>
     </div>
     <hr class="my-4" />
-    <form class="w-1/4" @submit="submit">
+    <form class="lg:w-3/4" @submit="submit">
       <div class="mb-4">
         <label class="text-xl text-gray-600">Title</label>
         <input
