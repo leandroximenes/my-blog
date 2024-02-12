@@ -1,12 +1,4 @@
-<script setup>
-import { defineProps } from 'vue'
-
-const props = defineProps({
-  posts: Array,
-  action: String,
-  url: String
-})
-</script>
+<script setup></script>
 
 <template>
   <div class="p-2">
