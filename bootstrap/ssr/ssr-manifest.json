@@ -1,14 +1,8 @@
 {
-  "\u0000plugin-vue:export-helper": [
-  ],
-  "resources/js/Layout/MainLayout.vue": [
-  ],
-  "resources/js/Pages/Home.vue": [
-  ],
-  "resources/js/Pages/Post/Form.vue": [
-  ],
-  "resources/js/Pages/Post/Index.vue": [
-  ],
-  "resources/js/ssr.js": [
-  ]
+  "\u0000plugin-vue:export-helper": [],
+  "resources/js/Layout/MainLayout.vue": [],
+  "resources/js/Pages/MainPage.vue": [],
+  "resources/js/Pages/Post/PostForm.vue": [],
+  "resources/js/Pages/Post/PostIndex.vue": [],
+  "resources/js/ssr.js": []
 }

@@ -11,7 +11,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return Inertia::render('Post/Index', [
+        return Inertia::render('Post/PostIndex', [
             'posts' => $posts,
         ]);
     }
@@ -21,7 +21,7 @@ class PostController extends Controller
         //create a fake post
         $emptyPost = new Post();
 
-        return Inertia::render('Post/Form', [
+        return Inertia::render('Post/PostForm', [
             'post' => $emptyPost,
             'action' => 'post',
             'url' => 'post'
