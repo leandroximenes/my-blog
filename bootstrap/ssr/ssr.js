@@ -1,5 +1,5 @@
-import { mergeProps, useSSRContext, unref, withCtx, createTextVNode, createSSRApp, h } from "vue";
-import { ssrRenderAttrs, ssrRenderAttr, ssrInterpolate, ssrRenderList, ssrRenderComponent, ssrRenderSlot } from "vue/server-renderer";
+import { mergeProps, useSSRContext, unref, ref, withCtx, createTextVNode, createSSRApp, h } from "vue";
+import { ssrRenderAttrs, ssrRenderAttr, ssrInterpolate, ssrRenderList, ssrRenderClass, ssrRenderComponent, ssrRenderSlot } from "vue/server-renderer";
 import { useForm, Link, createInertiaApp } from "@inertiajs/vue3";
 import createServer from "@inertiajs/vue3/server";
 import { renderToString } from "@vue/server-renderer";
@@ -42,7 +42,7 @@ const _sfc_main$2 = {
       content: props.post.content || ""
     });
     return (_ctx, _push, _parent, _attrs) => {
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "p-2" }, _attrs))}><div class="flex space-x-2"><h1 class="text-3xl font-bold underline">Create Post</h1></div><hr class="my-4"><form class="w-1/4"><div class="mb-4"><label class="text-xl text-gray-600">Title</label><input type="text" name="title" class="border-2 border-gray-300 p-2 w-full"${ssrRenderAttr("value", unref(form).title)} placeholder="Title">`);
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "p-2" }, _attrs))}><div class="flex space-x-2"><h1 class="text-3xl font-bold underline">Create Post</h1></div><hr class="my-4"><form class="lg:w-3/4"><div class="mb-4"><label class="text-xl text-gray-600">Title</label><input type="text" name="title" class="border-2 border-gray-300 p-2 w-full"${ssrRenderAttr("value", unref(form).title)} placeholder="Title">`);
       if (unref(form).errors.title) {
         _push(`<div>${ssrInterpolate(unref(form).errors.title)}</div>`);
       } else {
@@ -94,9 +94,17 @@ const _sfc_main = {
   __name: "MainLayout",
   __ssrInlineRender: true,
   setup(__props) {
+    const showNavbar = ref(false);
+    const toggleNavbar = () => {
+      showNavbar.value = !showNavbar.value;
+    };
     return (_ctx, _push, _parent, _attrs) => {
-      _push(`<main${ssrRenderAttrs(_attrs)}><header class="bg-gray-800 py-5 text-white text-xl"><div class="container w-8/12 mx-auto flex justify-between"><div>logo</div><nav class="space-x-10">`);
-      _push(ssrRenderComponent(unref(Link), { href: "/" }, {
+      _push(`<main${ssrRenderAttrs(_attrs)}><header class="bg-gray-800 py-5 text-white text-xl"><div class="mx-auto flex justify-between items-center lg:container xl:w-8/12"><div class="ml-2">logo</div><button data-collapse-toggle="navbar-default" type="button" class="mr-2" aria-controls="navbar-default" aria-expanded="false"><svg class="w-5 h-5 lg:hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"></path></svg></button><nav class="${ssrRenderClass([{ hidden: !showNavbar.value }, "w-full absolute mt-40 flex flex-col bg-gray-500 space-y-1 text-center lg:static lg:bg-transparent lg:flex lg:flex-row lg:space-x-4 lg:space-y-0 lg:mt-0 lg:w-auto"])}">`);
+      _push(ssrRenderComponent(unref(Link), {
+        class: "bg-gray-600 py-2 lg:bg-transparent",
+        onClick: toggleNavbar,
+        href: "/"
+      }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             _push2(`Home`);
@@ -108,7 +116,11 @@ const _sfc_main = {
         }),
         _: 1
       }, _parent));
-      _push(ssrRenderComponent(unref(Link), { href: "/posts" }, {
+      _push(ssrRenderComponent(unref(Link), {
+        class: "bg-gray-600 py-2 lg:bg-transparent",
+        onClick: toggleNavbar,
+        href: "/posts"
+      }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             _push2(`Posts`);
@@ -120,7 +132,7 @@ const _sfc_main = {
         }),
         _: 1
       }, _parent));
-      _push(`</nav></div></header><article class="container w-8/12 mx-auto pt-1">`);
+      _push(`</nav></div></header><article class="mx-auto p-1 lg:container xl:w-8/12">`);
       ssrRenderSlot(_ctx.$slots, "default", {}, null, _push, _parent);
       _push(`</article></main>`);
     };
