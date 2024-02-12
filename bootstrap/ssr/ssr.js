@@ -11,7 +11,7 @@ const _export_sfc = (sfc, props) => {
   return target;
 };
 const _sfc_main$3 = {};
-function _sfc_ssrRender(_ctx, _push, _parent, _attrs) {
+function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs) {
   _push(`<h1${ssrRenderAttrs(mergeProps({ class: "text-3xl font-bold underline" }, _attrs))}>Home</h1>`);
 }
 const _sfc_setup$3 = _sfc_main$3.setup;
@@ -20,7 +20,7 @@ _sfc_main$3.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/MainPage.vue");
   return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
 };
-const MainPage = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender]]);
+const MainPage = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender$1]]);
 const __vite_glob_0_0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: MainPage
@@ -62,33 +62,24 @@ const __vite_glob_0_1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.def
   __proto__: null,
   default: _sfc_main$2
 }, Symbol.toStringTag, { value: "Module" }));
-const _sfc_main$1 = {
-  __name: "PostIndex",
-  __ssrInlineRender: true,
-  props: {
-    posts: Array,
-    action: String,
-    url: String
-  },
-  setup(__props) {
-    return (_ctx, _push, _parent, _attrs) => {
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "p-2" }, _attrs))}><div class="flex space-x-2"><h1 class="text-3xl font-bold underline">Posts</h1><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><a href="/post">Create new Post</a></button></div><hr class="my-4"><ul><!--[-->`);
-      ssrRenderList(__props.posts, (post) => {
-        _push(`<li><a${ssrRenderAttr("href", "post/" + post.slug)}>${ssrInterpolate(post.title)} - ${ssrInterpolate(post.excerpt)}</a></li>`);
-      });
-      _push(`<!--]--></ul></div>`);
-    };
-  }
-};
+const _sfc_main$1 = {};
+function _sfc_ssrRender(_ctx, _push, _parent, _attrs) {
+  _push(`<div${ssrRenderAttrs(mergeProps({ class: "p-2" }, _attrs))}><div class="flex space-x-2"><h1 class="text-3xl font-bold underline">Posts</h1><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><a href="/post">Create new Post</a></button></div><hr class="my-4"><ul><!--[-->`);
+  ssrRenderList(_ctx.posts, (post) => {
+    _push(`<li><a${ssrRenderAttr("href", "post/" + post.slug)}>${ssrInterpolate(post.title)} - ${ssrInterpolate(post.excerpt)}</a></li>`);
+  });
+  _push(`<!--]--></ul></div>`);
+}
 const _sfc_setup$1 = _sfc_main$1.setup;
 _sfc_main$1.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Post/PostIndex.vue");
   return _sfc_setup$1 ? _sfc_setup$1(props, ctx) : void 0;
 };
+const PostIndex = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["ssrRender", _sfc_ssrRender]]);
 const __vite_glob_0_2 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  default: _sfc_main$1
+  default: PostIndex
 }, Symbol.toStringTag, { value: "Module" }));
 const _sfc_main = {
   __name: "MainLayout",
