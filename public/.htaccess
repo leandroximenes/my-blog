@@ -5,6 +5,11 @@
 
     RewriteEngine On
 
+    # Redirect http://leandroximenes.tech to https://leandroximenes.tech
+    RewriteCond %{HTTP_HOST} ^leandroximenes\.tech [NC]
+    RewriteRule ^(.*)$ https://leandroximenes.tech/$1 [R,L]
+
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
