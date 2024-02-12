@@ -5,9 +5,9 @@
 
     RewriteEngine On
 
-    # Redirect to HTTPS if not localhost
+    # Redirect to HTTPS except for requests from localhost
     RewriteCond %{HTTPS} !=on
-    RewriteCond %{HTTP_HOST} !^localhost$
+    RewriteCond %{REMOTE_ADDR} !^127\.0\.0\.1$
     RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
     # Handle Authorization Header
