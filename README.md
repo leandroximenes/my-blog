@@ -43,6 +43,26 @@ To get a local copy of the project up and running, follow these steps:
    ```
 6. Visit `http://localhost:8000` in your browser.
 
+## Deployment in Heroku
+
+1. Add and commit your changes
+   ```bash
+   git add .
+   git commit -m "Your commit message"
+   ```
+2. Push your changes to Heroku
+   ```bash
+    git push heroku master
+   ```
+3. Run the migrations
+   ```bash
+    heroku run php artisan migrate
+   ```
+4. Clear the cache
+   ```bash
+    heroku run php artisan optimize:clear
+   ```
+
 ## Contributing
 
 Contributions are welcome! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.
