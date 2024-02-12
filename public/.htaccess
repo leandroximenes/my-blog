@@ -1,8 +1,12 @@
 <IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
     RewriteEngine On
 
-    # Redirect HTTP to HTTPS for all domains except localhost
-    RewriteCond %{HTTPS} off
+    # Redirect to HTTPS if not localhost
+    RewriteCond %{HTTPS} !=on
     RewriteCond %{HTTP_HOST} !^localhost$
     RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
