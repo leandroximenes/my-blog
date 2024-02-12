@@ -16,7 +16,6 @@ let form = useForm({
 
 let submit = (e) => {
   e.preventDefault()
-  console.log('sdfsad')
   form.post('/post', {
     preserveScroll: true,
     onSuccess: () => {

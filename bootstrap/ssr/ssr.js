@@ -11,8 +11,8 @@ const _export_sfc = (sfc, props) => {
   return target;
 };
 const _sfc_main$3 = {};
-function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs) {
-  _push(`<h1${ssrRenderAttrs(mergeProps({ class: "text-3xl font-bold underline" }, _attrs))}>Home</h1>`);
+function _sfc_ssrRender(_ctx, _push, _parent, _attrs) {
+  _push(`<h1${ssrRenderAttrs(mergeProps({ class: "text-3xl font-bold underline" }, _attrs))}>About me</h1>`);
 }
 const _sfc_setup$3 = _sfc_main$3.setup;
 _sfc_main$3.setup = (props, ctx) => {
@@ -20,7 +20,7 @@ _sfc_main$3.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/MainPage.vue");
   return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
 };
-const MainPage = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender$1]]);
+const MainPage = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender]]);
 const __vite_glob_0_0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: MainPage
@@ -62,24 +62,33 @@ const __vite_glob_0_1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.def
   __proto__: null,
   default: _sfc_main$2
 }, Symbol.toStringTag, { value: "Module" }));
-const _sfc_main$1 = {};
-function _sfc_ssrRender(_ctx, _push, _parent, _attrs) {
-  _push(`<div${ssrRenderAttrs(mergeProps({ class: "p-2" }, _attrs))}><div class="flex space-x-2"><h1 class="text-3xl font-bold underline">Posts</h1><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><a href="/post">Create new Post</a></button></div><hr class="my-4"><ul><!--[-->`);
-  ssrRenderList(_ctx.posts, (post) => {
-    _push(`<li><a${ssrRenderAttr("href", "post/" + post.slug)}>${ssrInterpolate(post.title)} - ${ssrInterpolate(post.excerpt)}</a></li>`);
-  });
-  _push(`<!--]--></ul></div>`);
-}
+const _sfc_main$1 = {
+  __name: "PostIndex",
+  __ssrInlineRender: true,
+  props: {
+    posts: Array,
+    action: String,
+    url: String
+  },
+  setup(__props) {
+    return (_ctx, _push, _parent, _attrs) => {
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "p-2" }, _attrs))}><div class="flex space-x-2"><h1 class="text-3xl font-bold underline">Posts</h1><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><a href="/post">Create new Post</a></button></div><hr class="my-4"><ul><!--[-->`);
+      ssrRenderList(__props.posts, (post) => {
+        _push(`<li><a${ssrRenderAttr("href", "post/" + post.slug)}>${ssrInterpolate(post.title)} - ${ssrInterpolate(post.excerpt)}</a></li>`);
+      });
+      _push(`<!--]--></ul></div>`);
+    };
+  }
+};
 const _sfc_setup$1 = _sfc_main$1.setup;
 _sfc_main$1.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Post/PostIndex.vue");
   return _sfc_setup$1 ? _sfc_setup$1(props, ctx) : void 0;
 };
-const PostIndex = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["ssrRender", _sfc_ssrRender]]);
 const __vite_glob_0_2 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  default: PostIndex
+  default: _sfc_main$1
 }, Symbol.toStringTag, { value: "Module" }));
 const _sfc_main = {
   __name: "MainLayout",
@@ -90,7 +99,7 @@ const _sfc_main = {
       showNavbar.value = !showNavbar.value;
     };
     return (_ctx, _push, _parent, _attrs) => {
-      _push(`<main${ssrRenderAttrs(_attrs)}><header class="bg-gray-800 py-5 text-white text-xl"><div class="mx-auto flex justify-between items-center lg:container xl:w-8/12"><div class="ml-2">logo</div><button data-collapse-toggle="navbar-default" type="button" class="mr-2" aria-controls="navbar-default" aria-expanded="false"><svg class="w-5 h-5 lg:hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"></path></svg></button><nav class="${ssrRenderClass([{ hidden: !showNavbar.value }, "w-full absolute mt-40 flex flex-col bg-gray-500 space-y-1 text-center lg:static lg:bg-transparent lg:flex lg:flex-row lg:space-x-4 lg:space-y-0 lg:mt-0 lg:w-auto"])}">`);
+      _push(`<main${ssrRenderAttrs(_attrs)}><header class="bg-gray-800 py-5 text-white text-xl"><div class="mx-auto flex justify-between items-center lg:container xl:w-8/12"><div class="ml-2">Leandro Ximenes</div><button data-collapse-toggle="navbar-default" type="button" class="mr-2" aria-controls="navbar-default" aria-expanded="false"><svg class="w-5 h-5 lg:hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"></path></svg></button><nav class="${ssrRenderClass([{ hidden: !showNavbar.value }, "w-full absolute mt-40 flex flex-col bg-gray-500 space-y-1 text-center lg:static lg:bg-transparent lg:flex lg:flex-row lg:space-x-4 lg:space-y-0 lg:mt-0 lg:w-auto"])}">`);
       _push(ssrRenderComponent(unref(Link), {
         class: "bg-gray-600 py-2 lg:bg-transparent",
         onClick: toggleNavbar,

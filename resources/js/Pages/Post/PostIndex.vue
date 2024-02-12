@@ -1,4 +1,13 @@
-<script setup></script>
+<script setup>
+import { defineProps } from 'vue'
+
+// eslint-disable-next-line no-unused-vars
+const props = defineProps({
+  posts: Array,
+  action: String,
+  url: String
+})
+</script>
 
 <template>
   <div class="p-2">

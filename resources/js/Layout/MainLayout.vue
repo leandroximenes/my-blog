@@ -13,7 +13,7 @@ const toggleNavbar = () => {
   <main>
     <header class="bg-gray-800 py-5 text-white text-xl">
       <div class="mx-auto flex justify-between items-center lg:container xl:w-8/12">
-        <div class="ml-2">logo</div>
+        <div class="ml-2">Leandro Ximenes</div>
         <button
           data-collapse-toggle="navbar-default"
           @click="toggleNavbar"
