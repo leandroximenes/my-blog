@@ -39,6 +39,10 @@ Route::get('/posts', [PostController::class, 'index'])->name('post.index');
 Route::get('/post', [PostController::class, 'create'])->name('post.create');
 Route::post('/post', [PostController::class, 'store'])->name('post.store');
 
+Route::get('/projects', function () {
+    return Inertia::render('Project/ProjectIndex');
+});
+
 // Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('show');
 // Route::get('/posts/{post:slug}/edit', [PostController::class, 'edit'])->name('post.edit');
 // Route::put('/posts/{post:slug}', [PostController::class, 'update'])->name('post.update');
