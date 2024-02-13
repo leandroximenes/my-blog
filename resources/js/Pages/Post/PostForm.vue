@@ -26,9 +26,9 @@ let submit = (e) => {
 </script>
 
 <template>
-  <div class="p-2">
+  <div>
     <div class="flex space-x-2">
-      <h1 class="text-3xl font-bold underline">Create Post</h1>
+      <h1 class="title">Create Post</h1>
     </div>
     <hr class="my-4" />
     <form class="lg:w-3/4" @submit="submit">

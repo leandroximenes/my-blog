@@ -9,7 +9,7 @@
     @inertiaHead
 </head>
 
-<body class="lg:bg-gray-300">
+<body>
     @inertia
 </body>
 

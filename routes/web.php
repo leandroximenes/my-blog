@@ -43,6 +43,10 @@ Route::get('/projects', function () {
     return Inertia::render('Project/ProjectIndex');
 });
 
+Route::get('/projects/cs50', function () {
+    return Inertia::render('Project/CS50Project');
+});
+
 // Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('show');
 // Route::get('/posts/{post:slug}/edit', [PostController::class, 'edit'])->name('post.edit');
 // Route::put('/posts/{post:slug}', [PostController::class, 'update'])->name('post.update');

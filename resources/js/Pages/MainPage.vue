@@ -4,7 +4,7 @@
   <div class="lg:flex lg:space-x-2">
     <img src="/public/img/me.jpg" alt="me" class="p-1 mx-auto lg:w-1/2" />
     <div class="p-2 lg:w-1/2">
-      <h1 class="py-2 text-3xl font-bold underline text-center">About me</h1>
+      <h1 class="title text-center">About me</h1>
       <div class="text-justify w-full space-y-10 mt-6 text-lg">
         <p>
           Hello there! 👋 I'm married 💑 and a proud father of a daughter 👧, residing in Brasilia,
