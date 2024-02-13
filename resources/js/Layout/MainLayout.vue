@@ -13,7 +13,7 @@ const toggleNavbar = () => {
   <main>
     <header class="bg-gray-800 py-5 text-white text-xl">
       <div class="mx-auto flex justify-between items-center lg:container xl:w-8/12">
-        <div class="ml-2">Leandro Ximenes</div>
+        <Link class="ml-4" href="/">Leandro Ximenes</Link>
         <button
           data-collapse-toggle="navbar-default"
           @click="toggleNavbar"
@@ -23,7 +23,7 @@ const toggleNavbar = () => {
           aria-expanded="false"
         >
           <svg
-            class="w-5 h-5 lg:hidden"
+            class="w-5 h-5 mr-2 lg:hidden"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -39,20 +39,25 @@ const toggleNavbar = () => {
           </svg>
         </button>
         <nav
-          class="w-full absolute mt-40 flex flex-col bg-gray-500 space-y-1 text-center lg:static lg:bg-transparent lg:flex lg:flex-row lg:space-x-4 lg:space-y-0 lg:mt-0 lg:w-auto"
+          class="w-full absolute mt-52 flex flex-col bg-gray-500 space-y-1 text-center lg:static lg:bg-transparent lg:flex lg:flex-row lg:space-x-4 lg:space-y-0 lg:mt-0 lg:w-auto lg:mr-4"
           :class="{ hidden: !showNavbar }"
         >
           <Link class="bg-gray-600 py-2 lg:bg-transparent" @click="toggleNavbar" href="/"
-            >Home</Link
+            >About me</Link
           >
           <Link class="bg-gray-600 py-2 lg:bg-transparent" @click="toggleNavbar" href="/posts"
-            >Posts</Link
+            >Articles</Link
+          >
+          <Link class="bg-gray-600 py-2 lg:bg-transparent" @click="toggleNavbar" href="/projects"
+            >Projects</Link
           >
         </nav>
       </div>
     </header>
-    <article class="mx-auto p-1 lg:container xl:w-8/12">
-      <slot />
+    <article class="mx-auto lg:container xl:w-8/12">
+      <div class="bg-white rounded p-2">
+        <slot />
+      </div>
     </article>
   </main>
 </template>
