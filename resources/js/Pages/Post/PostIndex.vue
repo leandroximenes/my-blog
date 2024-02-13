@@ -10,9 +10,9 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="p-2">
+  <div>
     <div class="flex space-x-2">
-      <h1 class="text-3xl font-bold underline">Posts</h1>
+      <h1 class="title">Posts</h1>
       <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
         <a href="/post">Create new Post</a>
       </button>
