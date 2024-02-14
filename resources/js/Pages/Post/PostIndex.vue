@@ -8,10 +8,12 @@
     <hr class="my-4" />
     <div>
       <article class="article">
-        <!-- <img src="./img/cs50.png" alt="CS50" /> -->
+        <a class="title" href="posts/LaravelEnvironmentPost"
+          ><img src="./img/debug.png" alt="CS50" />
+        </a>
         <div class="content">
           <a class="title" href="posts/LaravelEnvironmentPost"
-            >Laravel environment: docker, devcontainer, debug
+            >Laravel environment: docker, devcontainer, VS Code debug
           </a>
           <p>How to set a Laravel environment with devcontainer, docker and debug</p>
         </div>
