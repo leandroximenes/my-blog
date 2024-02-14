@@ -1,15 +1,37 @@
 {
+  "public/img/github.svg": {
+    "file": "assets/github-DJ4kBwNf.svg",
+    "src": "public/img/github.svg"
+  },
+  "public/img/linkedin.svg": {
+    "file": "assets/linkedin-CsZAhWbA.svg",
+    "src": "public/img/linkedin.svg"
+  },
+  "public/img/me.jpg": {
+    "file": "assets/me-7NLqheFn.jpg",
+    "src": "public/img/me.jpg"
+  },
   "resources/css/app.css": {
-    "file": "assets/app-D1LO5Ewa.css",
+    "file": "assets/app-DQK4eY2M.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
+  "resources/js/Pages/Project/img/cs50.png": {
+    "file": "assets/cs50-CmGKmCZY.png",
+    "src": "resources/js/Pages/Project/img/cs50.png"
+  },
   "resources/js/app.js": {
-    "file": "assets/app-CIMz_fzS.js",
+    "file": "assets/app-DoOxlXA-.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "css": [
-      "assets/app-D1LO5Ewa.css"
+      "assets/app-DQK4eY2M.css"
+    ],
+    "assets": [
+      "assets/me-7NLqheFn.jpg",
+      "assets/github-DJ4kBwNf.svg",
+      "assets/linkedin-CsZAhWbA.svg",
+      "assets/cs50-CmGKmCZY.png"
     ]
   }
 }

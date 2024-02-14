@@ -1,27 +1,21 @@
-<script setup>
-import { defineProps } from 'vue'
-
-// eslint-disable-next-line no-unused-vars
-const props = defineProps({
-  posts: Array,
-  action: String,
-  url: String
-})
-</script>
+<script setup></script>
 
 <template>
   <div>
     <div class="flex space-x-2">
-      <h1 class="title">Posts</h1>
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        <a href="/post">Create new Post</a>
-      </button>
+      <h1 class="title">Articles</h1>
     </div>
     <hr class="my-4" />
-    <ul>
-      <li v-for="post in posts" :key="post.id">
-        <a :href="'post/' + post.slug"> {{ post.title }} - {{ post.excerpt }}</a>
-      </li>
-    </ul>
+    <div>
+      <article class="article">
+        <!-- <img src="./img/cs50.png" alt="CS50" /> -->
+        <div class="content">
+          <a class="title" href="posts/LaravelEnvironmentPost"
+            >Laravel environment: docker, devcontainer, debug
+          </a>
+          <p>How to set a Laravel environment with devcontainer, docker and debug</p>
+        </div>
+      </article>
+    </div>
   </div>
 </template>
