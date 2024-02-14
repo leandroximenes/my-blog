@@ -1,4 +1,22 @@
 {
+  "_prism-B4lngJ5w.js": {
+    "file": "assets/prism-B4lngJ5w.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "node_modules/highlight.js/es/index.js": {
+    "file": "assets/index-DMF1up7G.js",
+    "src": "node_modules/highlight.js/es/index.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "css": [
+      "assets/app-CMEsAJgn.css"
+    ]
+  },
   "public/img/github.svg": {
     "file": "assets/github-DJ4kBwNf.svg",
     "src": "public/img/github.svg"
@@ -12,25 +30,39 @@
     "src": "public/img/me.jpg"
   },
   "resources/css/app.css": {
-    "file": "assets/app-DQK4eY2M.css",
+    "file": "assets/app-CMEsAJgn.css",
     "src": "resources/css/app.css",
     "isEntry": true
+  },
+  "resources/js/Pages/Post/img/devcontainerfolder.png": {
+    "file": "assets/devcontainerfolder-DTN3fVqK.png",
+    "src": "resources/js/Pages/Post/img/devcontainerfolder.png"
+  },
+  "resources/js/Pages/Post/img/vsextension.png": {
+    "file": "assets/vsextension-BUuXiwhS.png",
+    "src": "resources/js/Pages/Post/img/vsextension.png"
   },
   "resources/js/Pages/Project/img/cs50.png": {
     "file": "assets/cs50-CmGKmCZY.png",
     "src": "resources/js/Pages/Project/img/cs50.png"
   },
   "resources/js/app.js": {
-    "file": "assets/app-DoOxlXA-.js",
+    "file": "assets/app-CfCtwUlQ.js",
     "src": "resources/js/app.js",
     "isEntry": true,
+    "dynamicImports": [
+      "node_modules/highlight.js/es/index.js",
+      "_prism-B4lngJ5w.js"
+    ],
     "css": [
-      "assets/app-DQK4eY2M.css"
+      "assets/app-CMEsAJgn.css"
     ],
     "assets": [
       "assets/me-7NLqheFn.jpg",
       "assets/github-DJ4kBwNf.svg",
       "assets/linkedin-CsZAhWbA.svg",
+      "assets/devcontainerfolder-DTN3fVqK.png",
+      "assets/vsextension-BUuXiwhS.png",
       "assets/cs50-CmGKmCZY.png"
     ]
   }
