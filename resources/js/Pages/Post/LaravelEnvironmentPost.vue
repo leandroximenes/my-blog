@@ -138,7 +138,7 @@ WWWUSER=1000
 
 <template>
   <article>
-    <h1 class="title text-center">Laravel environment: docker, devcontainer and VS Code</h1>
+    <h1 class="title text-center">Laravel environment: docker, devcontainer and VS Code debug</h1>
     <h2 class="text-sm py-2">Published on February 14th, 2024.</h2>
     <div class="p-2 text-justify w-full space-y-10 mt-6 text-lg">
       <p>

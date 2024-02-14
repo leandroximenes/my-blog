@@ -15,7 +15,10 @@
           <a class="title" href="posts/LaravelEnvironmentPost"
             >Laravel environment: docker, devcontainer, VS Code debug
           </a>
-          <p>How to set a Laravel environment with devcontainer, docker and debug</p>
+          <p>
+            In this article, we'll explore how you can supercharge your Laravel development workflow
+            by harnessing the power of Docker, DevContainer, and VS Code debug. Let's dive in! 💻
+          </p>
         </div>
       </article>
     </div>
