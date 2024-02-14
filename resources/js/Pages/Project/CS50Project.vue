@@ -3,7 +3,7 @@
 <template>
   <article>
     <h1 class="title text-center">CS50 Final Project: A Real-Time Memory Game</h1>
-    <h2 class="text-sm py-2">Published on February 13th, 2024.</h2>
+    <h2 class="text-sm py-2">Published on February 13rd, 2024.</h2>
     <div class="p-2 text-justify w-full space-y-10 mt-6 text-lg">
       <p>
         CS50's final project consists of an online memory game to be played with a friend, developed
