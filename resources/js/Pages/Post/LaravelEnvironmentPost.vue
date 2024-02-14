@@ -217,7 +217,10 @@ WWWUSER=1000
       <p>
         Now you can start the container and debug your Laravel application. You can set a breakpoint
         in your code and start the debug configuration in Visual Studio Code. You can check the
-        progress in the bottom right corner of Visual Studio Code.
+        progress in the bottom right corner of Visual Studio Code. <br />
+        To open you application use the browser with the URL localhost. <br /><br />
+        Ensure there is no other service running on port 80. <br /><br />
+
         <img src="./img/debug.png" alt="devcontainer folder" />
       </p>
     </div>
