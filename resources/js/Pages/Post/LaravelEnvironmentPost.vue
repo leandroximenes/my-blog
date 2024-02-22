@@ -1,4 +1,5 @@
 <script setup>
+import { Head } from '@inertiajs/vue3'
 import VCodeBlock from '@wdns/vue-code-block'
 
 const devcontainer = `// https://aka.ms/devcontainer.json
@@ -137,6 +138,15 @@ WWWUSER=1000
 </script>
 
 <template>
+  <Head>
+    <title>Laravel environment: docker, devcontainer and VS Code debug</title>
+    <meta
+      name="description"
+      content="Laravel environment: docker, devcontainer and VS Code debug"
+    />
+    <meta name="keywords" content="Laravel, docker, devcontainer, VS Code, debug" />
+  </Head>
+
   <article>
     <h1 class="title text-center">Laravel environment: docker, devcontainer and VS Code debug</h1>
     <h2 class="text-sm py-2">Published on February 14th, 2024.</h2>
