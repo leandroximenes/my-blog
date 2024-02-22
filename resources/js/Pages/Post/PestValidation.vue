@@ -402,7 +402,7 @@ php artisan migrate"
 
       <p>
         Look at the following code to understand the validation rules in the controller: <br />
-        <i  class="flex flex-row-reverse">app/Actions/Fortify/UpdateUserProfileInformation.php</i>
+        <i class="flex flex-row-reverse">app/Actions/Fortify/UpdateUserProfileInformation.php</i>
         <VCodeBlock :code="updateUser" highlightjs lang="php" />
       </p>
       <p>
@@ -415,7 +415,7 @@ php artisan migrate"
           highlightjs
           lang="bash"
         />
-        Check if exits the file <i  class="flex flex-row-reverse">tests/Pest.php</i>
+        Check if exits the file <i class="flex flex-row-reverse">tests/Pest.php</i>
         <VCodeBlock :code="pestPHP" highlightjs lang="php" />
 
         Now, let's write the tests for the controller validation. <br />
@@ -427,7 +427,7 @@ php artisan migrate"
         <span class="font-bold flex">It's time to test!!!</span>
         Run the tests using the following command:
         <VCodeBlock
-          code="$ php artisan test test/Feature/UserInputValidationTest"
+          code="$ ./vendor/bin/pest tests/Feature/UserInputValidationTest.php"
           highlightjs
           lang="bash"
         />
@@ -435,6 +435,7 @@ php artisan migrate"
         You will see the following output:
         <img src="./img/pest-output.png" alt="pest output" />
         If we change email require validation, we will see the following output:
+        <i class="flex flex-row-reverse">app/Actions/Fortify/UpdateUserProfileInformation.php</i>
         <img src="./img/pest-error-output.png" alt="pest output" />
       </p>
       <p>
