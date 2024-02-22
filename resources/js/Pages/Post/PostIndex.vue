@@ -6,7 +6,7 @@
       <h1 class="title">Articles</h1>
     </div>
     <hr class="my-4" />
-    <div>
+    <div class="space-y-4">
       <article class="article">
         <a class="title" href="posts/LaravelEnvironmentPost"
           ><img src="./img/debug.png" alt="CS50" />
@@ -14,6 +14,17 @@
         <div class="content">
           <a class="title" href="posts/LaravelEnvironmentPost"
             >Laravel environment: docker, devcontainer, VS Code debug
+          </a>
+          <p>
+            In this article, we'll explore how you can supercharge your Laravel development workflow
+            by harnessing the power of Docker, DevContainer, and VS Code debug. Let's dive in! 💻
+          </p>
+        </div>
+      </article>
+      <article class="article">
+        <div class="content">
+          <a class="title" href="posts/PestValidation"
+            >Using PEST to Test Form Validations: Require, Type, Length, and More
           </a>
           <p>
             In this article, we'll explore how you can supercharge your Laravel development workflow

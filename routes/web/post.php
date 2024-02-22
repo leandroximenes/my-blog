@@ -8,6 +8,9 @@ Route::get('/', [PostController::class, 'index'])->name('post.index');
 Route::get('/LaravelEnvironmentPost', function () {
     return Inertia::render('Post/LaravelEnvironmentPost');
 });
+Route::get('/PestValidation', function () {
+    return Inertia::render('Post/PestValidation');
+});
 
 
 // Route::get('/post', [PostController::class, 'create'])->name('post.create');
