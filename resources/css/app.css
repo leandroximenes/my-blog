@@ -42,4 +42,16 @@
   .article .stacks span {
     @apply bg-gray-300 px-2 py-1 m-1;
   }
+
+  .table-default {
+    @apply w-full border-collapse border border-gray-300;
+  }
+
+  .table-default th {
+    @apply bg-gray-300 border border-gray-300 p-2;
+  }
+
+  .table-default td {
+    @apply border border-gray-300 p-2;
+  }
 }

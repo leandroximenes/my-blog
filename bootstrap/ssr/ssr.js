@@ -1,9 +1,37 @@
-import { mergeProps, useSSRContext, unref, withCtx, createVNode, ref, createTextVNode, createSSRApp, h } from "vue";
-import { ssrRenderAttrs, ssrRenderAttr, ssrRenderComponent, ssrInterpolate, ssrRenderClass, ssrRenderSlot } from "vue/server-renderer";
+import { mergeProps, unref, useSSRContext, withCtx, createVNode, ref, createTextVNode, createSSRApp, h } from "vue";
+import { ssrRenderAttrs, ssrRenderList, ssrInterpolate, ssrRenderAttr, ssrRenderComponent, ssrRenderClass, ssrRenderSlot } from "vue/server-renderer";
 import { Head, useForm, Link, createInertiaApp } from "@inertiajs/vue3";
 import VCodeBlock from "@wdns/vue-code-block";
 import createServer from "@inertiajs/vue3/server";
 import { renderToString } from "@vue/server-renderer";
+const _sfc_main$8 = {
+  __name: "AccessCount",
+  __ssrInlineRender: true,
+  props: {
+    accesses: Array
+  },
+  setup(__props) {
+    const props = __props;
+    const acc = props.accesses;
+    return (_ctx, _push, _parent, _attrs) => {
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "flex justify-center" }, _attrs))}><table class="table-default"><thead><tr><th>Page</th><th>Access Count</th></tr></thead><tbody><!--[-->`);
+      ssrRenderList(unref(acc), (access) => {
+        _push(`<tr><td>${ssrInterpolate(access.title)}</td><td>${ssrInterpolate(access.access_count)}</td></tr>`);
+      });
+      _push(`<!--]--></tbody></table></div>`);
+    };
+  }
+};
+const _sfc_setup$8 = _sfc_main$8.setup;
+_sfc_main$8.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/AccessCount.vue");
+  return _sfc_setup$8 ? _sfc_setup$8(props, ctx) : void 0;
+};
+const __vite_glob_0_0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  default: _sfc_main$8
+}, Symbol.toStringTag, { value: "Module" }));
 const _imports_0$5 = "/build/assets/me-7NLqheFn.jpg";
 const _imports_0$4 = "/build/assets/github-DJ4kBwNf.svg";
 const _imports_2$2 = "/build/assets/linkedin-CsZAhWbA.svg";
@@ -25,7 +53,7 @@ _sfc_main$7.setup = (props, ctx) => {
   return _sfc_setup$7 ? _sfc_setup$7(props, ctx) : void 0;
 };
 const MainPage = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["ssrRender", _sfc_ssrRender$2]]);
-const __vite_glob_0_0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const __vite_glob_0_1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: MainPage
 }, Symbol.toStringTag, { value: "Module" }));
@@ -254,7 +282,7 @@ _sfc_main$6.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Post/LaravelEnvironmentPost.vue");
   return _sfc_setup$6 ? _sfc_setup$6(props, ctx) : void 0;
 };
-const __vite_glob_0_1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const __vite_glob_0_2 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: _sfc_main$6
 }, Symbol.toStringTag, { value: "Module" }));
@@ -624,7 +652,7 @@ _sfc_main$5.setup = (props, ctx) => {
   return _sfc_setup$5 ? _sfc_setup$5(props, ctx) : void 0;
 };
 const PestValidation = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-72323df5"]]);
-const __vite_glob_0_2 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const __vite_glob_0_3 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: PestValidation
 }, Symbol.toStringTag, { value: "Module" }));
@@ -661,7 +689,7 @@ _sfc_main$4.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Post/PostForm.vue");
   return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
 };
-const __vite_glob_0_3 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const __vite_glob_0_4 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: _sfc_main$4
 }, Symbol.toStringTag, { value: "Module" }));
@@ -677,7 +705,7 @@ _sfc_main$3.setup = (props, ctx) => {
   return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
 };
 const PostIndex = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender$1]]);
-const __vite_glob_0_4 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const __vite_glob_0_5 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: PostIndex
 }, Symbol.toStringTag, { value: "Module" }));
@@ -717,7 +745,7 @@ _sfc_main$2.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Project/CS50Project.vue");
   return _sfc_setup$2 ? _sfc_setup$2(props, ctx) : void 0;
 };
-const __vite_glob_0_5 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const __vite_glob_0_6 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: _sfc_main$2
 }, Symbol.toStringTag, { value: "Module" }));
@@ -733,7 +761,7 @@ _sfc_main$1.setup = (props, ctx) => {
   return _sfc_setup$1 ? _sfc_setup$1(props, ctx) : void 0;
 };
 const ProjectIndex = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["ssrRender", _sfc_ssrRender]]);
-const __vite_glob_0_6 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const __vite_glob_0_7 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: ProjectIndex
 }, Symbol.toStringTag, { value: "Module" }));
@@ -828,7 +856,7 @@ createServer(
     page,
     render: renderToString,
     resolve: (name) => {
-      const pages = /* @__PURE__ */ Object.assign({ "./Pages/MainPage.vue": __vite_glob_0_0, "./Pages/Post/LaravelEnvironmentPost.vue": __vite_glob_0_1, "./Pages/Post/PestValidation.vue": __vite_glob_0_2, "./Pages/Post/PostForm.vue": __vite_glob_0_3, "./Pages/Post/PostIndex.vue": __vite_glob_0_4, "./Pages/Project/CS50Project.vue": __vite_glob_0_5, "./Pages/Project/ProjectIndex.vue": __vite_glob_0_6 });
+      const pages = /* @__PURE__ */ Object.assign({ "./Pages/AccessCount.vue": __vite_glob_0_0, "./Pages/MainPage.vue": __vite_glob_0_1, "./Pages/Post/LaravelEnvironmentPost.vue": __vite_glob_0_2, "./Pages/Post/PestValidation.vue": __vite_glob_0_3, "./Pages/Post/PostForm.vue": __vite_glob_0_4, "./Pages/Post/PostIndex.vue": __vite_glob_0_5, "./Pages/Project/CS50Project.vue": __vite_glob_0_6, "./Pages/Project/ProjectIndex.vue": __vite_glob_0_7 });
       let page2 = pages[`./Pages/${name}.vue`];
       page2.default.layout = page2.default.layout || _sfc_main;
       return pages[`./Pages/${name}.vue`];

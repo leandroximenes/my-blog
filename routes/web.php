@@ -19,21 +19,22 @@ Route::get('/', function () {
     Post::find(1)->increment('access_count');
     return Inertia::render('MainPage');
 });
+Route::get('/access', function () {
+    $posts = Post::all()->sortByDesc('access_count');
+    return Inertia::render('AccessCount', ['accesses' => $posts]);
+});
+
+
+Route::prefix('/projects')->group(__DIR__ . '/web/project.php');
+Route::prefix('/posts')->group(__DIR__ . '/web/post.php');
+
 Route::get('/old', function () {
     return view('welcome');
 });
-
 Route::get('teste', function () {
-    // $post = Post::factory()->create();
-
-    // $post->save();
-
-    $posts = \App\Models\Post::all();
+    $posts = Post::all();
     return [
         'posts' => $posts,
         'message' => 'ok'
     ];
 });
-
-Route::prefix('/projects')->group(__DIR__ . '/web/project.php');
-Route::prefix('/posts')->group(__DIR__ . '/web/post.php');
