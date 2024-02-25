@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -15,6 +16,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
+    Post::find(1)->increment('access_count');
     return Inertia::render('MainPage');
 });
 Route::get('/old', function () {

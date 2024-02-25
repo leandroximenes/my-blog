@@ -10,6 +10,7 @@ class PostController extends Controller
 {
     public function index()
     {
+        Post::find(2)->increment('access_count');
         $posts = Post::all();
         return Inertia::render('Post/PostIndex', [
             'posts' => $posts,
