@@ -2,7 +2,7 @@
 <script setup>
 import { Head } from '@inertiajs/vue3'
 import VCodeBlock from '@wdns/vue-code-block'
-import BashBlock from '@/Components/BashBlock.vue'
+// import BashBlock from '@/Components/BashBlock.vue'
 
 const updateUser = `
 <?php
@@ -359,7 +359,7 @@ expect()->extend('toBeOne', function () {
       <p>
         Let's start with a new Laravel Jetstream project. You can create a new Laravel Jetstream
         project using the following command:
-        <BashBlock
+        <VCodeBlock
           code='curl -s "https://laravel.build/form-validation?with=mysql" | bash'
           highlightjs
           lang="bash"
@@ -375,12 +375,12 @@ expect()->extend('toBeOne', function () {
       </h1>
       <p>
         Now, let's install Jetstream using the following command:
-        <BashBlock code="composer require laravel/jetstream" highlightjs lang="bash" />
+        <VCodeBlock code="composer require laravel/jetstream" highlightjs lang="bash" />
         Then, we'll install Jetstream with the Inertia stack:
-        <BashBlock code="php artisan jetstream:install inertia" highlightjs lang="bash" />
+        <VCodeBlock code="php artisan jetstream:install inertia" highlightjs lang="bash" />
         After installing Jetstream, you should install and build your NPM dependencies and migrate
         your database:
-        <BashBlock
+        <VCodeBlock
           code="npm install
 npm run build
 php artisan migrate"
@@ -388,7 +388,7 @@ php artisan migrate"
           lang="bash"
         />
         After customizing these components, you should rebuild your assets:
-        <BashBlock code="npm run build" highlightjs lang="bash" />
+        <VCodeBlock code="npm run build" highlightjs lang="bash" />
       </p>
 
       <p>
@@ -425,9 +425,9 @@ php artisan migrate"
       <p>
         <span>Let's use pest to check the validation controller</span>
         First, let's install pest using the following command:
-        <BashBlock code="composer require pestphp/pest --dev" highlightjs lang="bash" />
+        <VCodeBlock code="composer require pestphp/pest --dev" highlightjs lang="bash" />
         Then, create a new test file using the following command:
-        <BashBlock
+        <VCodeBlock
           code="php artisan make:test UserInputValidationTest --pest"
           highlightjs
           lang="bash"
@@ -443,7 +443,7 @@ php artisan migrate"
       <h1 class="topic">It's time to test!!!</h1>
       <p>
         Run the tests using the following command:
-        <BashBlock
+        <VCodeBlock
           code="./vendor/bin/pest tests/Feature/UserInputValidationTest.php"
           highlightjs
           lang="bash"
