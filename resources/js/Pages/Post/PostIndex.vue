@@ -7,7 +7,7 @@
     </div>
     <hr class="my-4" />
     <div class="space-y-4">
-      <article class="article">
+      <article class="articles">
         <a class="title" href="posts/PestValidation"
           ><img src="./img/pest-output-min.png" alt="debug Laravel" />
         </a>
@@ -22,9 +22,9 @@
           </p>
         </div>
       </article>
-      <article class="article">
+      <article class="articles">
         <a class="title" href="posts/LaravelEnvironmentPost"
-          ><img src="./img/debug.png" alt="debug Laravel" />
+          ><img src="./img/debug_ini.png" alt="debug Laravel" />
         </a>
         <div class="content">
           <a class="title" href="posts/LaravelEnvironmentPost"
@@ -32,7 +32,15 @@
           </a>
           <p>
             In this article, we'll explore how you can supercharge your Laravel development workflow
-            by harnessing the power of Docker, DevContainer, and VS Code debug. Let's dive in! 💻
+            by harnessing the power of Docker, DevContainer, and VS Code debug.
+          </p>
+          <p>
+            🚀 Additionally, we'll also look at how you can custom your terminal to display the
+            current git branch and status.
+          </p>
+          <p>
+            I like and use this environment because I can install and test new software without
+            affecting my local machine.
           </p>
         </div>
       </article>
