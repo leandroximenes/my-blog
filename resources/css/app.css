@@ -12,48 +12,35 @@
   }
 
   .title {
-    @apply text-4xl font-bold mt-6;
+    @apply text-3xl font-bold;
   }
 
-  .articles {
+  .article {
     @apply bg-gray-100 flex flex-col space-x-2 p-2 lg:flex-row;
   }
 
-  .articles .content {
-    @apply no-underline flex flex-col p-2 items-center  justify-center;
+  .article img {
+    @apply lg:h-32;
   }
 
-  .articles .title {
+  .article .content {
+    @apply no-underline flex flex-col p-2;
+  }
+
+  .article .title {
     @apply text-2xl font-bold;
   }
 
-  .articles p {
+  .article p {
     @apply text-lg;
   }
 
-  .articles .stacks {
+  .article .stacks {
     @apply mt-6 flex flex-wrap items-center;
   }
 
-  .articles .stacks span {
+  .article .stacks span {
     @apply bg-gray-300 px-2 py-1 m-1;
-  }
-
-  article p {
-    @apply text-xl text-gray-600 my-4;
-  }
-
-  article img {
-    @apply my-4;
-  }
-
-  article i {
-    @apply text-lg;
-  }
-
-  .topic {
-    /* new line above execpt first */
-    @apply text-3xl  font-bold;
   }
 
   .table-default {
