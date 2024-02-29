@@ -285,21 +285,13 @@ expect()->extend('toBeOne', function () {
 </script>
 
 <template>
-  <Head>
-    <title>Using PEST to Test Form Validations: Require, Type, Length, and More</title>
-    <meta
-      name="description"
-      content="Laravel, Inertia, and Vue.js, when combined as a monolith, offer a powerful stack for building modern web applications. In this post, we'll explore how these technologies integrate and how we can leverage PEST to test form validations effectively."
-    />
-    <meta name="keywords" content="Laravel, Inertia, Vue, PEST" />
-  </Head>
+  <Head> </Head>
   <article>
     <h1 class="title text-center">
       Using PEST to Test Form Validations: Require, Type, Length, and More
     </h1>
-    <h2 class="text-md py-2">Published on February 22sd, 2024.</h2>
+    <h2 class="text-sm py-2">Published on February 22sd, 2024.</h2>
     <div class="p-2 text-justify w-full space-y-10 mt-6 text-lg">
-      <h1 class="topic">Introduction</h1>
       <p>
         In the realm of web development, integrating various technologies seamlessly can
         significantly streamline the development process. Laravel, Inertia, and Vue.js, when
@@ -339,7 +331,6 @@ expect()->extend('toBeOne', function () {
         ensure our application behaves as expected. In this tutorial, we'll harness the power of
         PEST to include form validations in our test suite seamlessly.
       </p>
-
       <p>
         <span class="font-bold flex">Getting Started with Laravel Jetstream</span>
         To kickstart our journey into testing form validations, we'll use Laravel Jetstream, a
@@ -353,8 +344,6 @@ expect()->extend('toBeOne', function () {
         Stay tuned for the next installment, where we'll delve into writing PEST tests for form
         validations in Laravel Jetstream.
       </p>
-
-      <h1 class="topic">Starting a New Laravel Project</h1>
 
       <p>
         Let's start with a new Laravel Jetstream project. You can create a new Laravel Jetstream
@@ -370,9 +359,6 @@ expect()->extend('toBeOne', function () {
         home page will be displayed in your browser. <br /><br />
         <img src="./img/laravel-welcome-page.png" alt="laravel home page" />
       </p>
-      <h1 class="topic">
-        Installing Jetstream and Building the NPM Dependencies and Migrating the Database
-      </h1>
       <p>
         Now, let's install Jetstream using the following command:
         <VCodeBlock code="composer require laravel/jetstream" highlightjs lang="bash" />
@@ -400,15 +386,16 @@ php artisan migrate"
         Register a user and login to the application. You will see the dashboard page.
         <img src="./img/laravel-dashborad.png" alt="dashboard page" />
       </p>
-      <h1 class="topic">Let's understand out goal</h1>
+
       <p>
+        <span class="font-bold flex">Let's understand out goal</span>
         Form validation is a crucial aspect of web applications. It important to ensure that these
         rules are checked in server-side and in tests as well.
         <img src="./img/requirefields.png" alt="dashboard page" />
       </p>
 
       <p>In controller validation we have the following rules:</p>
-      <ul class="list-disc pl-6">
+      <ul>
         <li><b>name</b> has 3 validations: <i> required, string type and max length</i></li>
         <li><b>email</b> has 4 validations: <i> required, email type, max length and unique</i></li>
         <li><b>photo</b> has 3 validations: <i> nullable, mimes and max length</i></li>
@@ -419,9 +406,6 @@ php artisan migrate"
         <i class="flex flex-row-reverse">app/Actions/Fortify/UpdateUserProfileInformation.php</i>
         <VCodeBlock :code="updateUser" highlightjs lang="php" />
       </p>
-
-      <h1 class="topic">Installing PEST and Writing Tests.</h1>
-
       <p>
         <span>Let's use pest to check the validation controller</span>
         First, let's install pest using the following command:
@@ -440,8 +424,8 @@ php artisan migrate"
         <VCodeBlock :code="UserInputTest" highlightjs lang="php" />
       </p>
 
-      <h1 class="topic">It's time to test!!!</h1>
       <p>
+        <span class="font-bold flex">It's time to test!!!</span>
         Run the tests using the following command:
         <VCodeBlock
           code="./vendor/bin/pest tests/Feature/UserInputValidationTest.php"
@@ -456,7 +440,8 @@ php artisan migrate"
         <img src="./img/pest-error-output.png" alt="pest output" />
       </p>
       <p>
-        That's it! We explored the integration of Laravel, Inertia, and Vue.js and how we can
+        <span class="font-bold flex">Conclusion</span>
+        In this post, we explored the integration of Laravel, Inertia, and Vue.js and how we can
         leverage PEST to test form validations effectively. We used Laravel Jetstream as a starting
         point for our application and covered various form validations, including required fields,
         data types, field lengths, and more. By the end of this tutorial, you should have a solid

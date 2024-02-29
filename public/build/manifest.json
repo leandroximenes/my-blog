@@ -14,7 +14,7 @@
       "resources/js/app.js"
     ],
     "css": [
-      "assets/app-CJKWBUF6.css"
+      "assets/app-COGvNUNy.css"
     ]
   },
   "public/img/github.svg": {
@@ -30,17 +30,13 @@
     "src": "public/img/me.jpg"
   },
   "resources/css/app.css": {
-    "file": "assets/app-CJKWBUF6.css",
+    "file": "assets/app-COGvNUNy.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/js/Pages/Post/img/debug.png": {
     "file": "assets/debug-CtGYDOVf.png",
     "src": "resources/js/Pages/Post/img/debug.png"
-  },
-  "resources/js/Pages/Post/img/debug_ini.png": {
-    "file": "assets/debug_ini-ac2PUNJ1.png",
-    "src": "resources/js/Pages/Post/img/debug_ini.png"
   },
   "resources/js/Pages/Post/img/devcontainerfolder.png": {
     "file": "assets/devcontainerfolder-DTN3fVqK.png",
@@ -113,7 +109,6 @@
       "assets/pest-output-DAWTyeAj.png",
       "assets/pest-error-output-DlXUmicb.png",
       "assets/pest-output-min-rUg6y2nq.png",
-      "assets/debug_ini-ac2PUNJ1.png",
       "assets/cs50-CmGKmCZY.png"
     ]
   }

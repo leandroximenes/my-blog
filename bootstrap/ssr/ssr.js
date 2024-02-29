@@ -225,13 +225,13 @@ const _sfc_main$6 = {
         highlightjs: "",
         lang: "bash"
       }, null, _parent));
-      _push(`<p> With the VSCode oppened, you will install the devcontainer extension. You will notice this .devcontainer folder in the root of the project. <img${ssrRenderAttr("src", _imports_0$3)} alt="devcontainer folder"></p><p> You can install the extension by clicking on the extensions icon in the sidebar and search <img${ssrRenderAttr("src", _imports_1$2)} alt="vscodeextensioninstall"></p><p> I use php inteliphense and xdebug extensions. You can add more extensions. <i class="flex flex-row-reverse">.devcontainer/.devcontainer.json</i>`);
+      _push(`<p> With the VSCode oppened, you will install the devcontainer extension. <br> You will notice this .devcontainer folder in the root of the project. <img${ssrRenderAttr("src", _imports_0$3)} alt="devcontainer folder"></p><p> You can install the extension by clicking on the extensions icon in the sidebar and search <img${ssrRenderAttr("src", _imports_1$2)} alt="vscodeextensioninstall"></p><p> Here is my <b>.devcontainer/.devcontainer.json</b> I use php inteliphense and xdebug extensions. file: `);
       _push(ssrRenderComponent(unref(VCodeBlock), {
         code: devcontainer,
         highlightjs: "",
         lang: "javascript"
       }, null, _parent));
-      _push(`</p><h1 class="topic">Docker configurations</h1><p> 1) You need to change docker-compose.yml to add new port for xdebug. <br><br> 2) Change the context and add a copy of vendor/laravel/sail/runtimes/8.3<br> Add the following lines to the <b>docker-compose.yml</b> file: <i class="flex flex-row-reverse">docker-compose.yml</i>`);
+      _push(`</p><p> 1) You need to change docker-compose.yml to add new port for xdebug. <br><br> 2) Change the context and add a copy of vendor/laravel/sail/runtimes/8.3<br> Add the following lines to the <b>docker-compose.yml</b> file: `);
       _push(ssrRenderComponent(unref(VCodeBlock), {
         code: dockerCompose,
         highlightjs: "",
@@ -242,37 +242,37 @@ const _sfc_main$6 = {
         highlightjs: "",
         lang: "bash"
       }, null, _parent));
-      _push(`<br> 3) I like to custom the Dockerfile and add my customizations like install some software: sudo curl, git, git cli and nano, and change the user &#39;sail&#39; as sudo.<br><i class="text-red-500 font-bold">Put the code in right place</i>. <br><i class="flex flex-row-reverse">.devcontainer/vendor-example/laravel/sail/runtimes/8.3/Dockerfile</i>`);
+      _push(`<br> 3) I like to custom the Dockerfile and add my customizations like install some software: sudo curl, git, git cli and nano, and change the user &#39;sail&#39; as sudo.<br><i class="text-red-500 font-bold">Put the code in right place</i>. <br> In the <b>.devcontainer/vendor-example/laravel/sail/runtimes/8.3/Dockerfile</b>`);
       _push(ssrRenderComponent(unref(VCodeBlock), {
         code: dockerfile,
         highlightjs: "",
         lang: "Dockerfile"
       }, null, _parent));
-      _push(` Your Dockerfile will look like this: <img${ssrRenderAttr("src", _imports_2$1)} alt="Dockerfile"><br> 4) Add this code in <b>php.ini</b><i class="flex flex-row-reverse"> .devcontainer/vendor-example/laravel/sail/runtimes/8.3/php.ini </i>`);
+      _push(` Your Dockerfile will look like this: <img${ssrRenderAttr("src", _imports_2$1)} alt="Dockerfile"><br> 4) Add this code in <b>php.ini</b>`);
       _push(ssrRenderComponent(unref(VCodeBlock), {
         code: phpini,
         highlightjs: "",
         lang: "ini"
       }, null, _parent));
-      _push(`<br> 5) I like to custom my bash prompt to show my git branch and the current directory. <br><i class="flex flex-row-reverse"> .devcontainer/vendor-example/laravel/sail/runtimes/8.3/start-container </i>`);
+      _push(`<br> 5) I like to custom my bash prompt to show my git branch and the current directory. <br> Change the file <b>start-container</b>`);
       _push(ssrRenderComponent(unref(VCodeBlock), {
         code: startContainer,
         highlightjs: "",
         lang: "bash"
       }, null, _parent));
-      _push(`<br></p><h1 class="topic">Debug configurations</h1><p><i class="flex flex-row-reverse">.vscode/launch.json</i>`);
+      _push(`<br> 6) Create a debug configuration in VSCode. <b>.vscode/launch.json</b><br>`);
       _push(ssrRenderComponent(unref(VCodeBlock), {
         code: vscode,
         highlightjs: "",
         lang: "bash"
       }, null, _parent));
-      _push(`<br> Check environment variables <i class="flex flex-row-reverse">.env</i>`);
+      _push(`<br> 7) Check environment variables in <b>.env</b> file. <br>`);
       _push(ssrRenderComponent(unref(VCodeBlock), {
         code: env,
         highlightjs: "",
         lang: "ini"
       }, null, _parent));
-      _push(`<br></p><h1 class="topic">Let&#39;s put to work!!</h1><p> After installing the extension, you can open the command palette (Ctrl+Shift+P) and type <i>&#39;Remote-Containers: Reopen in Container&#39;</i>. This will build the container and open the project inside it. Or it will appear a button in the bottom right corner of the window. </p><p> Now you can start the container and debug your Laravel application. You can set a breakpoint in your code and start the debug configuration in Visual Studio Code. You can check the progress in the bottom right corner of Visual Studio Code. </p><p> To open you application use the browser with the URL localhost. <br><br> Ensure there is no other service running on port 80. <br><br><img${ssrRenderAttr("src", _imports_3$1)} alt="devcontainer folder"></p><p> That&#39;s it! You now have a Laravel environment using Docker, Devcontainer, and Xdebug. You can use this environment to develop your Laravel applications and debug them using Visual Studio Code. I hope this post was helpful to you. If you have any questions, feel free to ask in the comments section below. Thank you for reading! </p></div></article><!--]-->`);
+      _push(`<br></p><p> After installing the extension, you can open the command palette (Ctrl+Shift+P) and type <i>&#39;Remote-Containers: Reopen in Container&#39;</i>. This will build the container and open the project inside it. Or it will appear a button in the bottom right corner of the window. </p><p> Now you can start the container and debug your Laravel application. You can set a breakpoint in your code and start the debug configuration in Visual Studio Code. You can check the progress in the bottom right corner of Visual Studio Code. <br> To open you application use the browser with the URL localhost. <br><br> Ensure there is no other service running on port 80. <br><br><img${ssrRenderAttr("src", _imports_1$1)} alt="devcontainer folder"></p></div></article><!--]-->`);
     };
   }
 };
@@ -287,7 +287,7 @@ const __vite_glob_0_2 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.def
   default: _sfc_main$6
 }, Symbol.toStringTag, { value: "Module" }));
 const _imports_0$2 = "/build/assets/laravel-welcome-page-ez6egKWo.png";
-const _imports_1$1 = "/build/assets/laravel-welcome-Jetstream-BNoQpVBe.png";
+const _imports_1 = "/build/assets/laravel-welcome-Jetstream-BNoQpVBe.png";
 const _imports_2 = "/build/assets/laravel-dashborad-C6SkwNc0.png";
 const _imports_3 = "/build/assets/requirefields-CEQ8spP0.png";
 const _imports_4 = "/build/assets/pest-output-DAWTyeAj.png";
@@ -713,10 +713,9 @@ const __vite_glob_0_4 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.def
   default: _sfc_main$4
 }, Symbol.toStringTag, { value: "Module" }));
 const _imports_0$1 = "/build/assets/pest-output-min-rUg6y2nq.png";
-const _imports_1 = "/build/assets/debug_ini-ac2PUNJ1.png";
 const _sfc_main$3 = {};
 function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs) {
-  _push(`<div${ssrRenderAttrs(_attrs)}><div class="flex space-x-2"><h1 class="title">Articles</h1></div><hr class="my-4"><div class="space-y-4"><article class="articles"><a class="title" href="posts/PestValidation"><img${ssrRenderAttr("src", _imports_0$1)} alt="debug Laravel"></a><div class="content"><a class="title" href="posts/PestValidation">Using PEST to Test Form Validations: Require, Type, Length, and More </a><p> 🧪 Every test matters. <br> 🚀 In this post, we explored the integration of Laravel, Inertia, and Vue.js and how we can leverage PEST to test form validations effectively. </p></div></article><article class="articles"><a class="title" href="posts/LaravelEnvironmentPost"><img${ssrRenderAttr("src", _imports_1)} alt="debug Laravel"></a><div class="content"><a class="title" href="posts/LaravelEnvironmentPost">Laravel environment: docker, devcontainer, VS Code debug </a><p> In this article, we&#39;ll explore how you can supercharge your Laravel development workflow by harnessing the power of Docker, DevContainer, and VS Code debug. </p><p> 🚀 Additionally, we&#39;ll also look at how you can custom your terminal to display the current git branch and status. </p><p> I like and use this environment because I can install and test new software without affecting my local machine. </p></div></article></div></div>`);
+  _push(`<div${ssrRenderAttrs(_attrs)}><div class="flex space-x-2"><h1 class="title">Articles</h1></div><hr class="my-4"><div class="space-y-4"><article class="article"><a class="title" href="posts/PestValidation"><img${ssrRenderAttr("src", _imports_0$1)} alt="debug Laravel"></a><div class="content"><a class="title" href="posts/PestValidation">Using PEST to Test Form Validations: Require, Type, Length, and More </a><p> 🧪 Every test matters. <br> 🚀 In this post, we explored the integration of Laravel, Inertia, and Vue.js and how we can leverage PEST to test form validations effectively. </p></div></article><article class="article"><a class="title" href="posts/LaravelEnvironmentPost"><img${ssrRenderAttr("src", _imports_1$1)} alt="debug Laravel"></a><div class="content"><a class="title" href="posts/LaravelEnvironmentPost">Laravel environment: docker, devcontainer, VS Code debug </a><p> In this article, we&#39;ll explore how you can supercharge your Laravel development workflow by harnessing the power of Docker, DevContainer, and VS Code debug. Let&#39;s dive in! 💻 </p></div></article></div></div>`);
 }
 const _sfc_setup$3 = _sfc_main$3.setup;
 _sfc_main$3.setup = (props, ctx) => {
@@ -772,7 +771,7 @@ const __vite_glob_0_6 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.def
 const _imports_0 = "/build/assets/cs50-CmGKmCZY.png";
 const _sfc_main$1 = {};
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs) {
-  _push(`<div${ssrRenderAttrs(_attrs)}><div class="flex space-x-2"><h1 class="title">Projects</h1></div><hr class="my-4"><div><article class="articles"><a class="title" href="projects/cs50"><img${ssrRenderAttr("src", _imports_0)} alt="CS50"></a><div class="content"><a class="title" href="projects/cs50"> CS50 Final Project: A Real-Time Memory Game </a><p> CS50 Final Project completed in December 2022 - a dynamic memory game designed for real-time online play with friends </p><div class="stacks"><span>Python</span><span>Websockets</span><span>Javascript</span><span>Sqlite</span><span>Heroku</span></div></div></article></div></div>`);
+  _push(`<div${ssrRenderAttrs(_attrs)}><div class="flex space-x-2"><h1 class="title">Projects</h1></div><hr class="my-4"><div><article class="article"><a class="title" href="projects/cs50"><img${ssrRenderAttr("src", _imports_0)} alt="CS50"></a><div class="content"><a class="title" href="projects/cs50"> CS50 Final Project: A Real-Time Memory Game </a><p> CS50 Final Project completed in December 2022 - a dynamic memory game designed for real-time online play with friends </p><div class="stacks"><span>Python</span><span>Websockets</span><span>Javascript</span><span>Sqlite</span><span>Heroku</span></div></div></article></div></div>`);
 }
 const _sfc_setup$1 = _sfc_main$1.setup;
 _sfc_main$1.setup = (props, ctx) => {
