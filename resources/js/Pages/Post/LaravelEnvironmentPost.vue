@@ -1,7 +1,6 @@
 <script setup>
 import { Head } from '@inertiajs/vue3'
 import VCodeBlock from '@wdns/vue-code-block'
-import BashBlock from '@/Components/BashBlock.vue'
 
 const devcontainer = `// https://aka.ms/devcontainer.json
 {
@@ -150,9 +149,8 @@ WWWUSER=1000
 
   <article>
     <h1 class="title text-center">Laravel environment: docker, devcontainer and VS Code debug</h1>
-    <h2 class="text-md py-2">Published on February 14th, 2024.</h2>
+    <h2 class="text-sm py-2">Published on February 14th, 2024.</h2>
     <div class="p-2 text-justify w-full space-y-10 mt-6 text-lg">
-      <h1 class="topic">Starting new Laravel project</h1>
       <p>
         In this post, we will see how to set up a Laravel environment using Docker, Devcontainer,
         and debug it using Xdebug. I like to use Docker for my development environment because it is
@@ -165,8 +163,8 @@ WWWUSER=1000
         it by following the instructions on the official
         <a class="font-bold" href="https://docs.docker.com/compose/install/">website.</a>
       </p>
-      <BashBlock
-        code='curl -s "https://laravel.build/example-app?with=mysql&devcontainer" | bash'
+      <VCodeBlock
+        code='$ curl -s "https://laravel.build/example-app?with=mysql&devcontainer" | bash'
         highlightjs
         lang="bash"
       />
@@ -176,11 +174,10 @@ WWWUSER=1000
         devcontainer. Click on the 'Reopen in Container' button and wait for the container to be
         built. You can check the progress in the bottom right corner of Visual Studio Code.
       </p>
-      <h1 class="topic">VsCode and DevContainer</h1>
-      <BashBlock code="code example-app" highlightjs lang="bash" />
+      <VCodeBlock code="$ code example-app" highlightjs lang="bash" />
       <p>
-        With the VSCode oppened, you will install the devcontainer extension. You will notice this
-        .devcontainer folder in the root of the project.
+        With the VSCode oppened, you will install the devcontainer extension. <br />
+        You will notice this .devcontainer folder in the root of the project.
         <img src="./img/devcontainerfolder.png" alt="devcontainer folder" />
       </p>
       <p>
@@ -189,56 +186,39 @@ WWWUSER=1000
       </p>
 
       <p>
-        I use php inteliphense and xdebug extensions. You can add more extensions.
-        <i class="flex flex-row-reverse">.devcontainer/.devcontainer.json</i>
+        Here is my <b>.devcontainer/.devcontainer.json</b> I use php inteliphense and xdebug
+        extensions. file:
         <VCodeBlock :code="devcontainer" highlightjs lang="javascript" />
       </p>
-      <h1 class="topic">Docker configurations</h1>
       <p>
         1) You need to change docker-compose.yml to add new port for xdebug. <br /><br />
 
         2) Change the context and add a copy of vendor/laravel/sail/runtimes/8.3<br />
         Add the following lines to the <b>docker-compose.yml</b> file:
-        <i class="flex flex-row-reverse">docker-compose.yml</i>
         <VCodeBlock :code="dockerCompose" highlightjs lang="yml" />
         <VCodeBlock :code="cpCommand" highlightjs lang="bash" /><br />
 
         3) I like to custom the Dockerfile and add my customizations like install some software:
         sudo curl, git, git cli and nano, and change the user 'sail' as sudo.<br />
         <i class="text-red-500 font-bold">Put the code in right place</i>. <br />
-        <i class="flex flex-row-reverse"
-          >.devcontainer/vendor-example/laravel/sail/runtimes/8.3/Dockerfile</i
-        >
+        In the <b>.devcontainer/vendor-example/laravel/sail/runtimes/8.3/Dockerfile</b>
         <VCodeBlock :code="dockerfile" highlightjs lang="Dockerfile" />
         Your Dockerfile will look like this:
         <img src="./img/dockerfile.png" alt="Dockerfile" /><br />
 
         4) Add this code in <b>php.ini</b>
-        <i class="flex flex-row-reverse">
-          .devcontainer/vendor-example/laravel/sail/runtimes/8.3/php.ini
-        </i>
         <VCodeBlock :code="phpini" highlightjs lang="ini" /><br />
 
         5) I like to custom my bash prompt to show my git branch and the current directory. <br />
-        <i class="flex flex-row-reverse">
-          .devcontainer/vendor-example/laravel/sail/runtimes/8.3/start-container
-        </i>
+        Change the file <b>start-container</b>
         <VCodeBlock :code="startContainer" highlightjs lang="bash" /><br />
-      </p>
 
-      <h1 class="topic">Debug configurations</h1>
-
-      <p>
-        <i class="flex flex-row-reverse">.vscode/launch.json</i>
+        6) Create a debug configuration in VSCode. <b>.vscode/launch.json</b><br />
         <VCodeBlock :code="vscode" highlightjs lang="bash" /><br />
 
-        Check environment variables
-        <i class="flex flex-row-reverse">.env</i>
+        7) Check environment variables in <b>.env</b> file. <br />
         <VCodeBlock :code="env" highlightjs lang="ini" /><br />
       </p>
-
-      <h1 class="topic">Let's put to work!!</h1>
-
       <p>
         After installing the extension, you can open the command palette (Ctrl+Shift+P) and type
         <i>'Remote-Containers: Reopen in Container'</i>. This will build the container and open the
@@ -247,20 +227,11 @@ WWWUSER=1000
       <p>
         Now you can start the container and debug your Laravel application. You can set a breakpoint
         in your code and start the debug configuration in Visual Studio Code. You can check the
-        progress in the bottom right corner of Visual Studio Code.
-      </p>
-      <p>
+        progress in the bottom right corner of Visual Studio Code. <br />
         To open you application use the browser with the URL localhost. <br /><br />
         Ensure there is no other service running on port 80. <br /><br />
 
         <img src="./img/debug.png" alt="devcontainer folder" />
-      </p>
-
-      <p>
-        That's it! You now have a Laravel environment using Docker, Devcontainer, and Xdebug. You
-        can use this environment to develop your Laravel applications and debug them using Visual
-        Studio Code. I hope this post was helpful to you. If you have any questions, feel free to
-        ask in the comments section below. Thank you for reading!
       </p>
     </div>
   </article>
