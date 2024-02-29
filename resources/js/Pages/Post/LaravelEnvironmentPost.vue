@@ -1,6 +1,7 @@
 <script setup>
 import { Head } from '@inertiajs/vue3'
 import VCodeBlock from '@wdns/vue-code-block'
+// import BashBlock from '@/Components/BashBlock.vue'
 
 const devcontainer = `// https://aka.ms/devcontainer.json
 {
@@ -164,7 +165,7 @@ WWWUSER=1000
         <a class="font-bold" href="https://docs.docker.com/compose/install/">website.</a>
       </p>
       <VCodeBlock
-        code='$ curl -s "https://laravel.build/example-app?with=mysql&devcontainer" | bash'
+        code='curl -s "https://laravel.build/example-app?with=mysql&devcontainer" | bash'
         highlightjs
         lang="bash"
       />
@@ -174,7 +175,8 @@ WWWUSER=1000
         devcontainer. Click on the 'Reopen in Container' button and wait for the container to be
         built. You can check the progress in the bottom right corner of Visual Studio Code.
       </p>
-      <VCodeBlock code="$ code example-app" highlightjs lang="bash" />
+      <h1 class="topic">VsCode and DevContainer</h1>
+      <VCodeBlock code="code example-app" highlightjs lang="bash" />
       <p>
         With the VSCode oppened, you will install the devcontainer extension. <br />
         You will notice this .devcontainer folder in the root of the project.
