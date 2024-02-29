@@ -1,13 +1,13 @@
 {
-  "_prism-Bs3b4Haq.js": {
-    "file": "assets/prism-Bs3b4Haq.js",
+  "_prism-R62ZKu4s.js": {
+    "file": "assets/prism-R62ZKu4s.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js"
     ]
   },
   "node_modules/highlight.js/es/index.js": {
-    "file": "assets/index-oK1QuZiA.js",
+    "file": "assets/index-CoY37u2X.js",
     "src": "node_modules/highlight.js/es/index.js",
     "isDynamicEntry": true,
     "imports": [
@@ -83,16 +83,16 @@
     "src": "resources/js/Pages/Project/img/cs50.png"
   },
   "resources/js/app.js": {
-    "file": "assets/app-DQV2hWjM.js",
+    "file": "assets/app-BrrkoYry.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
       "node_modules/highlight.js/es/index.js",
-      "_prism-Bs3b4Haq.js"
+      "_prism-R62ZKu4s.js"
     ],
     "css": [
-      "assets/app-Y8vIh67N.css",
-      "assets/app-CJKWBUF6.css"
+      "assets/app-ZjGgrlYF.css",
+      "assets/app-COGvNUNy.css"
     ],
     "assets": [
       "assets/me-7NLqheFn.jpg",
