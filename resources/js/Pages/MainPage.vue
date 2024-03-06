@@ -1,4 +1,16 @@
-<script setup></script>
+<script setup>
+const openPopUp = (e) => {
+  e.preventDefault()
+  const width = 600
+  const height = 800
+  const left = window.innerWidth / 2 - width / 2
+  const top = window.innerHeight / 2 - height / 2
+  const url = '/auth/github/redirect'
+  const title = 'Github Auth'
+  const specs = `width=${width},height=${height},top=${top},left=${left}`
+  window.open(url, title, specs)
+}
+</script>
 
 <template>
   <div class="lg:flex lg:space-x-2">
@@ -35,7 +47,7 @@
   </div>
   <div class="flex justify-center">
     <a
-      href="/auth/github/redirect"
+      @click="openPopUp"
       class="py-2 px-4 max-w-md flex justify-center items-center bg-gray-600 hover:bg-gray-700 focus:ring-gray-500 focus:ring-offset-gray-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
     >
       <svg
