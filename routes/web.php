@@ -29,6 +29,10 @@ Route::prefix('/projects')->group(__DIR__ . '/web/project.php');
 Route::prefix('/posts')->group(__DIR__ . '/web/post.php');
 Route::prefix('/auth')->group(__DIR__ . '/web/auth.php');
 
+Route::get('/config', function () {
+    return Inertia::render('ConfigPage');
+});
+
 Route::get('/old', function () {
     return view('welcome');
 });

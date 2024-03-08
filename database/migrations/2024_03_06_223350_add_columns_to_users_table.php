@@ -17,6 +17,12 @@ return new class extends Migration
             $table->string('github_avatar')->nullable();
             $table->string('github_token')->nullable();
             $table->string('github_refresh_token')->nullable();
+
+            $table->string('google_id')->nullable();
+            $table->string('google_token')->nullable();
+            $table->string('google_refresh_token')->nullable();
+            $table->string('google_avatar')->nullable();
+            $table->string('google_nickname')->nullable();
         });
     }
 
@@ -31,6 +37,12 @@ return new class extends Migration
             $table->dropColumn('github_avatar');
             $table->dropColumn('github_token');
             $table->dropColumn('github_refresh_token');
+
+            $table->dropColumn('google_id');
+            $table->dropColumn('google_token');
+            $table->dropColumn('google_refresh_token');
+            $table->dropColumn('google_avatar');
+            $table->dropColumn('google_nickname');
         });
     }
 };
