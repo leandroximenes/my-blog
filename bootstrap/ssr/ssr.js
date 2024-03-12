@@ -2,6 +2,7 @@ import { mergeProps, unref, useSSRContext, computed, withCtx, createVNode, ref, 
 import { ssrRenderAttrs, ssrRenderList, ssrInterpolate, ssrRenderAttr, ssrRenderComponent, ssrRenderClass, ssrRenderSlot } from "vue/server-renderer";
 import { usePage, Head, useForm, Link, createInertiaApp } from "@inertiajs/vue3";
 import VCodeBlock from "@wdns/vue-code-block";
+import { MdEditor } from "md-editor-v3";
 import createServer from "@inertiajs/vue3/server";
 import { renderToString } from "@vue/server-renderer";
 const _sfc_main$e = {
@@ -70,7 +71,7 @@ const _export_sfc = (sfc, props) => {
   return target;
 };
 const _sfc_main$c = {};
-function _sfc_ssrRender$4(_ctx, _push, _parent, _attrs) {
+function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs) {
   _push(`<div${ssrRenderAttrs(mergeProps({ class: "lg:flex lg:space-x-2" }, _attrs))}><img${ssrRenderAttr("src", _imports_0$5)} alt="me" class="p-1 mx-auto lg:w-1/2"><div class="p-2 lg:w-1/2"><h1 class="title text-center">About me</h1><div class="text-justify w-full space-y-10 mt-6 text-lg"><p> Hello there! 👋 I&#39;m married 💑 and a proud father of a daughter 👧, residing in Brasilia, DF 🇧🇷. </p><p>I&#39;m a Full Stack Developer, passionate about technology, and a lifelong learner.&quot;</p><p> With the values and expertise instilled during my tenure in the Brazilian Army as an Officer, coupled with my experience as a Full Stack Developer, I possess a robust background in leadership, teamwork, and problem-solving. I am passionate about constructing and managing web applications, constantly seeking new challenges and opportunities to enhance my skills and grow professionally. </p><div class="flex flex-col space-y-2"><a href="https://github.com/leandroximenes" target="_blank" class="flex items-center"><img class="h-6 w-6 mr-1"${ssrRenderAttr("src", _imports_0$4)} alt="github"> Github </a><a href="https://www.linkedin.com/in/leandroximenes" target="_blank" class="flex items-center"><img class="h-6 w-6 mr-1"${ssrRenderAttr("src", _imports_2$2)} alt="linkedin"> Linkedin </a></div></div></div></div>`);
 }
 const _sfc_setup$c = _sfc_main$c.setup;
@@ -79,7 +80,7 @@ _sfc_main$c.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/MainPage.vue");
   return _sfc_setup$c ? _sfc_setup$c(props, ctx) : void 0;
 };
-const MainPage = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["ssrRender", _sfc_ssrRender$4]]);
+const MainPage = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["ssrRender", _sfc_ssrRender$3]]);
 const __vite_glob_0_2 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: MainPage
@@ -366,20 +367,32 @@ _sfc_main$9.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Components/CommentaryLogin.vue");
   return _sfc_setup$9 ? _sfc_setup$9(props, ctx) : void 0;
 };
-const _sfc_main$8 = {};
-function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs) {
-  _push(`<form${ssrRenderAttrs(mergeProps({
-    action: "#",
-    method: "post"
-  }, _attrs))}><div class="flex flex-col space-y-4 p-4"><textarea class="border p-2 resize text-lg w-full h-64 rounded-lg border border-gray-300"></textarea><div class="text-center space-x-10"><button class="primary-button">Send</button></div></div></form>`);
-}
+const _sfc_main$8 = {
+  __name: "CommentaryForm",
+  __ssrInlineRender: true,
+  setup(__props) {
+    const text = ref("");
+    return (_ctx, _push, _parent, _attrs) => {
+      _push(`<form${ssrRenderAttrs(mergeProps({
+        action: "#",
+        method: "post"
+      }, _attrs))}><div class="flex flex-col space-y-4 p-4">`);
+      _push(ssrRenderComponent(unref(MdEditor), {
+        modelValue: text.value,
+        "onUpdate:modelValue": ($event) => text.value = $event,
+        language: "en-US",
+        previewTheme: "github"
+      }, null, _parent));
+      _push(`<div class="text-center space-x-10"><button class="primary-button">Send</button></div></div></form>`);
+    };
+  }
+};
 const _sfc_setup$8 = _sfc_main$8.setup;
 _sfc_main$8.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Components/CommentaryForm.vue");
   return _sfc_setup$8 ? _sfc_setup$8(props, ctx) : void 0;
 };
-const CommentaryForm = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["ssrRender", _sfc_ssrRender$3]]);
 const _sfc_main$7 = {};
 function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs) {
   _push(`<h1${ssrRenderAttrs(_attrs)}>Aqui serão os posts</h1>`);
@@ -401,7 +414,7 @@ const _sfc_main$6 = {
       _push(`<!--[-->`);
       _push(ssrRenderComponent(CommentaryPosts, null, null, _parent));
       if (user.value) {
-        _push(ssrRenderComponent(CommentaryForm, null, null, _parent));
+        _push(ssrRenderComponent(_sfc_main$8, null, null, _parent));
       } else {
         _push(ssrRenderComponent(_sfc_main$9, null, null, _parent));
       }
