@@ -21,4 +21,14 @@ class Post extends Model
         'content',
         'slug',
     ];
+
+    /**
+     * Get the user that owns the Commentary
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function commentaries()
+    {
+        return $this->hasMany(Commentary::class);
+    }
 }

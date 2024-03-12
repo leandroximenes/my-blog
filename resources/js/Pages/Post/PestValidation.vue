@@ -5,6 +5,10 @@ import VCodeBlock from '@wdns/vue-code-block'
 import BashBlock from '@/Components/BashBlock.vue'
 import CommentarySection from '@/Components/CommentarySection.vue'
 
+defineProps({
+  commentaries: Array
+})
+
 const updateUser = `
 <?php
 
@@ -468,7 +472,7 @@ php artisan migrate"
       </p>
     </div>
   </article>
-  <CommentarySection />
+  <CommentarySection :commentaries="commentaries" />
 </template>
 <style scoped>
 img {
