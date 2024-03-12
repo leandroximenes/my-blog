@@ -3,6 +3,7 @@
 import { Head } from '@inertiajs/vue3'
 import VCodeBlock from '@wdns/vue-code-block'
 import BashBlock from '@/Components/BashBlock.vue'
+import CommentarySection from '@/Components/CommentarySection.vue'
 
 const updateUser = `
 <?php
@@ -467,6 +468,7 @@ php artisan migrate"
       </p>
     </div>
   </article>
+  <CommentarySection />
 </template>
 <style scoped>
 img {
