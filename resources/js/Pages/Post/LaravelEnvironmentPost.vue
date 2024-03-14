@@ -1,9 +1,18 @@
 <script setup>
 import { Head } from '@inertiajs/vue3'
 import VCodeBlock from '@wdns/vue-code-block'
-import BashBlock from '@/Components/BashBlock.vue'
+import CommentarySection from '@/Components/CommentarySection.vue'
 
-const devcontainer = `// https://aka.ms/devcontainer.json
+defineProps({
+  commentaries: Array
+})
+
+import { MdPreview } from 'md-editor-v3'
+import 'md-editor-v3/lib/preview.css'
+
+const devcontainer = `
+\`\`\` .devcontainer/.devcontainer.json
+// https://aka.ms/devcontainer.json
 {
 	"name": "Existing Docker Compose (Extend)",
 	"dockerComposeFile": [
@@ -25,9 +34,13 @@ const devcontainer = `// https://aka.ms/devcontainer.json
 	// "forwardPorts": [],
 	// "runServices": [],
 	// "shutdownAction": "none",
-}`
+}
+\`\`\`
+`
 
-const dockerCompose = `version: '3'
+const dockerCompose = `
+\`\`\` docker-compose.yml
+version: '3'
 services:
     laravel.test:
     build:
@@ -37,13 +50,18 @@ services:
 ...
             - '9003:9003'
 ...
+\`\`\`
 `
 
-const cpCommand = `$ mkdir -p .devcontainer/vendor-example/laravel/sail/runtimes/
+const cpCommand = `
+\`\`\`
+$ mkdir -p .devcontainer/vendor-example/laravel/sail/runtimes/
 $ cp -r vendor/laravel/sail/runtimes/8.3 .devcontainer/vendor-example/laravel/sail/runtimes/8.3
+\`\`\`
 `
 
 const dockerfile = `
+\`\`\` .devcontainer/vendor-example/laravel/sail/runtimes/8.3/Dockerfile
 ...
 RUN apt-get update \\
 ...
@@ -65,16 +83,22 @@ RUN useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u 1337 sail
 # allow devContainer use sudo without password
 RUN echo sail ALL=\\(root\\) NOPASSWD:ALL > /etc/sudoers.d/sail \\
     && chmod 0440 /etc/sudoers.d/sail
+\`\`\`
 `
 
-const phpini = `[XDebug]
+const phpini = `
+\`\`\` .devcontainer/vendor-example/laravel/sail/runtimes/8.3/php.ini
+[XDebug]
 xdebug.mode=develop,debug
 xdebug.start_with_request=yes
 xdebug.discover_client_host=0
 xdebug.client_host=host.docker.internal
+\`\`\`
 `
 
-const startContainer = `#!/usr/bin/env bash
+const startContainer = `
+\`\`\` .devcontainer/vendor-example/laravel/sail/runtimes/8.3/start-container
+#!/usr/bin/env bash
 
 if [ ! -z "$WWWUSER" ]; then
     usermod -u $WWWUSER sail
@@ -114,9 +138,12 @@ else
     exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
 fi
 
+\`\`\`
 `
 
-const vscode = `{
+const vscode = `
+\`\`\` .vscode/launch.json
+{
     "version": "0.2.0",
     "configurations": [
         {
@@ -130,11 +157,15 @@ const vscode = `{
         }
     ]
 }
+\`\`\`
 `
 
-const env = `SAIL_XDEBUG_MODE=develop,debug,coverage
+const env = `
+\`\`\` .env
+SAIL_XDEBUG_MODE=develop,debug,coverage
 WWWGROUP=1000
 WWWUSER=1000
+\`\`\`
 `
 </script>
 
@@ -165,7 +196,7 @@ WWWUSER=1000
         it by following the instructions on the official
         <a class="font-bold" href="https://docs.docker.com/compose/install/">website.</a>
       </p>
-      <BashBlock
+      <VCodeBlock
         code='curl -s "https://laravel.build/example-app?with=mysql&devcontainer" | bash'
         highlightjs
         lang="bash"
@@ -177,7 +208,7 @@ WWWUSER=1000
         built. You can check the progress in the bottom right corner of Visual Studio Code.
       </p>
       <h1 class="topic">VsCode and DevContainer</h1>
-      <BashBlock code="code example-app" highlightjs lang="bash" />
+      <VCodeBlock code="code example-app" highlightjs lang="bash" />
       <p>
         With the VSCode oppened, you will install the devcontainer extension. You will notice this
         .devcontainer folder in the root of the project.
@@ -190,8 +221,8 @@ WWWUSER=1000
 
       <p>
         I use php inteliphense and xdebug extensions. You can add more extensions.
-        <i class="flex flex-row-reverse">.devcontainer/.devcontainer.json</i>
-        <VCodeBlock :code="devcontainer" highlightjs lang="javascript" />
+
+        <MdPreview class="max-h-[40rem]" :modelValue="devcontainer" language="en-US" />
       </p>
       <h1 class="topic">Docker configurations</h1>
       <p>
@@ -199,42 +230,34 @@ WWWUSER=1000
 
         2) Change the context and add a copy of vendor/laravel/sail/runtimes/8.3<br />
         Add the following lines to the <b>docker-compose.yml</b> file:
-        <i class="flex flex-row-reverse">docker-compose.yml</i>
-        <VCodeBlock :code="dockerCompose" highlightjs lang="yml" />
-        <VCodeBlock :code="cpCommand" highlightjs lang="bash" /><br />
+
+        <MdPreview class="max-h-[40rem]" :modelValue="dockerCompose" language="en-US" />
+        <MdPreview class="max-h-[40rem]" :modelValue="cpCommand" language="en-US" /><br />
 
         3) I like to custom the Dockerfile and add my customizations like install some software:
         sudo curl, git, git cli and nano, and change the user 'sail' as sudo.<br />
         <i class="text-red-500 font-bold">Put the code in right place</i>. <br />
-        <i class="flex flex-row-reverse"
-          >.devcontainer/vendor-example/laravel/sail/runtimes/8.3/Dockerfile</i
-        >
-        <VCodeBlock :code="dockerfile" highlightjs lang="Dockerfile" />
+        <MdPreview class="max-h-[40rem]" :modelValue="dockerfile" language="en-US" />
         Your Dockerfile will look like this:
         <img src="./img/dockerfile.png" alt="Dockerfile" /><br />
 
         4) Add this code in <b>php.ini</b>
-        <i class="flex flex-row-reverse">
-          .devcontainer/vendor-example/laravel/sail/runtimes/8.3/php.ini
-        </i>
-        <VCodeBlock :code="phpini" highlightjs lang="ini" /><br />
+
+        <MdPreview class="max-h-[40rem]" :modelValue="phpini" language="en-US" /><br />
 
         5) I like to custom my bash prompt to show my git branch and the current directory. <br />
-        <i class="flex flex-row-reverse">
-          .devcontainer/vendor-example/laravel/sail/runtimes/8.3/start-container
-        </i>
-        <VCodeBlock :code="startContainer" highlightjs lang="bash" /><br />
+
+        <MdPreview class="max-h-[40rem]" :modelValue="startContainer" language="en-US" /><br />
       </p>
 
       <h1 class="topic">Debug configurations</h1>
 
       <p>
-        <i class="flex flex-row-reverse">.vscode/launch.json</i>
-        <VCodeBlock :code="vscode" highlightjs lang="bash" /><br />
+        <MdPreview class="max-h-[40rem]" :modelValue="vscode" language="en-US" /><br />
 
         Check environment variables
-        <i class="flex flex-row-reverse">.env</i>
-        <VCodeBlock :code="env" highlightjs lang="ini" /><br />
+
+        <MdPreview class="max-h-[40rem]" :modelValue="env" language="en-US" /><br />
       </p>
 
       <h1 class="topic">Let's put to work!!</h1>
@@ -264,4 +287,5 @@ WWWUSER=1000
       </p>
     </div>
   </article>
+  <CommentarySection :commentaries="commentaries" />
 </template>

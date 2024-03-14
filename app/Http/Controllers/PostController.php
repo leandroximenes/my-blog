@@ -37,6 +37,7 @@ class PostController extends Controller
                 'id' => $commentary->id,
                 'content' => $commentary->content,
                 'user' => $commentary->user->name,
+                'avatar' => $commentary->user->avatar,
             ];
         });
 
