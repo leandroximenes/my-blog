@@ -3,12 +3,12 @@ import { Head } from '@inertiajs/vue3'
 import VCodeBlock from '@wdns/vue-code-block'
 import CommentarySection from '@/Components/CommentarySection.vue'
 
+import { MdPreview } from 'md-editor-v3'
+import 'md-editor-v3/lib/preview.css'
+
 defineProps({
   commentaries: Array
 })
-
-import { MdPreview } from 'md-editor-v3'
-import 'md-editor-v3/lib/preview.css'
 
 const devcontainer = `
 \`\`\` .devcontainer/.devcontainer.json

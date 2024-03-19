@@ -12,3 +12,11 @@ Route::get('/{plataform}/callback', [LoginController::class, 'callback']);
 Route::get('/success', function () {
     return view('successLogin');
 });
+
+Route::get('/info', function () {
+    $user = auth()->user();
+    return [
+        'user' => $user,
+        'message' => 'ok'
+    ];
+});

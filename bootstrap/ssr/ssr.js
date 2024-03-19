@@ -2,10 +2,10 @@ import { mergeProps, unref, useSSRContext, computed, withCtx, createVNode, ref, 
 import { ssrRenderAttrs, ssrRenderList, ssrInterpolate, ssrRenderAttr, ssrRenderComponent, ssrRenderClass, ssrRenderSlot } from "vue/server-renderer";
 import { usePage, useForm, Head, Link, createInertiaApp } from "@inertiajs/vue3";
 import VCodeBlock from "@wdns/vue-code-block";
-import { MdEditor, MdPreview } from "md-editor-v3";
+import { MdPreview, MdEditor } from "md-editor-v3";
 import createServer from "@inertiajs/vue3/server";
 import { renderToString } from "@vue/server-renderer";
-const _sfc_main$d = {
+const _sfc_main$a = {
   __name: "AccessCount",
   __ssrInlineRender: true,
   props: {
@@ -23,17 +23,17 @@ const _sfc_main$d = {
     };
   }
 };
-const _sfc_setup$d = _sfc_main$d.setup;
-_sfc_main$d.setup = (props, ctx) => {
+const _sfc_setup$a = _sfc_main$a.setup;
+_sfc_main$a.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/AccessCount.vue");
-  return _sfc_setup$d ? _sfc_setup$d(props, ctx) : void 0;
+  return _sfc_setup$a ? _sfc_setup$a(props, ctx) : void 0;
 };
 const __vite_glob_0_0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  default: _sfc_main$d
+  default: _sfc_main$a
 }, Symbol.toStringTag, { value: "Module" }));
-const _sfc_main$c = {
+const _sfc_main$9 = {
   __name: "ConfigPage",
   __ssrInlineRender: true,
   setup(__props) {
@@ -50,15 +50,15 @@ const _sfc_main$c = {
     };
   }
 };
-const _sfc_setup$c = _sfc_main$c.setup;
-_sfc_main$c.setup = (props, ctx) => {
+const _sfc_setup$9 = _sfc_main$9.setup;
+_sfc_main$9.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/ConfigPage.vue");
-  return _sfc_setup$c ? _sfc_setup$c(props, ctx) : void 0;
+  return _sfc_setup$9 ? _sfc_setup$9(props, ctx) : void 0;
 };
 const __vite_glob_0_1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  default: _sfc_main$c
+  default: _sfc_main$9
 }, Symbol.toStringTag, { value: "Module" }));
 const _imports_0$5 = "/build/assets/me-7NLqheFn.jpg";
 const _imports_0$4 = "/build/assets/github-DJ4kBwNf.svg";
@@ -70,17 +70,17 @@ const _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const _sfc_main$b = {};
+const _sfc_main$8 = {};
 function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs) {
   _push(`<div${ssrRenderAttrs(mergeProps({ class: "lg:flex lg:space-x-2" }, _attrs))}><img${ssrRenderAttr("src", _imports_0$5)} alt="me" class="p-1 mx-auto lg:w-1/2"><div class="p-2 lg:w-1/2"><h1 class="title text-center">About me</h1><div class="text-justify w-full space-y-10 mt-6 text-lg"><p> Hello there! 👋 I&#39;m married 💑 and a proud father of a daughter 👧, residing in Brasilia, DF 🇧🇷. </p><p>I&#39;m a Full Stack Developer, passionate about technology, and a lifelong learner.&quot;</p><p> With the values and expertise instilled during my tenure in the Brazilian Army as an Officer, coupled with my experience as a Full Stack Developer, I possess a robust background in leadership, teamwork, and problem-solving. I am passionate about constructing and managing web applications, constantly seeking new challenges and opportunities to enhance my skills and grow professionally. </p><div class="flex flex-col space-y-2"><a href="https://github.com/leandroximenes" target="_blank" class="flex items-center"><img class="h-6 w-6 mr-1"${ssrRenderAttr("src", _imports_0$4)} alt="github"> Github </a><a href="https://www.linkedin.com/in/leandroximenes" target="_blank" class="flex items-center"><img class="h-6 w-6 mr-1"${ssrRenderAttr("src", _imports_2$2)} alt="linkedin"> Linkedin </a></div></div></div></div>`);
 }
-const _sfc_setup$b = _sfc_main$b.setup;
-_sfc_main$b.setup = (props, ctx) => {
+const _sfc_setup$8 = _sfc_main$8.setup;
+_sfc_main$8.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/MainPage.vue");
-  return _sfc_setup$b ? _sfc_setup$b(props, ctx) : void 0;
+  return _sfc_setup$8 ? _sfc_setup$8(props, ctx) : void 0;
 };
-const MainPage = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["ssrRender", _sfc_ssrRender$2]]);
+const MainPage = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["ssrRender", _sfc_ssrRender$2]]);
 const __vite_glob_0_2 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: MainPage
@@ -89,80 +89,6 @@ const _imports_0$3 = "/build/assets/devcontainerfolder-DTN3fVqK.png";
 const _imports_1$2 = "/build/assets/vsextension-BUuXiwhS.png";
 const _imports_2$1 = "/build/assets/dockerfile-C_VCj5mP.png";
 const _imports_3$1 = "/build/assets/debug-CtGYDOVf.png";
-const _sfc_main$a = {
-  __name: "CommentaryLogin",
-  __ssrInlineRender: true,
-  setup(__props) {
-    return (_ctx, _push, _parent, _attrs) => {
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "text-center space-x-10" }, _attrs))}><button name="github" type="button" class="secondary-button"><svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z" clip-rule="evenodd"></path></svg> Sign in with Github </button><button name="google" type="button" class="primary-button"><svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 19"><path fill-rule="evenodd" d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 1.09.088 1.636-.086 5.053-3.463 8.449-8.4 8.449l-.186-.002Z" clip-rule="evenodd"></path></svg> Sign in with Google </button></div>`);
-    };
-  }
-};
-const _sfc_setup$a = _sfc_main$a.setup;
-_sfc_main$a.setup = (props, ctx) => {
-  const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Components/CommentaryLogin.vue");
-  return _sfc_setup$a ? _sfc_setup$a(props, ctx) : void 0;
-};
-const _sfc_main$9 = {
-  __name: "CommentaryForm",
-  __ssrInlineRender: true,
-  setup(__props) {
-    const url = window.location.href;
-    const urlArray = url.split("/");
-    const slug = urlArray[urlArray.length - 1];
-    const form = useForm({
-      content: "",
-      post_slug: slug
-    });
-    return (_ctx, _push, _parent, _attrs) => {
-      _push(`<form${ssrRenderAttrs(mergeProps({
-        action: "#",
-        method: "post"
-      }, _attrs))}><div class="flex flex-col space-y-4 p-4">`);
-      _push(ssrRenderComponent(unref(MdEditor), {
-        modelValue: unref(form).content,
-        "onUpdate:modelValue": ($event) => unref(form).content = $event,
-        language: "en-US",
-        preview: false,
-        noPrettier: "true"
-      }, null, _parent));
-      _push(`<div class="text-red-800">${ssrInterpolate(unref(form).errors.content)}</div><div class="text-center space-x-10"><button type="submit" class="primary-button">Send</button></div></div></form>`);
-    };
-  }
-};
-const _sfc_setup$9 = _sfc_main$9.setup;
-_sfc_main$9.setup = (props, ctx) => {
-  const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Components/CommentaryForm.vue");
-  return _sfc_setup$9 ? _sfc_setup$9(props, ctx) : void 0;
-};
-const _sfc_main$8 = {
-  __name: "CommentaryList",
-  __ssrInlineRender: true,
-  props: {
-    commentaries: Array
-  },
-  setup(__props) {
-    return (_ctx, _push, _parent, _attrs) => {
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "m-4 p-2 border-2 border-gray-400 space-y-4 rounded" }, _attrs))}><h2 class="text-xl font-bold">${ssrInterpolate(__props.commentaries.length)} ${ssrInterpolate(__props.commentaries.length == 1 ? "Comment" : "Comments")}</h2><!--[-->`);
-      ssrRenderList(__props.commentaries, (commentary) => {
-        _push(`<div class="p-2 flex flex-col rounded shadow-lg border"><span class="text-gray-400 flex space-x-4 items-center"><img${ssrRenderAttr("src", commentary.avatar)} class="h-12 rounded-lg" alt="" srcset=""><span>${ssrInterpolate(commentary.user)}</span></span><div class="border-2 border-gray-200">`);
-        _push(ssrRenderComponent(unref(MdPreview), {
-          modelValue: commentary.content
-        }, null, _parent));
-        _push(`</div></div>`);
-      });
-      _push(`<!--]--></div>`);
-    };
-  }
-};
-const _sfc_setup$8 = _sfc_main$8.setup;
-_sfc_main$8.setup = (props, ctx) => {
-  const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Components/CommentaryList.vue");
-  return _sfc_setup$8 ? _sfc_setup$8(props, ctx) : void 0;
-};
 const _sfc_main$7 = {
   __name: "CommentarySection",
   __ssrInlineRender: true,
@@ -172,15 +98,37 @@ const _sfc_main$7 = {
   setup(__props) {
     const page = usePage();
     const user = computed(() => page.props.auth.user);
+    const url = window.location.href;
+    const urlArray = url.split("/");
+    const slug = urlArray[urlArray.length - 1];
+    const form = useForm({
+      content: "",
+      post_slug: slug
+    });
     return (_ctx, _push, _parent, _attrs) => {
-      _push(`<!--[-->`);
-      _push(ssrRenderComponent(_sfc_main$8, { commentaries: __props.commentaries }, null, _parent));
+      _push(`<!--[--><div class="m-4 p-2 border-2 border-gray-400 space-y-4 rounded"><h2 class="text-xl font-bold">${ssrInterpolate(__props.commentaries.length)} ${ssrInterpolate(__props.commentaries.length == 1 ? "Comment" : "Comments")}</h2><!--[-->`);
+      ssrRenderList(__props.commentaries, (commentary) => {
+        _push(`<div class="p-2 flex flex-col rounded shadow-lg border"><span class="text-gray-400 flex space-x-4 items-center"><img${ssrRenderAttr("src", commentary.avatar)} class="h-12 rounded-lg" alt="" srcset=""><div class="flex justify-between w-full px-4"><span>${ssrInterpolate(commentary.user)}</span><span>${ssrInterpolate(commentary.created_at)}</span></div></span><div class="border-2 border-gray-200">`);
+        _push(ssrRenderComponent(unref(MdPreview), {
+          modelValue: commentary.content
+        }, null, _parent));
+        _push(`</div></div>`);
+      });
+      _push(`<!--]--></div><form action="#" method="post"><div class="flex flex-col space-y-4 p-4">`);
+      _push(ssrRenderComponent(unref(MdEditor), {
+        modelValue: unref(form).content,
+        "onUpdate:modelValue": ($event) => unref(form).content = $event,
+        language: "en-US",
+        preview: false,
+        noPrettier: "true"
+      }, null, _parent));
+      _push(`<div class="text-red-800">${ssrInterpolate(unref(form).errors.content)}</div>`);
       if (user.value) {
-        _push(ssrRenderComponent(_sfc_main$9, null, null, _parent));
+        _push(`<div class="text-center space-x-10"><button type="submit" class="primary-button">Send</button></div>`);
       } else {
-        _push(ssrRenderComponent(_sfc_main$a, null, null, _parent));
+        _push(`<div class="text-center space-x-10"><button name="github" type="button" class="secondary-button"><svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z" clip-rule="evenodd"></path></svg> Sign in with Github </button><button name="google" type="button" class="primary-button"><svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 19"><path fill-rule="evenodd" d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 1.09.088 1.636-.086 5.053-3.463 8.449-8.4 8.449l-.186-.002Z" clip-rule="evenodd"></path></svg> Sign in with Google </button></div>`);
       }
-      _push(`<!--]-->`);
+      _push(`</div></form><!--]-->`);
     };
   }
 };
@@ -887,7 +835,7 @@ const _imports_0$1 = "/build/assets/pest-output-min-rUg6y2nq.png";
 const _imports_1 = "/build/assets/debug_ini-ac2PUNJ1.png";
 const _sfc_main$3 = {};
 function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs) {
-  _push(`<div${ssrRenderAttrs(_attrs)}><div class="flex space-x-2"><h1 class="title">Articles</h1></div><hr class="my-4"><div class="space-y-4"><article class="articles"><a class="title" href="posts/PestValidation"><img${ssrRenderAttr("src", _imports_0$1)} alt="debug Laravel"></a><div class="content"><a class="title" href="posts/PestValidation">Using PEST to Test Form Validations: Require, Type, Length, and More </a><p> 🧪 Every test matters. <br> 🚀 In this post, we explored the integration of Laravel, Inertia, and Vue.js and how we can leverage PEST to test form validations effectively. </p></div></article><article class="articles"><a class="title" href="posts/LaravelEnvironmentPost"><img${ssrRenderAttr("src", _imports_1)} alt="debug Laravel"></a><div class="content"><a class="title" href="posts/LaravelEnvironmentPost">Laravel environment: docker, devcontainer, VS Code debug </a><p> In this article, we&#39;ll explore how you can supercharge your Laravel development workflow by harnessing the power of Docker, DevContainer, and VS Code debug. </p><p> 🚀 Additionally, we&#39;ll also look at how you can custom your terminal to display the current git branch and status. </p><p> I like and use this environment because I can install and test new software without affecting my local machine. </p></div></article></div></div>`);
+  _push(`<div${ssrRenderAttrs(_attrs)}><div class="flex space-x-2"><h1 class="title">Articles</h1></div><hr class="my-4"><div class="space-y-4"><article class="articles"><a class="title" href="posts/PestValidation"><img${ssrRenderAttr("src", _imports_0$1)} alt="debug Laravel"></a><div class="content"><a class="title" href="posts/PestValidation">Using PEST to Test Form Validations: Require, Type, Length, and More </a><p> 🧪 Every test matters. <br> 🚀 In this post, we explored the integration of Laravel, Inertia, and Vue.js and how we can leverage PEST to test form validations effectively. </p><div class="stacks"><span>Laravel</span><span>Pest</span><span>Vue.js</span></div></div></article><article class="articles"><a class="title" href="posts/LaravelEnvironmentPost"><img${ssrRenderAttr("src", _imports_1)} alt="debug Laravel"></a><div class="content"><a class="title" href="posts/LaravelEnvironmentPost">Laravel environment: docker, devcontainer, VS Code debug </a><p> In this article, we&#39;ll explore how you can supercharge your Laravel development workflow by harnessing the power of Docker, DevContainer, and VS Code debug. </p><p> 🚀 Additionally, we&#39;ll also look at how you can custom your terminal to display the current git branch and status. </p><p> I like and use this environment because I can install and test new software without affecting my local machine. </p><div class="stacks"><span>Laravel</span><span>Docker</span><span>Linux</span></div></div></article></div></div>`);
 }
 const _sfc_setup$3 = _sfc_main$3.setup;
 _sfc_main$3.setup = (props, ctx) => {
@@ -943,7 +891,7 @@ const __vite_glob_0_7 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.def
 const _imports_0 = "/build/assets/cs50-CmGKmCZY.png";
 const _sfc_main$1 = {};
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs) {
-  _push(`<div${ssrRenderAttrs(_attrs)}><div class="flex space-x-2"><h1 class="title">Projects</h1></div><hr class="my-4"><div><article class="articles"><a class="title" href="projects/cs50"><img${ssrRenderAttr("src", _imports_0)} alt="CS50"></a><div class="content"><a class="title" href="projects/cs50"> CS50 Final Project: A Real-Time Memory Game </a><p> CS50 Final Project completed in December 2022 - a dynamic memory game designed for real-time online play with friends </p><div class="stacks"><span>Python</span><span>Websockets</span><span>Javascript</span><span>Sqlite</span><span>Heroku</span></div></div></article></div></div>`);
+  _push(`<div${ssrRenderAttrs(_attrs)}><div class="flex space-x-2"><h1 class="title">Projects</h1></div><hr class="my-4"><div><article class="articles"><a class="title" href="projects/cs50"><img${ssrRenderAttr("src", _imports_0)} alt="CS50"></a><div class="content"><a class="title" href="projects/cs50"> CS50 Final Project: A Real-Time Memory Game to play with a friend.</a><p> CS50 Final Project completed in December 2022 - a dynamic memory game designed for real-time online play with friends </p><div class="stacks"><span>Python</span><span>Websockets</span><span>Javascript</span><span>Sqlite</span><span>Heroku</span></div></div></article></div></div>`);
 }
 const _sfc_setup$1 = _sfc_main$1.setup;
 _sfc_main$1.setup = (props, ctx) => {

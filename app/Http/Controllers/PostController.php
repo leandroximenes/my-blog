@@ -38,6 +38,7 @@ class PostController extends Controller
                 'content' => $commentary->content,
                 'user' => $commentary->user->name,
                 'avatar' => $commentary->user->avatar,
+                'created_at' => $commentary->created_at->diffForHumans(),
             ];
         });
 
