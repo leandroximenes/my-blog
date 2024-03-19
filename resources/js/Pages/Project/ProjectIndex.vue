@@ -10,7 +10,9 @@
       <article class="articles">
         <a class="title" href="projects/cs50"><img src="./img/cs50.png" alt="CS50" /></a>
         <div class="content">
-          <a class="title" href="projects/cs50"> CS50 Final Project: A Real-Time Memory Game </a>
+          <a class="title" href="projects/cs50">
+            CS50 Final Project: A Real-Time Memory Game to play with a friend.</a
+          >
           <p>
             CS50 Final Project completed in December 2022 - a dynamic memory game designed for
             real-time online play with friends

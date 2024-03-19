@@ -20,6 +20,11 @@
             🚀 In this post, we explored the integration of Laravel, Inertia, and Vue.js and how we
             can leverage PEST to test form validations effectively.
           </p>
+          <div class="stacks">
+            <span>Laravel</span>
+            <span>Pest</span>
+            <span>Vue.js</span>
+          </div>
         </div>
       </article>
       <article class="articles">
@@ -42,6 +47,11 @@
             I like and use this environment because I can install and test new software without
             affecting my local machine.
           </p>
+          <div class="stacks">
+            <span>Laravel</span>
+            <span>Docker</span>
+            <span>Linux</span>
+          </div>
         </div>
       </article>
     </div>

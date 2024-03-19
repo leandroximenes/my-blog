@@ -29,6 +29,24 @@ class PostController extends Controller
         ]);
     }
 
+    public function show(Post $post)
+    {
+        $post->increment('access_count');
+        $commentaries = $post->commentaries->map(function ($commentary) {
+            return [
+                'id' => $commentary->id,
+                'content' => $commentary->content,
+                'user' => $commentary->user->name,
+                'avatar' => $commentary->user->avatar,
+                'created_at' => $commentary->created_at->diffForHumans(),
+            ];
+        });
+
+        return Inertia::render("Post/$post->slug", [
+            'commentaries' => $commentaries,
+        ]);
+    }
+
     public function store(Request $request)
     {
         $request->validate([

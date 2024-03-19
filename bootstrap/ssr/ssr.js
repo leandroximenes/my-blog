@@ -1,7 +1,8 @@
 import { mergeProps, unref, useSSRContext, computed, withCtx, createVNode, ref, createTextVNode, createSSRApp, h } from "vue";
 import { ssrRenderAttrs, ssrRenderList, ssrInterpolate, ssrRenderAttr, ssrRenderComponent, ssrRenderClass, ssrRenderSlot } from "vue/server-renderer";
-import { usePage, Head, useForm, Link, createInertiaApp } from "@inertiajs/vue3";
+import { usePage, useForm, Head, Link, createInertiaApp } from "@inertiajs/vue3";
 import VCodeBlock from "@wdns/vue-code-block";
+import { MdPreview, MdEditor } from "md-editor-v3";
 import createServer from "@inertiajs/vue3/server";
 import { renderToString } from "@vue/server-renderer";
 const _sfc_main$a = {
@@ -89,38 +90,57 @@ const _imports_1$2 = "/build/assets/vsextension-BUuXiwhS.png";
 const _imports_2$1 = "/build/assets/dockerfile-C_VCj5mP.png";
 const _imports_3$1 = "/build/assets/debug-CtGYDOVf.png";
 const _sfc_main$7 = {
-  __name: "BashBlock",
+  __name: "CommentarySection",
   __ssrInlineRender: true,
   props: {
-    code: {
-      type: String,
-      required: true
-    },
-    user: {
-      type: String,
-      default: "no-root"
-    }
+    commentaries: Array
   },
   setup(__props) {
-    const props = __props;
-    const userSimbol = props.user === "root" ? "#" : "$";
+    const page = usePage();
+    const user = computed(() => page.props.auth.user);
+    const url = window.location.href;
+    const urlArray = url.split("/");
+    const slug = urlArray[urlArray.length - 1];
+    const form = useForm({
+      content: "",
+      post_slug: slug
+    });
     return (_ctx, _push, _parent, _attrs) => {
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "flex flex-row w-full bg-black rounded-xl content-center items-center !p-0 !m-0" }, _attrs))}><span class="-mt-2.5 ml-4 mr-0 text-gray-400">${ssrInterpolate(unref(userSimbol))}</span>`);
-      _push(ssrRenderComponent(unref(VCodeBlock), mergeProps(_ctx.$attrs, {
-        code: __props.code,
-        class: "w-full p-0 m-0"
-      }), null, _parent));
-      _push(`</div>`);
+      _push(`<!--[--><div class="m-4 p-2 border-2 border-gray-400 space-y-4 rounded"><h2 class="text-xl font-bold">${ssrInterpolate(__props.commentaries.length)} ${ssrInterpolate(__props.commentaries.length == 1 ? "Comment" : "Comments")}</h2><!--[-->`);
+      ssrRenderList(__props.commentaries, (commentary) => {
+        _push(`<div class="p-2 flex flex-col rounded shadow-lg border"><span class="text-gray-400 flex space-x-4 items-center"><img${ssrRenderAttr("src", commentary.avatar)} class="h-12 rounded-lg" alt="" srcset=""><div class="flex justify-between w-full px-4"><span>${ssrInterpolate(commentary.user)}</span><span>${ssrInterpolate(commentary.created_at)}</span></div></span><div class="border-2 border-gray-200">`);
+        _push(ssrRenderComponent(unref(MdPreview), {
+          modelValue: commentary.content
+        }, null, _parent));
+        _push(`</div></div>`);
+      });
+      _push(`<!--]--></div><form action="#" method="post"><div class="flex flex-col space-y-4 p-4">`);
+      _push(ssrRenderComponent(unref(MdEditor), {
+        modelValue: unref(form).content,
+        "onUpdate:modelValue": ($event) => unref(form).content = $event,
+        language: "en-US",
+        preview: false,
+        noPrettier: "true"
+      }, null, _parent));
+      _push(`<div class="text-red-800">${ssrInterpolate(unref(form).errors.content)}</div>`);
+      if (user.value) {
+        _push(`<div class="text-center space-x-10"><button type="submit" class="primary-button">Send</button></div>`);
+      } else {
+        _push(`<div class="text-center space-x-10"><button name="github" type="button" class="secondary-button"><svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z" clip-rule="evenodd"></path></svg> Sign in with Github </button><button name="google" type="button" class="primary-button"><svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 19"><path fill-rule="evenodd" d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 1.09.088 1.636-.086 5.053-3.463 8.449-8.4 8.449l-.186-.002Z" clip-rule="evenodd"></path></svg> Sign in with Google </button></div>`);
+      }
+      _push(`</div></form><!--]-->`);
     };
   }
 };
 const _sfc_setup$7 = _sfc_main$7.setup;
 _sfc_main$7.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Components/BashBlock.vue");
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Components/CommentarySection.vue");
   return _sfc_setup$7 ? _sfc_setup$7(props, ctx) : void 0;
 };
-const devcontainer = `// https://aka.ms/devcontainer.json
+const devcontainer = `
+\`\`\` .devcontainer/.devcontainer.json
+// https://aka.ms/devcontainer.json
 {
 	"name": "Existing Docker Compose (Extend)",
 	"dockerComposeFile": [
@@ -142,8 +162,12 @@ const devcontainer = `// https://aka.ms/devcontainer.json
 	// "forwardPorts": [],
 	// "runServices": [],
 	// "shutdownAction": "none",
-}`;
-const dockerCompose = `version: '3'
+}
+\`\`\`
+`;
+const dockerCompose = `
+\`\`\` docker-compose.yml
+version: '3'
 services:
     laravel.test:
     build:
@@ -153,11 +177,16 @@ services:
 ...
             - '9003:9003'
 ...
+\`\`\`
 `;
-const cpCommand = `$ mkdir -p .devcontainer/vendor-example/laravel/sail/runtimes/
+const cpCommand = `
+\`\`\`
+$ mkdir -p .devcontainer/vendor-example/laravel/sail/runtimes/
 $ cp -r vendor/laravel/sail/runtimes/8.3 .devcontainer/vendor-example/laravel/sail/runtimes/8.3
+\`\`\`
 `;
 const dockerfile = `
+\`\`\` .devcontainer/vendor-example/laravel/sail/runtimes/8.3/Dockerfile
 ...
 RUN apt-get update \\
 ...
@@ -179,14 +208,20 @@ RUN useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u 1337 sail
 # allow devContainer use sudo without password
 RUN echo sail ALL=\\(root\\) NOPASSWD:ALL > /etc/sudoers.d/sail \\
     && chmod 0440 /etc/sudoers.d/sail
+\`\`\`
 `;
-const phpini = `[XDebug]
+const phpini = `
+\`\`\` .devcontainer/vendor-example/laravel/sail/runtimes/8.3/php.ini
+[XDebug]
 xdebug.mode=develop,debug
 xdebug.start_with_request=yes
 xdebug.discover_client_host=0
 xdebug.client_host=host.docker.internal
+\`\`\`
 `;
-const startContainer = `#!/usr/bin/env bash
+const startContainer = `
+\`\`\` .devcontainer/vendor-example/laravel/sail/runtimes/8.3/start-container
+#!/usr/bin/env bash
 
 if [ ! -z "$WWWUSER" ]; then
     usermod -u $WWWUSER sail
@@ -226,8 +261,11 @@ else
     exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
 fi
 
+\`\`\`
 `;
-const vscode = `{
+const vscode = `
+\`\`\` .vscode/launch.json
+{
     "version": "0.2.0",
     "configurations": [
         {
@@ -241,14 +279,21 @@ const vscode = `{
         }
     ]
 }
+\`\`\`
 `;
-const env = `SAIL_XDEBUG_MODE=develop,debug,coverage
+const env = `
+\`\`\` .env
+SAIL_XDEBUG_MODE=develop,debug,coverage
 WWWGROUP=1000
 WWWUSER=1000
+\`\`\`
 `;
 const _sfc_main$6 = {
   __name: "LaravelEnvironmentPost",
   __ssrInlineRender: true,
+  props: {
+    commentaries: Array
+  },
   setup(__props) {
     return (_ctx, _push, _parent, _attrs) => {
       _push(`<!--[-->`);
@@ -273,65 +318,67 @@ const _sfc_main$6 = {
         _: 1
       }, _parent));
       _push(`<article><h1 class="title text-center">Laravel environment: docker, devcontainer and VS Code debug</h1><h2 class="text-md py-2">Published on February 14th, 2024.</h2><div class="p-2 text-justify w-full space-y-10 mt-6 text-lg"><h1 class="topic">Starting new Laravel project</h1><p> In this post, we will see how to set up a Laravel environment using Docker, Devcontainer, and debug it using Xdebug. I like to use Docker for my development environment because it is easy to set up and it is consistent across different machines. With devcontainer we can use the same environment in Visual Studio Code and Xdebug is a must-have for debugging. </p><p> Let&#39;s start by creating a new Laravel project using sail (Docker). You&#39;ll need to have Docker and Docker Compose installed on your machine. If you don&#39;t have it, you can install it by following the instructions on the official <a class="font-bold" href="https://docs.docker.com/compose/install/">website.</a></p>`);
-      _push(ssrRenderComponent(_sfc_main$7, {
+      _push(ssrRenderComponent(unref(VCodeBlock), {
         code: 'curl -s "https://laravel.build/example-app?with=mysql&devcontainer" | bash',
         highlightjs: "",
         lang: "bash"
       }, null, _parent));
       _push(`<p> You can change <b>&#39;example-app&#39;</b> to another name. <br> Open the project in Visual Studio Code and you will be prompted to reopen the project in a devcontainer. Click on the &#39;Reopen in Container&#39; button and wait for the container to be built. You can check the progress in the bottom right corner of Visual Studio Code. </p><h1 class="topic">VsCode and DevContainer</h1>`);
-      _push(ssrRenderComponent(_sfc_main$7, {
+      _push(ssrRenderComponent(unref(VCodeBlock), {
         code: "code example-app",
         highlightjs: "",
         lang: "bash"
       }, null, _parent));
-      _push(`<p> With the VSCode oppened, you will install the devcontainer extension. You will notice this .devcontainer folder in the root of the project. <img${ssrRenderAttr("src", _imports_0$3)} alt="devcontainer folder"></p><p> You can install the extension by clicking on the extensions icon in the sidebar and search <img${ssrRenderAttr("src", _imports_1$2)} alt="vscodeextensioninstall"></p><p> I use php inteliphense and xdebug extensions. You can add more extensions. <i class="flex flex-row-reverse">.devcontainer/.devcontainer.json</i>`);
-      _push(ssrRenderComponent(unref(VCodeBlock), {
-        code: devcontainer,
-        highlightjs: "",
-        lang: "javascript"
+      _push(`<p> With the VSCode oppened, you will install the devcontainer extension. You will notice this .devcontainer folder in the root of the project. <img${ssrRenderAttr("src", _imports_0$3)} alt="devcontainer folder"></p><p> You can install the extension by clicking on the extensions icon in the sidebar and search <img${ssrRenderAttr("src", _imports_1$2)} alt="vscodeextensioninstall"></p><p> I use php inteliphense and xdebug extensions. You can add more extensions. `);
+      _push(ssrRenderComponent(unref(MdPreview), {
+        class: "max-h-[40rem]",
+        modelValue: devcontainer,
+        language: "en-US"
       }, null, _parent));
-      _push(`</p><h1 class="topic">Docker configurations</h1><p> 1) You need to change docker-compose.yml to add new port for xdebug. <br><br> 2) Change the context and add a copy of vendor/laravel/sail/runtimes/8.3<br> Add the following lines to the <b>docker-compose.yml</b> file: <i class="flex flex-row-reverse">docker-compose.yml</i>`);
-      _push(ssrRenderComponent(unref(VCodeBlock), {
-        code: dockerCompose,
-        highlightjs: "",
-        lang: "yml"
+      _push(`</p><h1 class="topic">Docker configurations</h1><p> 1) You need to change docker-compose.yml to add new port for xdebug. <br><br> 2) Change the context and add a copy of vendor/laravel/sail/runtimes/8.3<br> Add the following lines to the <b>docker-compose.yml</b> file: `);
+      _push(ssrRenderComponent(unref(MdPreview), {
+        class: "max-h-[40rem]",
+        modelValue: dockerCompose,
+        language: "en-US"
       }, null, _parent));
-      _push(ssrRenderComponent(unref(VCodeBlock), {
-        code: cpCommand,
-        highlightjs: "",
-        lang: "bash"
+      _push(ssrRenderComponent(unref(MdPreview), {
+        class: "max-h-[40rem]",
+        modelValue: cpCommand,
+        language: "en-US"
       }, null, _parent));
-      _push(`<br> 3) I like to custom the Dockerfile and add my customizations like install some software: sudo curl, git, git cli and nano, and change the user &#39;sail&#39; as sudo.<br><i class="text-red-500 font-bold">Put the code in right place</i>. <br><i class="flex flex-row-reverse">.devcontainer/vendor-example/laravel/sail/runtimes/8.3/Dockerfile</i>`);
-      _push(ssrRenderComponent(unref(VCodeBlock), {
-        code: dockerfile,
-        highlightjs: "",
-        lang: "Dockerfile"
+      _push(`<br> 3) I like to custom the Dockerfile and add my customizations like install some software: sudo curl, git, git cli and nano, and change the user &#39;sail&#39; as sudo.<br><i class="text-red-500 font-bold">Put the code in right place</i>. <br>`);
+      _push(ssrRenderComponent(unref(MdPreview), {
+        class: "max-h-[40rem]",
+        modelValue: dockerfile,
+        language: "en-US"
       }, null, _parent));
-      _push(` Your Dockerfile will look like this: <img${ssrRenderAttr("src", _imports_2$1)} alt="Dockerfile"><br> 4) Add this code in <b>php.ini</b><i class="flex flex-row-reverse"> .devcontainer/vendor-example/laravel/sail/runtimes/8.3/php.ini </i>`);
-      _push(ssrRenderComponent(unref(VCodeBlock), {
-        code: phpini,
-        highlightjs: "",
-        lang: "ini"
+      _push(` Your Dockerfile will look like this: <img${ssrRenderAttr("src", _imports_2$1)} alt="Dockerfile"><br> 4) Add this code in <b>php.ini</b>`);
+      _push(ssrRenderComponent(unref(MdPreview), {
+        class: "max-h-[40rem]",
+        modelValue: phpini,
+        language: "en-US"
       }, null, _parent));
-      _push(`<br> 5) I like to custom my bash prompt to show my git branch and the current directory. <br><i class="flex flex-row-reverse"> .devcontainer/vendor-example/laravel/sail/runtimes/8.3/start-container </i>`);
-      _push(ssrRenderComponent(unref(VCodeBlock), {
-        code: startContainer,
-        highlightjs: "",
-        lang: "bash"
+      _push(`<br> 5) I like to custom my bash prompt to show my git branch and the current directory. <br>`);
+      _push(ssrRenderComponent(unref(MdPreview), {
+        class: "max-h-[40rem]",
+        modelValue: startContainer,
+        language: "en-US"
       }, null, _parent));
-      _push(`<br></p><h1 class="topic">Debug configurations</h1><p><i class="flex flex-row-reverse">.vscode/launch.json</i>`);
-      _push(ssrRenderComponent(unref(VCodeBlock), {
-        code: vscode,
-        highlightjs: "",
-        lang: "bash"
+      _push(`<br></p><h1 class="topic">Debug configurations</h1><p>`);
+      _push(ssrRenderComponent(unref(MdPreview), {
+        class: "max-h-[40rem]",
+        modelValue: vscode,
+        language: "en-US"
       }, null, _parent));
-      _push(`<br> Check environment variables <i class="flex flex-row-reverse">.env</i>`);
-      _push(ssrRenderComponent(unref(VCodeBlock), {
-        code: env,
-        highlightjs: "",
-        lang: "ini"
+      _push(`<br> Check environment variables `);
+      _push(ssrRenderComponent(unref(MdPreview), {
+        class: "max-h-[40rem]",
+        modelValue: env,
+        language: "en-US"
       }, null, _parent));
-      _push(`<br></p><h1 class="topic">Let&#39;s put to work!!</h1><p> After installing the extension, you can open the command palette (Ctrl+Shift+P) and type <i>&#39;Remote-Containers: Reopen in Container&#39;</i>. This will build the container and open the project inside it. Or it will appear a button in the bottom right corner of the window. </p><p> Now you can start the container and debug your Laravel application. You can set a breakpoint in your code and start the debug configuration in Visual Studio Code. You can check the progress in the bottom right corner of Visual Studio Code. </p><p> To open you application use the browser with the URL localhost. <br><br> Ensure there is no other service running on port 80. <br><br><img${ssrRenderAttr("src", _imports_3$1)} alt="devcontainer folder"></p><p> That&#39;s it! You now have a Laravel environment using Docker, Devcontainer, and Xdebug. You can use this environment to develop your Laravel applications and debug them using Visual Studio Code. I hope this post was helpful to you. If you have any questions, feel free to ask in the comments section below. Thank you for reading! </p></div></article><!--]-->`);
+      _push(`<br></p><h1 class="topic">Let&#39;s put to work!!</h1><p> After installing the extension, you can open the command palette (Ctrl+Shift+P) and type <i>&#39;Remote-Containers: Reopen in Container&#39;</i>. This will build the container and open the project inside it. Or it will appear a button in the bottom right corner of the window. </p><p> Now you can start the container and debug your Laravel application. You can set a breakpoint in your code and start the debug configuration in Visual Studio Code. You can check the progress in the bottom right corner of Visual Studio Code. </p><p> To open you application use the browser with the URL localhost. <br><br> Ensure there is no other service running on port 80. <br><br><img${ssrRenderAttr("src", _imports_3$1)} alt="devcontainer folder"></p><p> That&#39;s it! You now have a Laravel environment using Docker, Devcontainer, and Xdebug. You can use this environment to develop your Laravel applications and debug them using Visual Studio Code. I hope this post was helpful to you. If you have any questions, feel free to ask in the comments section below. Thank you for reading! </p></div></article>`);
+      _push(ssrRenderComponent(_sfc_main$7, { commentaries: __props.commentaries }, null, _parent));
+      _push(`<!--]-->`);
     };
   }
 };
@@ -352,6 +399,7 @@ const _imports_3 = "/build/assets/requirefields-CEQ8spP0.png";
 const _imports_4 = "/build/assets/pest-output-DAWTyeAj.png";
 const _imports_5 = "/build/assets/pest-error-output-DlXUmicb.png";
 const updateUser = `
+\`\`\` app/Actions/Fortify/UpdateUserProfileInformation.php
 <?php
 
 namespace App\\Actions\\Fortify;
@@ -408,8 +456,10 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         $user->sendEmailVerificationNotification();
     }
 }
+\`\`\`
 `;
 const UserInputTest = `
+\`\`\` tests/Feature/UserInputValidationTest.php
 <?php
 
 use App\\Models\\User;
@@ -581,8 +631,10 @@ test('test with valid inputs', function () use (&$user) {
     $response->assertStatus(302);
     $response->assertSessionHasNoErrors();
 });
+\`\`\`
 `;
 const pestPHP = `
+\`\`\` tests/Pest.php
 <?php
 
 /*
@@ -626,17 +678,21 @@ expect()->extend('toBeOne', function () {
 | global functions to help you to reduce the number of lines of code in your test files.
 |
 */
+\`\`\`
 `;
 const _sfc_main$5 = {
   __name: "PestValidation",
   __ssrInlineRender: true,
+  props: {
+    commentaries: Array
+  },
   setup(__props) {
     return (_ctx, _push, _parent, _attrs) => {
       _push(`<!--[-->`);
       _push(ssrRenderComponent(unref(Head), null, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<title data-v-e19485d3${_scopeId}>Using PEST to Test Form Validations: Require, Type, Length, and More</title><meta name="description" content="Laravel, Inertia, and Vue.js, when combined as a monolith, offer a powerful stack for building modern web applications. In this post, we&#39;ll explore how these technologies integrate and how we can leverage PEST to test form validations effectively." data-v-e19485d3${_scopeId}><meta name="keywords" content="Laravel, Inertia, Vue, PEST" data-v-e19485d3${_scopeId}>`);
+            _push2(`<title data-v-29deaa37${_scopeId}>Using PEST to Test Form Validations: Require, Type, Length, and More</title><meta name="description" content="Laravel, Inertia, and Vue.js, when combined as a monolith, offer a powerful stack for building modern web applications. In this post, we&#39;ll explore how these technologies integrate and how we can leverage PEST to test form validations effectively." data-v-29deaa37${_scopeId}><meta name="keywords" content="Laravel, Inertia, Vue, PEST" data-v-29deaa37${_scopeId}>`);
           } else {
             return [
               createVNode("title", null, "Using PEST to Test Form Validations: Require, Type, Length, and More"),
@@ -653,73 +709,77 @@ const _sfc_main$5 = {
         }),
         _: 1
       }, _parent));
-      _push(`<article data-v-e19485d3><h1 class="title text-center" data-v-e19485d3> Using PEST to Test Form Validations: Require, Type, Length, and More </h1><h2 class="text-md py-2" data-v-e19485d3>Published on February 22sd, 2024.</h2><div class="p-2 text-justify w-full space-y-10 mt-6 text-lg" data-v-e19485d3><h1 class="topic" data-v-e19485d3>Introduction</h1><p data-v-e19485d3> In the realm of web development, integrating various technologies seamlessly can significantly streamline the development process. Laravel, Inertia, and Vue.js, when combined as a monolith, offer a powerful stack for building modern web applications. In this post, we&#39;ll explore how these technologies integrate and how we can leverage PEST to test form validations effectively. <br data-v-e19485d3> In this tutorial, we&#39;ll cover the following topics: </p><ul class="font-bold" data-v-e19485d3><li data-v-e19485d3>* Understand about Laravel, Inertia, Vue.js and PEST working in a Monolith</li><li data-v-e19485d3>* Use Laravel Jetstream as a starting point for our application</li><li data-v-e19485d3> * How to conver form validation from client side in PEST like required fields, data types, field lengths, and more. </li></ul><p data-v-e19485d3><span class="font-bold flex" data-v-e19485d3>Laravel, Inertia, and Vue.js as a Monolith</span> Before delving into form validations and testing, let&#39;s briefly discuss the synergy between Laravel, Inertia, and Vue.js. Laravel serves as the backend framework, providing robust features for routing, database interaction, and validation. Inertia.js facilitates the creation of single-page applications by allowing us to use Vue.js components within Laravel views seamlessly. </p><p data-v-e19485d3><span class="font-bold flex" data-v-e19485d3>Integration and Validation</span> One notable aspect of this integration is the handling of form validations. While Vue.js enables client-side validation, Laravel&#39;s validation capabilities are equally powerful and can be seamlessly integrated into our application. By validating forms on the server-side with Laravel, we ensure consistent validation rules across the application and enhance security. </p><p data-v-e19485d3><span class="font-bold flex" data-v-e19485d3>Introduction to PEST</span> Now, let&#39;s introduce PEST. PEST is a delightful PHP testing framework that focuses on simplicity and readability. It allows us to write expressive and feature-rich tests that ensure our application behaves as expected. In this tutorial, we&#39;ll harness the power of PEST to include form validations in our test suite seamlessly. </p><p data-v-e19485d3><span class="font-bold flex" data-v-e19485d3>Getting Started with Laravel Jetstream</span> To kickstart our journey into testing form validations, we&#39;ll use Laravel Jetstream, a popular scaffolding tool for Laravel applications. Jetstream provides authentication, team management, and robust scaffolding for our Laravel applications, allowing us to focus on building features rather than reinventing the wheel. <br data-v-e19485d3> In the upcoming sections, we&#39;ll dive into practical examples of using PEST to test various form validations, including required fields, data types, field lengths, and more. By the end of this tutorial, you&#39;ll have a solid understanding of how to leverage PEST to ensure the integrity and reliability of your form validations. <br data-v-e19485d3> Stay tuned for the next installment, where we&#39;ll delve into writing PEST tests for form validations in Laravel Jetstream. </p><h1 class="topic" data-v-e19485d3>Starting a New Laravel Project</h1><p data-v-e19485d3> Let&#39;s start with a new Laravel Jetstream project. You can create a new Laravel Jetstream project using the following command: `);
-      _push(ssrRenderComponent(_sfc_main$7, {
+      _push(`<article data-v-29deaa37><h1 class="title text-center" data-v-29deaa37> Using PEST to Test Form Validations: Require, Type, Length, and More </h1><h2 class="text-md py-2" data-v-29deaa37>Published on February 22sd, 2024.</h2><div class="p-2 text-justify w-full space-y-10 mt-6 text-lg" data-v-29deaa37><h1 class="topic" data-v-29deaa37>Introduction</h1><p data-v-29deaa37> In the realm of web development, integrating various technologies seamlessly can significantly streamline the development process. Laravel, Inertia, and Vue.js, when combined as a monolith, offer a powerful stack for building modern web applications. In this post, we&#39;ll explore how these technologies integrate and how we can leverage PEST to test form validations effectively. <br data-v-29deaa37> In this tutorial, we&#39;ll cover the following topics: </p><ul class="font-bold" data-v-29deaa37><li data-v-29deaa37>* Understand about Laravel, Inertia, Vue.js and PEST working in a Monolith</li><li data-v-29deaa37>* Use Laravel Jetstream as a starting point for our application</li><li data-v-29deaa37> * How to conver form validation from client side in PEST like required fields, data types, field lengths, and more. </li></ul><p data-v-29deaa37><span class="font-bold flex" data-v-29deaa37>Laravel, Inertia, and Vue.js as a Monolith</span> Before delving into form validations and testing, let&#39;s briefly discuss the synergy between Laravel, Inertia, and Vue.js. Laravel serves as the backend framework, providing robust features for routing, database interaction, and validation. Inertia.js facilitates the creation of single-page applications by allowing us to use Vue.js components within Laravel views seamlessly. </p><p data-v-29deaa37><span class="font-bold flex" data-v-29deaa37>Integration and Validation</span> One notable aspect of this integration is the handling of form validations. While Vue.js enables client-side validation, Laravel&#39;s validation capabilities are equally powerful and can be seamlessly integrated into our application. By validating forms on the server-side with Laravel, we ensure consistent validation rules across the application and enhance security. </p><p data-v-29deaa37><span class="font-bold flex" data-v-29deaa37>Introduction to PEST</span> Now, let&#39;s introduce PEST. PEST is a delightful PHP testing framework that focuses on simplicity and readability. It allows us to write expressive and feature-rich tests that ensure our application behaves as expected. In this tutorial, we&#39;ll harness the power of PEST to include form validations in our test suite seamlessly. </p><p data-v-29deaa37><span class="font-bold flex" data-v-29deaa37>Getting Started with Laravel Jetstream</span> To kickstart our journey into testing form validations, we&#39;ll use Laravel Jetstream, a popular scaffolding tool for Laravel applications. Jetstream provides authentication, team management, and robust scaffolding for our Laravel applications, allowing us to focus on building features rather than reinventing the wheel. <br data-v-29deaa37> In the upcoming sections, we&#39;ll dive into practical examples of using PEST to test various form validations, including required fields, data types, field lengths, and more. By the end of this tutorial, you&#39;ll have a solid understanding of how to leverage PEST to ensure the integrity and reliability of your form validations. <br data-v-29deaa37> Stay tuned for the next installment, where we&#39;ll delve into writing PEST tests for form validations in Laravel Jetstream. </p><h1 class="topic" data-v-29deaa37>Starting a New Laravel Project</h1><p data-v-29deaa37> Let&#39;s start with a new Laravel Jetstream project. You can create a new Laravel Jetstream project using the following command: `);
+      _push(ssrRenderComponent(unref(VCodeBlock), {
         code: 'curl -s "https://laravel.build/form-validation?with=mysql" | bash',
         highlightjs: "",
+        cssPath: "vcodeblock",
         lang: "bash"
       }, null, _parent));
-      _push(`</p><p data-v-e19485d3> Open you form-validation project in Visual Studio Code and let&#39;s start the app. The Laravel home page will be displayed in your browser. <br data-v-e19485d3><br data-v-e19485d3><img${ssrRenderAttr("src", _imports_0$2)} alt="laravel home page" data-v-e19485d3></p><h1 class="topic" data-v-e19485d3> Installing Jetstream and Building the NPM Dependencies and Migrating the Database </h1><p data-v-e19485d3> Now, let&#39;s install Jetstream using the following command: `);
-      _push(ssrRenderComponent(_sfc_main$7, {
+      _push(`</p><p data-v-29deaa37> Open you form-validation project in Visual Studio Code and let&#39;s start the app. The Laravel home page will be displayed in your browser. <br data-v-29deaa37><br data-v-29deaa37><img${ssrRenderAttr("src", _imports_0$2)} alt="laravel home page" data-v-29deaa37></p><h1 class="topic" data-v-29deaa37> Installing Jetstream and Building the NPM Dependencies and Migrating the Database </h1><p data-v-29deaa37> Now, let&#39;s install Jetstream using the following command: `);
+      _push(ssrRenderComponent(unref(VCodeBlock), {
         code: "composer require laravel/jetstream",
         highlightjs: "",
         lang: "bash"
       }, null, _parent));
       _push(` Then, we&#39;ll install Jetstream with the Inertia stack: `);
-      _push(ssrRenderComponent(_sfc_main$7, {
+      _push(ssrRenderComponent(unref(VCodeBlock), {
         code: "php artisan jetstream:install inertia",
         highlightjs: "",
         lang: "bash"
       }, null, _parent));
       _push(` After installing Jetstream, you should install and build your NPM dependencies and migrate your database: `);
-      _push(ssrRenderComponent(_sfc_main$7, {
+      _push(ssrRenderComponent(unref(VCodeBlock), {
         code: "npm install\nnpm run build\nphp artisan migrate",
         highlightjs: "",
         lang: "bash"
       }, null, _parent));
       _push(` After customizing these components, you should rebuild your assets: `);
-      _push(ssrRenderComponent(_sfc_main$7, {
+      _push(ssrRenderComponent(unref(VCodeBlock), {
         code: "npm run build",
         highlightjs: "",
         lang: "bash"
       }, null, _parent));
-      _push(`</p><p data-v-e19485d3> Your page will look like this: <img${ssrRenderAttr("src", _imports_1$1)} alt="jetstream welcome page" data-v-e19485d3></p><p data-v-e19485d3> Register a user and login to the application. You will see the dashboard page. <img${ssrRenderAttr("src", _imports_2)} alt="dashboard page" data-v-e19485d3></p><h1 class="topic" data-v-e19485d3>Let&#39;s understand out goal</h1><p data-v-e19485d3> Form validation is a crucial aspect of web applications. It important to ensure that these rules are checked in server-side and in tests as well. <img${ssrRenderAttr("src", _imports_3)} alt="dashboard page" data-v-e19485d3></p><p data-v-e19485d3>In controller validation we have the following rules:</p><ul class="list-disc pl-6" data-v-e19485d3><li data-v-e19485d3><b data-v-e19485d3>name</b> has 3 validations: <i data-v-e19485d3> required, string type and max length</i></li><li data-v-e19485d3><b data-v-e19485d3>email</b> has 4 validations: <i data-v-e19485d3> required, email type, max length and unique</i></li><li data-v-e19485d3><b data-v-e19485d3>photo</b> has 3 validations: <i data-v-e19485d3> nullable, mimes and max length</i></li></ul><p data-v-e19485d3> Look at the following code to understand the validation rules in the controller: <br data-v-e19485d3><i class="flex flex-row-reverse" data-v-e19485d3>app/Actions/Fortify/UpdateUserProfileInformation.php</i>`);
-      _push(ssrRenderComponent(unref(VCodeBlock), {
-        code: updateUser,
-        highlightjs: "",
-        lang: "php"
+      _push(`</p><p data-v-29deaa37> Your page will look like this: <img${ssrRenderAttr("src", _imports_1$1)} alt="jetstream welcome page" data-v-29deaa37></p><p data-v-29deaa37> Register a user and login to the application. You will see the dashboard page. <img${ssrRenderAttr("src", _imports_2)} alt="dashboard page" data-v-29deaa37></p><h1 class="topic" data-v-29deaa37>Let&#39;s understand out goal</h1><p data-v-29deaa37> Form validation is a crucial aspect of web applications. It important to ensure that these rules are checked in server-side and in tests as well. <img${ssrRenderAttr("src", _imports_3)} alt="dashboard page" data-v-29deaa37></p><p data-v-29deaa37>In controller validation we have the following rules:</p><ul class="list-disc pl-6" data-v-29deaa37><li data-v-29deaa37><b data-v-29deaa37>name</b> has 3 validations: <i data-v-29deaa37> required, string type and max length</i></li><li data-v-29deaa37><b data-v-29deaa37>email</b> has 4 validations: <i data-v-29deaa37> required, email type, max length and unique</i></li><li data-v-29deaa37><b data-v-29deaa37>photo</b> has 3 validations: <i data-v-29deaa37> nullable, mimes and max length</i></li></ul><p data-v-29deaa37> Look at the following code to understand the validation rules in the controller: <br data-v-29deaa37>`);
+      _push(ssrRenderComponent(unref(MdPreview), {
+        class: "max-h-[40rem]",
+        modelValue: updateUser,
+        language: "en-US"
       }, null, _parent));
-      _push(`</p><h1 class="topic" data-v-e19485d3>Installing PEST and Writing Tests.</h1><p data-v-e19485d3><span data-v-e19485d3>Let&#39;s use pest to check the validation controller</span> First, let&#39;s install pest using the following command: `);
-      _push(ssrRenderComponent(_sfc_main$7, {
+      _push(`</p><h1 class="topic" data-v-29deaa37>Installing PEST and Writing Tests.</h1><p data-v-29deaa37><span data-v-29deaa37>Let&#39;s use pest to check the validation controller</span> First, let&#39;s install pest using the following command: `);
+      _push(ssrRenderComponent(unref(VCodeBlock), {
         code: "composer require pestphp/pest --dev",
         highlightjs: "",
         lang: "bash"
       }, null, _parent));
       _push(` Then, create a new test file using the following command: `);
-      _push(ssrRenderComponent(_sfc_main$7, {
+      _push(ssrRenderComponent(unref(VCodeBlock), {
         code: "php artisan make:test UserInputValidationTest --pest",
         highlightjs: "",
         lang: "bash"
       }, null, _parent));
-      _push(` Check if exits the file <i class="flex flex-row-reverse" data-v-e19485d3>tests/Pest.php</i>`);
-      _push(ssrRenderComponent(unref(VCodeBlock), {
-        code: pestPHP,
-        highlightjs: "",
+      _push(ssrRenderComponent(unref(MdPreview), {
+        class: "max-h-[40rem]",
+        modelValue: pestPHP,
+        language: "en-US",
         lang: "php"
       }, null, _parent));
-      _push(` Now, let&#39;s write the tests for the controller validation. <br data-v-e19485d3><i class="flex flex-row-reverse" data-v-e19485d3>tests/Feature/UserInputValidationTest.php</i>`);
-      _push(ssrRenderComponent(unref(VCodeBlock), {
-        code: UserInputTest,
-        highlightjs: "",
+      _push(` Now, let&#39;s write the tests for the controller validation. <br data-v-29deaa37>`);
+      _push(ssrRenderComponent(unref(MdPreview), {
+        class: "max-h-[40rem]",
+        modelValue: UserInputTest,
+        language: "en-US",
         lang: "php"
       }, null, _parent));
-      _push(`</p><h1 class="topic" data-v-e19485d3>It&#39;s time to test!!!</h1><p data-v-e19485d3> Run the tests using the following command: `);
-      _push(ssrRenderComponent(_sfc_main$7, {
+      _push(`</p><h1 class="topic" data-v-29deaa37>It&#39;s time to test!!!</h1><p data-v-29deaa37> Run the tests using the following command: `);
+      _push(ssrRenderComponent(unref(VCodeBlock), {
         code: "./vendor/bin/pest tests/Feature/UserInputValidationTest.php",
         highlightjs: "",
         lang: "bash"
       }, null, _parent));
-      _push(` You will see the following output: <img${ssrRenderAttr("src", _imports_4)} alt="pest output" data-v-e19485d3> If we change email require validation, we will see the following output: <i class="flex flex-row-reverse" data-v-e19485d3>app/Actions/Fortify/UpdateUserProfileInformation.php</i><img${ssrRenderAttr("src", _imports_5)} alt="pest output" data-v-e19485d3></p><p data-v-e19485d3> That&#39;s it! We explored the integration of Laravel, Inertia, and Vue.js and how we can leverage PEST to test form validations effectively. We used Laravel Jetstream as a starting point for our application and covered various form validations, including required fields, data types, field lengths, and more. By the end of this tutorial, you should have a solid understanding of how to use PEST to ensure the integrity and reliability of your form validations. <br data-v-e19485d3> In the next installment, we&#39;ll delve into writing PEST tests for form validations in Laravel Jetstream. Stay tuned! </p></div></article><!--]-->`);
+      _push(` You will see the following output: <img${ssrRenderAttr("src", _imports_4)} alt="pest output" data-v-29deaa37> If we change email require validation, we will see the following output: <img${ssrRenderAttr("src", _imports_5)} alt="pest output" data-v-29deaa37></p><p data-v-29deaa37> That&#39;s it! We explored the integration of Laravel, Inertia, and Vue.js and how we can leverage PEST to test form validations effectively. We used Laravel Jetstream as a starting point for our application and covered various form validations, including required fields, data types, field lengths, and more. By the end of this tutorial, you should have a solid understanding of how to use PEST to ensure the integrity and reliability of your form validations. <br data-v-29deaa37> In the next installment, we&#39;ll delve into writing PEST tests for form validations in Laravel Jetstream. Stay tuned! </p></div></article>`);
+      _push(ssrRenderComponent(_sfc_main$7, { commentaries: __props.commentaries }, null, _parent));
+      _push(`<!--]-->`);
     };
   }
 };
@@ -729,7 +789,7 @@ _sfc_main$5.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Post/PestValidation.vue");
   return _sfc_setup$5 ? _sfc_setup$5(props, ctx) : void 0;
 };
-const PestValidation = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-e19485d3"]]);
+const PestValidation = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-29deaa37"]]);
 const __vite_glob_0_4 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: PestValidation
@@ -775,7 +835,7 @@ const _imports_0$1 = "/build/assets/pest-output-min-rUg6y2nq.png";
 const _imports_1 = "/build/assets/debug_ini-ac2PUNJ1.png";
 const _sfc_main$3 = {};
 function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs) {
-  _push(`<div${ssrRenderAttrs(_attrs)}><div class="flex space-x-2"><h1 class="title">Articles</h1></div><hr class="my-4"><div class="space-y-4"><article class="articles"><a class="title" href="posts/PestValidation"><img${ssrRenderAttr("src", _imports_0$1)} alt="debug Laravel"></a><div class="content"><a class="title" href="posts/PestValidation">Using PEST to Test Form Validations: Require, Type, Length, and More </a><p> 🧪 Every test matters. <br> 🚀 In this post, we explored the integration of Laravel, Inertia, and Vue.js and how we can leverage PEST to test form validations effectively. </p></div></article><article class="articles"><a class="title" href="posts/LaravelEnvironmentPost"><img${ssrRenderAttr("src", _imports_1)} alt="debug Laravel"></a><div class="content"><a class="title" href="posts/LaravelEnvironmentPost">Laravel environment: docker, devcontainer, VS Code debug </a><p> In this article, we&#39;ll explore how you can supercharge your Laravel development workflow by harnessing the power of Docker, DevContainer, and VS Code debug. </p><p> 🚀 Additionally, we&#39;ll also look at how you can custom your terminal to display the current git branch and status. </p><p> I like and use this environment because I can install and test new software without affecting my local machine. </p></div></article></div></div>`);
+  _push(`<div${ssrRenderAttrs(_attrs)}><div class="flex space-x-2"><h1 class="title">Articles</h1></div><hr class="my-4"><div class="space-y-4"><article class="articles"><a class="title" href="posts/PestValidation"><img${ssrRenderAttr("src", _imports_0$1)} alt="debug Laravel"></a><div class="content"><a class="title" href="posts/PestValidation">Using PEST to Test Form Validations: Require, Type, Length, and More </a><p> 🧪 Every test matters. <br> 🚀 In this post, we explored the integration of Laravel, Inertia, and Vue.js and how we can leverage PEST to test form validations effectively. </p><div class="stacks"><span>Laravel</span><span>Pest</span><span>Vue.js</span></div></div></article><article class="articles"><a class="title" href="posts/LaravelEnvironmentPost"><img${ssrRenderAttr("src", _imports_1)} alt="debug Laravel"></a><div class="content"><a class="title" href="posts/LaravelEnvironmentPost">Laravel environment: docker, devcontainer, VS Code debug </a><p> In this article, we&#39;ll explore how you can supercharge your Laravel development workflow by harnessing the power of Docker, DevContainer, and VS Code debug. </p><p> 🚀 Additionally, we&#39;ll also look at how you can custom your terminal to display the current git branch and status. </p><p> I like and use this environment because I can install and test new software without affecting my local machine. </p><div class="stacks"><span>Laravel</span><span>Docker</span><span>Linux</span></div></div></article></div></div>`);
 }
 const _sfc_setup$3 = _sfc_main$3.setup;
 _sfc_main$3.setup = (props, ctx) => {
@@ -831,7 +891,7 @@ const __vite_glob_0_7 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.def
 const _imports_0 = "/build/assets/cs50-CmGKmCZY.png";
 const _sfc_main$1 = {};
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs) {
-  _push(`<div${ssrRenderAttrs(_attrs)}><div class="flex space-x-2"><h1 class="title">Projects</h1></div><hr class="my-4"><div><article class="articles"><a class="title" href="projects/cs50"><img${ssrRenderAttr("src", _imports_0)} alt="CS50"></a><div class="content"><a class="title" href="projects/cs50"> CS50 Final Project: A Real-Time Memory Game </a><p> CS50 Final Project completed in December 2022 - a dynamic memory game designed for real-time online play with friends </p><div class="stacks"><span>Python</span><span>Websockets</span><span>Javascript</span><span>Sqlite</span><span>Heroku</span></div></div></article></div></div>`);
+  _push(`<div${ssrRenderAttrs(_attrs)}><div class="flex space-x-2"><h1 class="title">Projects</h1></div><hr class="my-4"><div><article class="articles"><a class="title" href="projects/cs50"><img${ssrRenderAttr("src", _imports_0)} alt="CS50"></a><div class="content"><a class="title" href="projects/cs50"> CS50 Final Project: A Real-Time Memory Game to play with a friend.</a><p> CS50 Final Project completed in December 2022 - a dynamic memory game designed for real-time online play with friends </p><div class="stacks"><span>Python</span><span>Websockets</span><span>Javascript</span><span>Sqlite</span><span>Heroku</span></div></div></article></div></div>`);
 }
 const _sfc_setup$1 = _sfc_main$1.setup;
 _sfc_main$1.setup = (props, ctx) => {

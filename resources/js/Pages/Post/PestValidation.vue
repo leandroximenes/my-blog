@@ -1,10 +1,17 @@
-`
 <script setup>
 import { Head } from '@inertiajs/vue3'
 import VCodeBlock from '@wdns/vue-code-block'
-import BashBlock from '@/Components/BashBlock.vue'
+import CommentarySection from '@/Components/CommentarySection.vue'
+
+import { MdPreview } from 'md-editor-v3'
+import 'md-editor-v3/lib/preview.css'
+
+defineProps({
+  commentaries: Array
+})
 
 const updateUser = `
+\`\`\` app/Actions/Fortify/UpdateUserProfileInformation.php
 <?php
 
 namespace App\\Actions\\Fortify;
@@ -61,9 +68,11 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         $user->sendEmailVerificationNotification();
     }
 }
+\`\`\`
 `
 
 const UserInputTest = `
+\`\`\` tests/Feature/UserInputValidationTest.php
 <?php
 
 use App\\Models\\User;
@@ -235,9 +244,11 @@ test('test with valid inputs', function () use (&$user) {
     $response->assertStatus(302);
     $response->assertSessionHasNoErrors();
 });
+\`\`\`
 `
 
 const pestPHP = `
+\`\`\` tests/Pest.php
 <?php
 
 /*
@@ -281,6 +292,7 @@ expect()->extend('toBeOne', function () {
 | global functions to help you to reduce the number of lines of code in your test files.
 |
 */
+\`\`\`
 `
 </script>
 
@@ -359,9 +371,10 @@ expect()->extend('toBeOne', function () {
       <p>
         Let's start with a new Laravel Jetstream project. You can create a new Laravel Jetstream
         project using the following command:
-        <BashBlock
+        <VCodeBlock
           code='curl -s "https://laravel.build/form-validation?with=mysql" | bash'
           highlightjs
+          cssPath="vcodeblock"
           lang="bash"
         />
       </p>
@@ -375,12 +388,12 @@ expect()->extend('toBeOne', function () {
       </h1>
       <p>
         Now, let's install Jetstream using the following command:
-        <BashBlock code="composer require laravel/jetstream" highlightjs lang="bash" />
+        <VCodeBlock code="composer require laravel/jetstream" highlightjs lang="bash" />
         Then, we'll install Jetstream with the Inertia stack:
-        <BashBlock code="php artisan jetstream:install inertia" highlightjs lang="bash" />
+        <VCodeBlock code="php artisan jetstream:install inertia" highlightjs lang="bash" />
         After installing Jetstream, you should install and build your NPM dependencies and migrate
         your database:
-        <BashBlock
+        <VCodeBlock
           code="npm install
 npm run build
 php artisan migrate"
@@ -388,7 +401,7 @@ php artisan migrate"
           lang="bash"
         />
         After customizing these components, you should rebuild your assets:
-        <BashBlock code="npm run build" highlightjs lang="bash" />
+        <VCodeBlock code="npm run build" highlightjs lang="bash" />
       </p>
 
       <p>
@@ -416,8 +429,8 @@ php artisan migrate"
 
       <p>
         Look at the following code to understand the validation rules in the controller: <br />
-        <i class="flex flex-row-reverse">app/Actions/Fortify/UpdateUserProfileInformation.php</i>
-        <VCodeBlock :code="updateUser" highlightjs lang="php" />
+
+        <MdPreview class="max-h-[40rem]" :modelValue="updateUser" language="en-US" />
       </p>
 
       <h1 class="topic">Installing PEST and Writing Tests.</h1>
@@ -425,25 +438,25 @@ php artisan migrate"
       <p>
         <span>Let's use pest to check the validation controller</span>
         First, let's install pest using the following command:
-        <BashBlock code="composer require pestphp/pest --dev" highlightjs lang="bash" />
+        <VCodeBlock code="composer require pestphp/pest --dev" highlightjs lang="bash" />
         Then, create a new test file using the following command:
-        <BashBlock
+        <VCodeBlock
           code="php artisan make:test UserInputValidationTest --pest"
           highlightjs
           lang="bash"
         />
-        Check if exits the file <i class="flex flex-row-reverse">tests/Pest.php</i>
-        <VCodeBlock :code="pestPHP" highlightjs lang="php" />
+
+        <MdPreview class="max-h-[40rem]" :modelValue="pestPHP" language="en-US" lang="php" />
 
         Now, let's write the tests for the controller validation. <br />
-        <i class="flex flex-row-reverse">tests/Feature/UserInputValidationTest.php</i>
-        <VCodeBlock :code="UserInputTest" highlightjs lang="php" />
+
+        <MdPreview class="max-h-[40rem]" :modelValue="UserInputTest" language="en-US" lang="php" />
       </p>
 
       <h1 class="topic">It's time to test!!!</h1>
       <p>
         Run the tests using the following command:
-        <BashBlock
+        <VCodeBlock
           code="./vendor/bin/pest tests/Feature/UserInputValidationTest.php"
           highlightjs
           lang="bash"
@@ -452,7 +465,7 @@ php artisan migrate"
         You will see the following output:
         <img src="./img/pest-output.png" alt="pest output" />
         If we change email require validation, we will see the following output:
-        <i class="flex flex-row-reverse">app/Actions/Fortify/UpdateUserProfileInformation.php</i>
+
         <img src="./img/pest-error-output.png" alt="pest output" />
       </p>
       <p>
@@ -467,6 +480,7 @@ php artisan migrate"
       </p>
     </div>
   </article>
+  <CommentarySection :commentaries="commentaries" />
 </template>
 <style scoped>
 img {
