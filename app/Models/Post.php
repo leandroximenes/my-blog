@@ -15,12 +15,7 @@ class Post extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'title',
-        'excerpt',
-        'content',
-        'slug',
-    ];
+    protected $fillable = ['id', 'title', 'excerpt', 'content', 'slug', 'access_count'];
 
     /**
      * Get the user that owns the Commentary
