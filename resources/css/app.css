@@ -32,7 +32,7 @@
   }
 
   .articles .stacks {
-    @apply mt-6 flex flex-wrap items-center;
+    @apply mt-6 w-full flex justify-end;
   }
 
   .articles .stacks span {
