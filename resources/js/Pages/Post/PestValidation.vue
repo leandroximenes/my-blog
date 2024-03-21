@@ -438,7 +438,11 @@ php artisan migrate"
       <p>
         <span>Let's use pest to check the validation controller</span>
         First, let's install pest using the following command:
-        <VCodeBlock code="composer require pestphp/pest --dev" highlightjs lang="bash" />
+        <VCodeBlock
+          code="composer require pestphp/pest --dev --with-all-dependencies"
+          highlightjs
+          lang="bash"
+        />
         Then, create a new test file using the following command:
         <VCodeBlock
           code="php artisan make:test UserInputValidationTest --pest"
