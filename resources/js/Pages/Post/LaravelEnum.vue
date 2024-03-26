@@ -49,7 +49,7 @@ use Spatie\\Enum\\Laravel\\Enum;
  */
  class UserRoleEnum extends Enum
 {
-    const DEFAULT = 'none';
+    const DEFAULT = 'NON';
 
     protected static function values(): array
     {
@@ -105,7 +105,7 @@ const factory = `
 
 namespace Database\\Factories;
 
-use App\\Enums\\UserRoleEnum;
+use App\\Enums\\UserRoleEnum; // add this
 use Illuminate\\Database\\Eloquent\\Factories\\Factory;
 use Illuminate\\Support\\Facades\\Hash;
 use Illuminate\\Support\\Str;
@@ -133,7 +133,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
-            'role' => fake()->randomElement(UserRoleEnum::toArray()),
+            'role' => fake()->randomElement(UserRoleEnum::toArray()), // add this
         ];
     }
 
@@ -157,7 +157,7 @@ const model = `
 namespace App\\Models;
 
 // use Illuminate\\Contracts\\Auth\\MustVerifyEmail;
-use App\\Enums\\UserRoleEnum;
+use App\\Enums\\UserRoleEnum; // add this
 use Illuminate\\Database\\Eloquent\\Factories\\HasFactory;
 use Illuminate\\Foundation\\Auth\\User as Authenticatable;
 use Illuminate\\Notifications\\Notifiable;
@@ -167,36 +167,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
-    ];
+   ...
 
     public function getRoleAttribute($value): string
     {
@@ -212,7 +183,7 @@ class User extends Authenticatable
             else if (in_array($value, UserRoleEnum::toLabels()))
                 $this->attributes['role'] = $value;
             else
-                $this->attributes['role'] = UserRoleEnum::DEFAULT;
+                throw new \\InvalidArgumentException('Invalid user role value.');
         else
             $this->attributes['role'] = UserRoleEnum::DEFAULT;
     }
@@ -264,7 +235,7 @@ test('create user random role', function () {
 
 test('create user with role ADM', function () {
     $user = User::factory()->create(['role' => UserRoleEnum::ADM()->label]);
-    expect($user->role)->toBe('ADM');
+    expect($user->role)->toBe('Admin');
 });
 
 test('create user with role Admin', function () {
@@ -272,9 +243,17 @@ test('create user with role Admin', function () {
     expect($user->role)->toBe('Admin');
 });
 
-test('do not create user with role invalid', function () {
-    $user = User::factory()->create(['role' => 'Invalid']);
-})->throws(InvalidArgumentException::class);
+test('does not set an invalid role attribute', function () {
+    $user = new User();
+    $invalidRole = 'InvalidRole';
+
+    // Act & Assert
+    $this->expectException(\\InvalidArgumentException::class);
+    $this->expectExceptionMessage('Invalid user role value.');
+
+    // Attempt to set an invalid role attribute
+    $user->setRoleAttribute($invalidRole);
+});
 \`\`\`
 `
 
@@ -355,7 +334,7 @@ defineProps({
       <p>
         Use the following command to create a new enum:
         <VCodeBlock
-          code="php artisan make:enum UserRoleEnum"
+          code="php artisan make:spatie-enum UserRoleEnum"
           highlightjs
           cssPath="vcodeblock"
           lang="bash"
@@ -421,6 +400,18 @@ defineProps({
         />
         Past this code to the new file:
         <MdPreview class="max-h-[40rem]" :modelValue="test" language="en-US" />
+      </p>
+      <p>
+        Run the test:
+        <VCodeBlock code="php artisan test" highlightjs cssPath="vcodeblock" lang="bash" />
+      </p>
+      <img src="./img/enum_test.png" alt="list test" />
+      <h1 class="topic">Conclusion</h1>
+      <p>
+        Enumerations are a great way to create more reliable and clear code. Laravel Enum is a
+        powerful package that can help you to create enumerations in your Laravel application. It is
+        simple to use and can help you to create more reliable and clear code. I hope this article
+        has helped you to understand how to use Laravel Enum to create more reliable and clear code.
       </p>
     </div>
   </article>

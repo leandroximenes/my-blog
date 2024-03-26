@@ -60,8 +60,8 @@ const __vite_glob_0_1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.def
   __proto__: null,
   default: _sfc_main$a
 }, Symbol.toStringTag, { value: "Module" }));
-const _imports_0$5 = "/build/assets/me-7NLqheFn.jpg";
-const _imports_0$4 = "/build/assets/github-DJ4kBwNf.svg";
+const _imports_0$6 = "/build/assets/me-7NLqheFn.jpg";
+const _imports_0$5 = "/build/assets/github-DJ4kBwNf.svg";
 const _imports_2$3 = "/build/assets/linkedin-CsZAhWbA.svg";
 const _export_sfc = (sfc, props) => {
   const target = sfc.__vccOpts || sfc;
@@ -72,7 +72,7 @@ const _export_sfc = (sfc, props) => {
 };
 const _sfc_main$9 = {};
 function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs) {
-  _push(`<div${ssrRenderAttrs(mergeProps({ class: "lg:flex lg:space-x-2" }, _attrs))}><img${ssrRenderAttr("src", _imports_0$5)} alt="me" class="p-1 mx-auto lg:w-1/2"><div class="p-2 lg:w-1/2"><h1 class="title text-center">About me</h1><div class="text-justify w-full space-y-10 mt-6 text-lg"><p> Hello there! 👋 I&#39;m married 💑 and a proud father of a daughter 👧, residing in Brasilia, DF 🇧🇷. </p><p>I&#39;m a Full Stack Developer, passionate about technology, and a lifelong learner.&quot;</p><p> With the values and expertise instilled during my tenure in the Brazilian Army as an Officer, coupled with my experience as a Full Stack Developer, I possess a robust background in leadership, teamwork, and problem-solving. I am passionate about constructing and managing web applications, constantly seeking new challenges and opportunities to enhance my skills and grow professionally. </p><div class="flex flex-col space-y-2"><a href="https://github.com/leandroximenes" target="_blank" class="flex items-center"><img class="h-6 w-6 mr-1"${ssrRenderAttr("src", _imports_0$4)} alt="github"> Github </a><a href="https://www.linkedin.com/in/leandroximenes" target="_blank" class="flex items-center"><img class="h-6 w-6 mr-1"${ssrRenderAttr("src", _imports_2$3)} alt="linkedin"> Linkedin </a></div></div></div></div>`);
+  _push(`<div${ssrRenderAttrs(mergeProps({ class: "lg:flex lg:space-x-2" }, _attrs))}><img${ssrRenderAttr("src", _imports_0$6)} alt="me" class="p-1 mx-auto lg:w-1/2"><div class="p-2 lg:w-1/2"><h1 class="title text-center">About me</h1><div class="text-justify w-full space-y-10 mt-6 text-lg"><p> Hello there! 👋 I&#39;m married 💑 and a proud father of a daughter 👧, residing in Brasilia, DF 🇧🇷. </p><p>I&#39;m a Full Stack Developer, passionate about technology, and a lifelong learner.&quot;</p><p> With the values and expertise instilled during my tenure in the Brazilian Army as an Officer, coupled with my experience as a Full Stack Developer, I possess a robust background in leadership, teamwork, and problem-solving. I am passionate about constructing and managing web applications, constantly seeking new challenges and opportunities to enhance my skills and grow professionally. </p><div class="flex flex-col space-y-2"><a href="https://github.com/leandroximenes" target="_blank" class="flex items-center"><img class="h-6 w-6 mr-1"${ssrRenderAttr("src", _imports_0$5)} alt="github"> Github </a><a href="https://www.linkedin.com/in/leandroximenes" target="_blank" class="flex items-center"><img class="h-6 w-6 mr-1"${ssrRenderAttr("src", _imports_2$3)} alt="linkedin"> Linkedin </a></div></div></div></div>`);
 }
 const _sfc_setup$9 = _sfc_main$9.setup;
 _sfc_main$9.setup = (props, ctx) => {
@@ -85,6 +85,7 @@ const __vite_glob_0_2 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.def
   __proto__: null,
   default: MainPage
 }, Symbol.toStringTag, { value: "Module" }));
+const _imports_0$4 = "/build/assets/enum_test-DQrK5dKz.png";
 const _sfc_main$8 = {
   __name: "CommentarySection",
   __ssrInlineRender: true,
@@ -176,7 +177,7 @@ use Spatie\\Enum\\Laravel\\Enum;
  */
  class UserRoleEnum extends Enum
 {
-    const DEFAULT = 'none';
+    const DEFAULT = 'NON';
 
     protected static function values(): array
     {
@@ -230,7 +231,7 @@ const factory = `
 
 namespace Database\\Factories;
 
-use App\\Enums\\UserRoleEnum;
+use App\\Enums\\UserRoleEnum; // add this
 use Illuminate\\Database\\Eloquent\\Factories\\Factory;
 use Illuminate\\Support\\Facades\\Hash;
 use Illuminate\\Support\\Str;
@@ -258,7 +259,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
-            'role' => fake()->randomElement(UserRoleEnum::toArray()),
+            'role' => fake()->randomElement(UserRoleEnum::toArray()), // add this
         ];
     }
 
@@ -281,7 +282,7 @@ const model = `
 namespace App\\Models;
 
 // use Illuminate\\Contracts\\Auth\\MustVerifyEmail;
-use App\\Enums\\UserRoleEnum;
+use App\\Enums\\UserRoleEnum; // add this
 use Illuminate\\Database\\Eloquent\\Factories\\HasFactory;
 use Illuminate\\Foundation\\Auth\\User as Authenticatable;
 use Illuminate\\Notifications\\Notifiable;
@@ -291,36 +292,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
-    ];
+   ...
 
     public function getRoleAttribute($value): string
     {
@@ -336,7 +308,7 @@ class User extends Authenticatable
             else if (in_array($value, UserRoleEnum::toLabels()))
                 $this->attributes['role'] = $value;
             else
-                $this->attributes['role'] = UserRoleEnum::DEFAULT;
+                throw new \\InvalidArgumentException('Invalid user role value.');
         else
             $this->attributes['role'] = UserRoleEnum::DEFAULT;
     }
@@ -386,7 +358,7 @@ test('create user random role', function () {
 
 test('create user with role ADM', function () {
     $user = User::factory()->create(['role' => UserRoleEnum::ADM()->label]);
-    expect($user->role)->toBe('ADM');
+    expect($user->role)->toBe('Admin');
 });
 
 test('create user with role Admin', function () {
@@ -394,9 +366,17 @@ test('create user with role Admin', function () {
     expect($user->role)->toBe('Admin');
 });
 
-test('do not create user with role invalid', function () {
-    $user = User::factory()->create(['role' => 'Invalid']);
-})->throws(InvalidArgumentException::class);
+test('does not set an invalid role attribute', function () {
+    $user = new User();
+    $invalidRole = 'InvalidRole';
+
+    // Act & Assert
+    $this->expectException(\\InvalidArgumentException::class);
+    $this->expectExceptionMessage('Invalid user role value.');
+
+    // Attempt to set an invalid role attribute
+    $user->setRoleAttribute($invalidRole);
+});
 \`\`\`
 `;
 const _sfc_main$7 = {
@@ -411,7 +391,7 @@ const _sfc_main$7 = {
       _push(ssrRenderComponent(unref(Head), null, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<title data-v-b7cd9ef6${_scopeId}>Enumerations: We have time for them. Crafting clearer, more reliable code</title><meta name="description" content="Enumerations: We have time for them. Crafting clearer, more reliable code" data-v-b7cd9ef6${_scopeId}><meta name="keywords" content="Laravel, PHP, Enum, PET" data-v-b7cd9ef6${_scopeId}>`);
+            _push2(`<title data-v-b469ca17${_scopeId}>Enumerations: We have time for them. Crafting clearer, more reliable code</title><meta name="description" content="Enumerations: We have time for them. Crafting clearer, more reliable code" data-v-b469ca17${_scopeId}><meta name="keywords" content="Laravel, PHP, Enum, PET" data-v-b469ca17${_scopeId}>`);
           } else {
             return [
               createVNode("title", null, "Enumerations: We have time for them. Crafting clearer, more reliable code"),
@@ -428,22 +408,22 @@ const _sfc_main$7 = {
         }),
         _: 1
       }, _parent));
-      _push(`<article data-v-b7cd9ef6><h1 class="title text-center" data-v-b7cd9ef6> Enumerations: We have time for them. Crafting clearer, more reliable code </h1><h2 class="text-md py-2" data-v-b7cd9ef6>Published on March 21st, 2024.</h2><div class="p-2 text-justify w-full space-y-10 mt-6 text-lg" data-v-b7cd9ef6><h1 class="topic" data-v-b7cd9ef6>Questions</h1><p data-v-b7cd9ef6> If you find yourself needing to categorize roles like &#39;admin&#39;, &#39;user&#39;, &#39;manager&#39; or &#39;user non classified&#39; within your user table in a Laravel application. <br data-v-b7cd9ef6> What approach would you take in your Laravel application? 🤔 </p><ul class="font-bold" data-v-b7cd9ef6><li data-v-b7cd9ef6>Should you use a native PHP Enum?</li><li data-v-b7cd9ef6>Should you use a tool made for Laravel called spatie/laravel-enum?</li><li data-v-b7cd9ef6>Maybe you could make a relationship table to show the roles?</li><li data-v-b7cd9ef6> Or should you just create a column in you database and expects that everyone undestands? </li></ul><p data-v-b7cd9ef6> Each of these approaches has its own pros and cons. In this particular case, I chose to use a Laravel Enum. </p><h1 class="topic" data-v-b7cd9ef6>The goal</h1><p data-v-b7cd9ef6> The goal of this article is to show you how to use Laravel Enum to create a more reliable and clear code. We will also see how to use it in migration, model, factory and how to test it. </p><h1 class="topic" data-v-b7cd9ef6>What is an Enum?</h1><p data-v-b7cd9ef6><a target="_blank" href="https://www.php.net/manual/en/language.types.enumerations.php" data-v-b7cd9ef6> &quot;Enumerations are a restricting layer on top of classes and class constants, intended to provide a way to define a closed set of possible values for a type.&quot; </a>`);
+      _push(`<article data-v-b469ca17><h1 class="title text-center" data-v-b469ca17> Enumerations: We have time for them. Crafting clearer, more reliable code </h1><h2 class="text-md py-2" data-v-b469ca17>Published on March 21st, 2024.</h2><div class="p-2 text-justify w-full space-y-10 mt-6 text-lg" data-v-b469ca17><h1 class="topic" data-v-b469ca17>Questions</h1><p data-v-b469ca17> If you find yourself needing to categorize roles like &#39;admin&#39;, &#39;user&#39;, &#39;manager&#39; or &#39;user non classified&#39; within your user table in a Laravel application. <br data-v-b469ca17> What approach would you take in your Laravel application? 🤔 </p><ul class="font-bold" data-v-b469ca17><li data-v-b469ca17>Should you use a native PHP Enum?</li><li data-v-b469ca17>Should you use a tool made for Laravel called spatie/laravel-enum?</li><li data-v-b469ca17>Maybe you could make a relationship table to show the roles?</li><li data-v-b469ca17> Or should you just create a column in you database and expects that everyone undestands? </li></ul><p data-v-b469ca17> Each of these approaches has its own pros and cons. In this particular case, I chose to use a Laravel Enum. </p><h1 class="topic" data-v-b469ca17>The goal</h1><p data-v-b469ca17> The goal of this article is to show you how to use Laravel Enum to create a more reliable and clear code. We will also see how to use it in migration, model, factory and how to test it. </p><h1 class="topic" data-v-b469ca17>What is an Enum?</h1><p data-v-b469ca17><a target="_blank" href="https://www.php.net/manual/en/language.types.enumerations.php" data-v-b469ca17> &quot;Enumerations are a restricting layer on top of classes and class constants, intended to provide a way to define a closed set of possible values for a type.&quot; </a>`);
       _push(ssrRenderComponent(unref(MdPreview), {
         class: "max-h-[40rem]",
         modelValue: phpEnum,
         language: "en-US"
       }, null, _parent));
-      _push(`</p><h1 class="topic" data-v-b7cd9ef6>Why Laravel Enum?</h1><p data-v-b7cd9ef6> Laravel Enum is a package that allows you to create and use enumerations in your Laravel application. It is a simple and powerful package that can help you to create more reliable and clear code. It is also allows you to use pollimorphic relationships instead of native PHP enums that you can&#39;t. <br data-v-b7cd9ef6><a target="_blank" href="https://php.watch/versions/8.1/enums#enum-inheritance" data-v-b7cd9ef6><b data-v-b7cd9ef6> &quot;Enums cannot be extended, and must not inherit&quot; </b></a></p><h1 class="topic" data-v-b7cd9ef6>Instalation</h1><p data-v-b7cd9ef6> In this example I&#39;ll use a empty laravel application. <br data-v-b7cd9ef6> Then, install the package: `);
+      _push(`</p><h1 class="topic" data-v-b469ca17>Why Laravel Enum?</h1><p data-v-b469ca17> Laravel Enum is a package that allows you to create and use enumerations in your Laravel application. It is a simple and powerful package that can help you to create more reliable and clear code. It is also allows you to use pollimorphic relationships instead of native PHP enums that you can&#39;t. <br data-v-b469ca17><a target="_blank" href="https://php.watch/versions/8.1/enums#enum-inheritance" data-v-b469ca17><b data-v-b469ca17> &quot;Enums cannot be extended, and must not inherit&quot; </b></a></p><h1 class="topic" data-v-b469ca17>Instalation</h1><p data-v-b469ca17> In this example I&#39;ll use a empty laravel application. <br data-v-b469ca17> Then, install the package: `);
       _push(ssrRenderComponent(unref(VCodeBlock), {
         code: "composer require spatie/laravel-enum",
         highlightjs: "",
         cssPath: "vcodeblock",
         lang: "bash"
       }, null, _parent));
-      _push(`</p><h1 class="topic" data-v-b7cd9ef6>Enum</h1><p data-v-b7cd9ef6> Use the following command to create a new enum: `);
+      _push(`</p><h1 class="topic" data-v-b469ca17>Enum</h1><p data-v-b469ca17> Use the following command to create a new enum: `);
       _push(ssrRenderComponent(unref(VCodeBlock), {
-        code: "php artisan make:enum UserRoleEnum",
+        code: "php artisan make:spatie-enum UserRoleEnum",
         highlightjs: "",
         cssPath: "vcodeblock",
         lang: "bash"
@@ -454,7 +434,7 @@ const _sfc_main$7 = {
         modelValue: UserRoleEnum,
         language: "en-US"
       }, null, _parent));
-      _push(`</p><h1 class="topic" data-v-b7cd9ef6>Migration</h1><p data-v-b7cd9ef6> Let&#39;s create a new migration to add the role column to the users table: `);
+      _push(`</p><h1 class="topic" data-v-b469ca17>Migration</h1><p data-v-b469ca17> Let&#39;s create a new migration to add the role column to the users table: `);
       _push(ssrRenderComponent(unref(VCodeBlock), {
         code: "php artisan make:migration add_role_to_users_table --table=users",
         highlightjs: "",
@@ -474,19 +454,19 @@ const _sfc_main$7 = {
         cssPath: "vcodeblock",
         lang: "bash"
       }, null, _parent));
-      _push(`</p><h1 class="topic" data-v-b7cd9ef6>Factory</h1><p data-v-b7cd9ef6>`);
+      _push(`</p><h1 class="topic" data-v-b469ca17>Factory</h1><p data-v-b469ca17>`);
       _push(ssrRenderComponent(unref(MdPreview), {
         class: "max-h-[40rem]",
         modelValue: factory,
         language: "en-US"
       }, null, _parent));
-      _push(`</p><h1 class="topic" data-v-b7cd9ef6>Model</h1><p data-v-b7cd9ef6> I like to adjust the model to use the enum description. For example: <br data-v-b7cd9ef6> If the user role is &#39;ADM&#39; the description will be &#39;Admin&#39;. And I also adjust set method to ensure that will convert to database required enum. `);
+      _push(`</p><h1 class="topic" data-v-b469ca17>Model</h1><p data-v-b469ca17> I like to adjust the model to use the enum description. For example: <br data-v-b469ca17> If the user role is &#39;ADM&#39; the description will be &#39;Admin&#39;. And I also adjust set method to ensure that will convert to database required enum. `);
       _push(ssrRenderComponent(unref(MdPreview), {
         class: "max-h-[40rem]",
         modelValue: model,
         language: "en-US"
       }, null, _parent));
-      _push(`</p><h1 class="topic" data-v-b7cd9ef6>Let&#39;s check with tinker</h1><p data-v-b7cd9ef6> Lets open it and check if everything is working as expected: `);
+      _push(`</p><h1 class="topic" data-v-b469ca17>Let&#39;s check with tinker</h1><p data-v-b469ca17> Lets open it and check if everything is working as expected: `);
       _push(ssrRenderComponent(unref(VCodeBlock), {
         code: "php artisan tinker",
         highlightjs: "",
@@ -504,14 +484,14 @@ const _sfc_main$7 = {
         modelValue: tinker,
         language: "en-US"
       }, null, _parent));
-      _push(`</p><h1 class="topic" data-v-b7cd9ef6>Testing</h1><p data-v-b7cd9ef6> I will create a Test to ensure that the enum is working as expected. <br data-v-b7cd9ef6> Let&#39;s install Pest; </p>`);
+      _push(`</p><h1 class="topic" data-v-b469ca17>Testing</h1><p data-v-b469ca17> I will create a Test to ensure that the enum is working as expected. <br data-v-b469ca17> Let&#39;s install Pest; </p>`);
       _push(ssrRenderComponent(unref(VCodeBlock), {
         code: "composer require pestphp/pest --dev --with-all-dependencies",
         highlightjs: "",
         cssPath: "vcodeblock",
         lang: "bash"
       }, null, _parent));
-      _push(` Now, create a test file <p data-v-b7cd9ef6>`);
+      _push(` Now, create a test file <p data-v-b469ca17>`);
       _push(ssrRenderComponent(unref(VCodeBlock), {
         code: "php artisan make:test UserRoleEnumTest --pest",
         highlightjs: "",
@@ -524,7 +504,14 @@ const _sfc_main$7 = {
         modelValue: test,
         language: "en-US"
       }, null, _parent));
-      _push(`</p></div></article>`);
+      _push(`</p><p data-v-b469ca17> Run the test: `);
+      _push(ssrRenderComponent(unref(VCodeBlock), {
+        code: "php artisan test",
+        highlightjs: "",
+        cssPath: "vcodeblock",
+        lang: "bash"
+      }, null, _parent));
+      _push(`</p><img${ssrRenderAttr("src", _imports_0$4)} alt="list test" data-v-b469ca17><h1 class="topic" data-v-b469ca17>Conclusion</h1><p data-v-b469ca17> Enumerations are a great way to create more reliable and clear code. Laravel Enum is a powerful package that can help you to create enumerations in your Laravel application. It is simple to use and can help you to create more reliable and clear code. I hope this article has helped you to understand how to use Laravel Enum to create more reliable and clear code. </p></div></article>`);
       _push(ssrRenderComponent(_sfc_main$8, { commentaries: __props.commentaries }, null, _parent));
       _push(`<!--]-->`);
     };
@@ -536,7 +523,7 @@ _sfc_main$7.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Post/LaravelEnum.vue");
   return _sfc_setup$7 ? _sfc_setup$7(props, ctx) : void 0;
 };
-const LaravelEnum = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__scopeId", "data-v-b7cd9ef6"]]);
+const LaravelEnum = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__scopeId", "data-v-b469ca17"]]);
 const __vite_glob_0_3 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: LaravelEnum
@@ -1099,7 +1086,7 @@ const _sfc_main$5 = {
       _push(ssrRenderComponent(unref(Head), null, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<title data-v-063eb79d${_scopeId}>Using PEST to Test Form Validations: Require, Type, Length, and More</title><meta name="description" content="Laravel, Inertia, and Vue.js, when combined as a monolith, offer a powerful stack for building modern web applications. In this post, we&#39;ll explore how these technologies integrate and how we can leverage PEST to test form validations effectively." data-v-063eb79d${_scopeId}><meta name="keywords" content="Laravel, Inertia, Vue, PEST" data-v-063eb79d${_scopeId}>`);
+            _push2(`<title data-v-522a71e1${_scopeId}>Using PEST to Test Form Validations: Require, Type, Length, and More</title><meta name="description" content="Laravel, Inertia, and Vue.js, when combined as a monolith, offer a powerful stack for building modern web applications. In this post, we&#39;ll explore how these technologies integrate and how we can leverage PEST to test form validations effectively." data-v-522a71e1${_scopeId}><meta name="keywords" content="Laravel, Inertia, Vue, PEST" data-v-522a71e1${_scopeId}>`);
           } else {
             return [
               createVNode("title", null, "Using PEST to Test Form Validations: Require, Type, Length, and More"),
@@ -1116,14 +1103,14 @@ const _sfc_main$5 = {
         }),
         _: 1
       }, _parent));
-      _push(`<article data-v-063eb79d><h1 class="title text-center" data-v-063eb79d> Using PEST to Test Form Validations: Require, Type, Length, and More </h1><h2 class="text-md py-2" data-v-063eb79d>Published on February 22sd, 2024.</h2><div class="p-2 text-justify w-full space-y-10 mt-6 text-lg" data-v-063eb79d><h1 class="topic" data-v-063eb79d>Introduction</h1><p data-v-063eb79d> In the realm of web development, integrating various technologies seamlessly can significantly streamline the development process. Laravel, Inertia, and Vue.js, when combined as a monolith, offer a powerful stack for building modern web applications. In this post, we&#39;ll explore how these technologies integrate and how we can leverage PEST to test form validations effectively. <br data-v-063eb79d> In this tutorial, we&#39;ll cover the following topics: </p><ul class="font-bold" data-v-063eb79d><li data-v-063eb79d>* Understand about Laravel, Inertia, Vue.js and PEST working in a Monolith</li><li data-v-063eb79d>* Use Laravel Jetstream as a starting point for our application</li><li data-v-063eb79d> * How to conver form validation from client side in PEST like required fields, data types, field lengths, and more. </li></ul><p data-v-063eb79d><span class="font-bold flex" data-v-063eb79d>Laravel, Inertia, and Vue.js as a Monolith</span> Before delving into form validations and testing, let&#39;s briefly discuss the synergy between Laravel, Inertia, and Vue.js. Laravel serves as the backend framework, providing robust features for routing, database interaction, and validation. Inertia.js facilitates the creation of single-page applications by allowing us to use Vue.js components within Laravel views seamlessly. </p><p data-v-063eb79d><span class="font-bold flex" data-v-063eb79d>Integration and Validation</span> One notable aspect of this integration is the handling of form validations. While Vue.js enables client-side validation, Laravel&#39;s validation capabilities are equally powerful and can be seamlessly integrated into our application. By validating forms on the server-side with Laravel, we ensure consistent validation rules across the application and enhance security. </p><p data-v-063eb79d><span class="font-bold flex" data-v-063eb79d>Introduction to PEST</span> Now, let&#39;s introduce PEST. PEST is a delightful PHP testing framework that focuses on simplicity and readability. It allows us to write expressive and feature-rich tests that ensure our application behaves as expected. In this tutorial, we&#39;ll harness the power of PEST to include form validations in our test suite seamlessly. </p><p data-v-063eb79d><span class="font-bold flex" data-v-063eb79d>Getting Started with Laravel Jetstream</span> To kickstart our journey into testing form validations, we&#39;ll use Laravel Jetstream, a popular scaffolding tool for Laravel applications. Jetstream provides authentication, team management, and robust scaffolding for our Laravel applications, allowing us to focus on building features rather than reinventing the wheel. <br data-v-063eb79d> In the upcoming sections, we&#39;ll dive into practical examples of using PEST to test various form validations, including required fields, data types, field lengths, and more. By the end of this tutorial, you&#39;ll have a solid understanding of how to leverage PEST to ensure the integrity and reliability of your form validations. <br data-v-063eb79d> Stay tuned for the next installment, where we&#39;ll delve into writing PEST tests for form validations in Laravel Jetstream. </p><h1 class="topic" data-v-063eb79d>Starting a New Laravel Project</h1><p data-v-063eb79d> Let&#39;s start with a new Laravel Jetstream project. You can create a new Laravel Jetstream project using the following command: `);
+      _push(`<article data-v-522a71e1><h1 class="title text-center" data-v-522a71e1> Using PEST to Test Form Validations: Require, Type, Length, and More </h1><h2 class="text-md py-2" data-v-522a71e1>Published on February 22sd, 2024.</h2><div class="p-2 text-justify w-full space-y-10 mt-6 text-lg" data-v-522a71e1><h1 class="topic" data-v-522a71e1>Introduction</h1><p data-v-522a71e1> In the realm of web development, integrating various technologies seamlessly can significantly streamline the development process. Laravel, Inertia, and Vue.js, when combined as a monolith, offer a powerful stack for building modern web applications. In this post, we&#39;ll explore how these technologies integrate and how we can leverage PEST to test form validations effectively. <br data-v-522a71e1> In this tutorial, we&#39;ll cover the following topics: </p><ul class="font-bold" data-v-522a71e1><li data-v-522a71e1>* Understand about Laravel, Inertia, Vue.js and PEST working in a Monolith</li><li data-v-522a71e1>* Use Laravel Jetstream as a starting point for our application</li><li data-v-522a71e1> * How to conver form validation from client side in PEST like required fields, data types, field lengths, and more. </li></ul><p data-v-522a71e1><span class="font-bold flex" data-v-522a71e1>Laravel, Inertia, and Vue.js as a Monolith</span> Before delving into form validations and testing, let&#39;s briefly discuss the synergy between Laravel, Inertia, and Vue.js. Laravel serves as the backend framework, providing robust features for routing, database interaction, and validation. Inertia.js facilitates the creation of single-page applications by allowing us to use Vue.js components within Laravel views seamlessly. </p><p data-v-522a71e1><span class="font-bold flex" data-v-522a71e1>Integration and Validation</span> One notable aspect of this integration is the handling of form validations. While Vue.js enables client-side validation, Laravel&#39;s validation capabilities are equally powerful and can be seamlessly integrated into our application. By validating forms on the server-side with Laravel, we ensure consistent validation rules across the application and enhance security. </p><p data-v-522a71e1><span class="font-bold flex" data-v-522a71e1>Introduction to PEST</span> Now, let&#39;s introduce PEST. PEST is a delightful PHP testing framework that focuses on simplicity and readability. It allows us to write expressive and feature-rich tests that ensure our application behaves as expected. In this tutorial, we&#39;ll harness the power of PEST to include form validations in our test suite seamlessly. </p><p data-v-522a71e1><span class="font-bold flex" data-v-522a71e1>Getting Started with Laravel Jetstream</span> To kickstart our journey into testing form validations, we&#39;ll use Laravel Jetstream, a popular scaffolding tool for Laravel applications. Jetstream provides authentication, team management, and robust scaffolding for our Laravel applications, allowing us to focus on building features rather than reinventing the wheel. <br data-v-522a71e1> In the upcoming sections, we&#39;ll dive into practical examples of using PEST to test various form validations, including required fields, data types, field lengths, and more. By the end of this tutorial, you&#39;ll have a solid understanding of how to leverage PEST to ensure the integrity and reliability of your form validations. <br data-v-522a71e1> Stay tuned for the next installment, where we&#39;ll delve into writing PEST tests for form validations in Laravel Jetstream. </p><h1 class="topic" data-v-522a71e1>Starting a New Laravel Project</h1><p data-v-522a71e1> Let&#39;s start with a new Laravel Jetstream project. You can create a new Laravel Jetstream project using the following command: `);
       _push(ssrRenderComponent(unref(VCodeBlock), {
         code: 'curl -s "https://laravel.build/form-validation?with=mysql" | bash',
         highlightjs: "",
         cssPath: "vcodeblock",
         lang: "bash"
       }, null, _parent));
-      _push(`</p><p data-v-063eb79d> Open you form-validation project in Visual Studio Code and let&#39;s start the app. The Laravel home page will be displayed in your browser. <br data-v-063eb79d><br data-v-063eb79d><img${ssrRenderAttr("src", _imports_0$2)} alt="laravel home page" data-v-063eb79d></p><h1 class="topic" data-v-063eb79d> Installing Jetstream and Building the NPM Dependencies and Migrating the Database </h1><p data-v-063eb79d> Now, let&#39;s install Jetstream using the following command: `);
+      _push(`</p><p data-v-522a71e1> Open you form-validation project in Visual Studio Code and let&#39;s start the app. The Laravel home page will be displayed in your browser. <br data-v-522a71e1><br data-v-522a71e1><img${ssrRenderAttr("src", _imports_0$2)} alt="laravel home page" data-v-522a71e1></p><h1 class="topic" data-v-522a71e1> Installing Jetstream and Building the NPM Dependencies and Migrating the Database </h1><p data-v-522a71e1> Now, let&#39;s install Jetstream using the following command: `);
       _push(ssrRenderComponent(unref(VCodeBlock), {
         code: "composer require laravel/jetstream",
         highlightjs: "",
@@ -1137,7 +1124,7 @@ const _sfc_main$5 = {
       }, null, _parent));
       _push(` After installing Jetstream, you should install and build your NPM dependencies and migrate your database: `);
       _push(ssrRenderComponent(unref(VCodeBlock), {
-        code: "npm install\nnpm run build\nphp artisan migrate",
+        code: "npm install\nphp artisan migrate",
         highlightjs: "",
         lang: "bash"
       }, null, _parent));
@@ -1147,13 +1134,13 @@ const _sfc_main$5 = {
         highlightjs: "",
         lang: "bash"
       }, null, _parent));
-      _push(`</p><p data-v-063eb79d> Your page will look like this: <img${ssrRenderAttr("src", _imports_1$1)} alt="jetstream welcome page" data-v-063eb79d></p><p data-v-063eb79d> Register a user and login to the application. You will see the dashboard page. <img${ssrRenderAttr("src", _imports_2$1)} alt="dashboard page" data-v-063eb79d></p><h1 class="topic" data-v-063eb79d>Let&#39;s understand out goal</h1><p data-v-063eb79d> Form validation is a crucial aspect of web applications. It important to ensure that these rules are checked in server-side and in tests as well. <img${ssrRenderAttr("src", _imports_3)} alt="dashboard page" data-v-063eb79d></p><p data-v-063eb79d>In controller validation we have the following rules:</p><ul class="list-disc pl-6" data-v-063eb79d><li data-v-063eb79d><b data-v-063eb79d>name</b> has 3 validations: <i data-v-063eb79d> required, string type and max length</i></li><li data-v-063eb79d><b data-v-063eb79d>email</b> has 4 validations: <i data-v-063eb79d> required, email type, max length and unique</i></li><li data-v-063eb79d><b data-v-063eb79d>photo</b> has 3 validations: <i data-v-063eb79d> nullable, mimes and max length</i></li></ul><p data-v-063eb79d> Look at the following code to understand the validation rules in the controller: <br data-v-063eb79d>`);
+      _push(`</p><p data-v-522a71e1> Your page will look like this: <img${ssrRenderAttr("src", _imports_1$1)} alt="jetstream welcome page" data-v-522a71e1></p><p data-v-522a71e1> Register a user and login to the application. You will see the dashboard page. <img${ssrRenderAttr("src", _imports_2$1)} alt="dashboard page" data-v-522a71e1></p><h1 class="topic" data-v-522a71e1>Let&#39;s understand out goal</h1><p data-v-522a71e1> Form validation is a crucial aspect of web applications. It important to ensure that these rules are checked in server-side and in tests as well. <img${ssrRenderAttr("src", _imports_3)} alt="dashboard page" data-v-522a71e1></p><p data-v-522a71e1>In controller validation we have the following rules:</p><ul class="list-disc pl-6" data-v-522a71e1><li data-v-522a71e1><b data-v-522a71e1>name</b> has 3 validations: <i data-v-522a71e1> required, string type and max length</i></li><li data-v-522a71e1><b data-v-522a71e1>email</b> has 4 validations: <i data-v-522a71e1> required, email type, max length and unique</i></li><li data-v-522a71e1><b data-v-522a71e1>photo</b> has 3 validations: <i data-v-522a71e1> nullable, mimes and max length</i></li></ul><p data-v-522a71e1> Look at the following code to understand the validation rules in the controller: <br data-v-522a71e1>`);
       _push(ssrRenderComponent(unref(MdPreview), {
         class: "max-h-[40rem]",
         modelValue: updateUser,
         language: "en-US"
       }, null, _parent));
-      _push(`</p><h1 class="topic" data-v-063eb79d>Installing PEST and Writing Tests.</h1><p data-v-063eb79d><span data-v-063eb79d>Let&#39;s use pest to check the validation controller</span> First, let&#39;s install pest using the following command: `);
+      _push(`</p><h1 class="topic" data-v-522a71e1>Installing PEST and Writing Tests.</h1><p data-v-522a71e1><span data-v-522a71e1>Let&#39;s use pest to check the validation controller</span> First, let&#39;s install pest using the following command: `);
       _push(ssrRenderComponent(unref(VCodeBlock), {
         code: "composer require pestphp/pest --dev --with-all-dependencies",
         highlightjs: "",
@@ -1165,26 +1152,27 @@ const _sfc_main$5 = {
         highlightjs: "",
         lang: "bash"
       }, null, _parent));
+      _push(` If this file doesn&#39;t exit. Create it. `);
       _push(ssrRenderComponent(unref(MdPreview), {
         class: "max-h-[40rem]",
         modelValue: pestPHP,
         language: "en-US",
         lang: "php"
       }, null, _parent));
-      _push(` Now, let&#39;s write the tests for the controller validation. <br data-v-063eb79d>`);
+      _push(` Now, let&#39;s write the tests for the controller validation. <br data-v-522a71e1>`);
       _push(ssrRenderComponent(unref(MdPreview), {
         class: "max-h-[40rem]",
         modelValue: UserInputTest,
         language: "en-US",
         lang: "php"
       }, null, _parent));
-      _push(`</p><h1 class="topic" data-v-063eb79d>It&#39;s time to test!!!</h1><p data-v-063eb79d> Run the tests using the following command: `);
+      _push(`</p><h1 class="topic" data-v-522a71e1>It&#39;s time to test!!!</h1><p data-v-522a71e1> Run the tests using the following command: `);
       _push(ssrRenderComponent(unref(VCodeBlock), {
         code: "./vendor/bin/pest tests/Feature/UserInputValidationTest.php",
         highlightjs: "",
         lang: "bash"
       }, null, _parent));
-      _push(` You will see the following output: <img${ssrRenderAttr("src", _imports_4)} alt="pest output" data-v-063eb79d> If we change email require validation, we will see the following output: <img${ssrRenderAttr("src", _imports_5)} alt="pest output" data-v-063eb79d></p><p data-v-063eb79d> That&#39;s it! We explored the integration of Laravel, Inertia, and Vue.js and how we can leverage PEST to test form validations effectively. We used Laravel Jetstream as a starting point for our application and covered various form validations, including required fields, data types, field lengths, and more. By the end of this tutorial, you should have a solid understanding of how to use PEST to ensure the integrity and reliability of your form validations. <br data-v-063eb79d> In the next installment, we&#39;ll delve into writing PEST tests for form validations in Laravel Jetstream. Stay tuned! </p></div></article>`);
+      _push(` You will see the following output: <img${ssrRenderAttr("src", _imports_4)} alt="pest output" data-v-522a71e1> If we change email require validation, we will see the following output: <img${ssrRenderAttr("src", _imports_5)} alt="pest output" data-v-522a71e1></p><p data-v-522a71e1> That&#39;s it! We explored the integration of Laravel, Inertia, and Vue.js and how we can leverage PEST to test form validations effectively. We used Laravel Jetstream as a starting point for our application and covered various form validations, including required fields, data types, field lengths, and more. By the end of this tutorial, you should have a solid understanding of how to use PEST to ensure the integrity and reliability of your form validations. <br data-v-522a71e1> In the next installment, we&#39;ll delve into writing PEST tests for form validations in Laravel Jetstream. Stay tuned! </p></div></article>`);
       _push(ssrRenderComponent(_sfc_main$8, { commentaries: __props.commentaries }, null, _parent));
       _push(`<!--]-->`);
     };
@@ -1196,7 +1184,7 @@ _sfc_main$5.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Post/PestValidation.vue");
   return _sfc_setup$5 ? _sfc_setup$5(props, ctx) : void 0;
 };
-const PestValidation = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-063eb79d"]]);
+const PestValidation = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-522a71e1"]]);
 const __vite_glob_0_5 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: PestValidation
@@ -1282,7 +1270,7 @@ const _sfc_main$2 = {
         }),
         _: 1
       }, _parent));
-      _push(`<article><h1 class="title text-center">CS50 Final Project: A Real-Time Memory Game</h1><h2 class="text-sm py-2">Published on February 18th, 2024.</h2><div class="p-2 text-justify w-full space-y-10 mt-6 text-lg"><p> CS50&#39;s final project consists of an online memory game to be played with a friend, developed using Python (Flask and WebSockets), JavaScript, CSS, and SQLite. The link to play online can be found <a class="font-bold" href="https://memory-in-pairs.herokuapp.com/">here</a> . </p><p> The game includes a waiting room where users wait for their partners to connect while simultaneously keeping track of the scores of ongoing matches at that moment. Played in pairs, participants have the ability to view the cards flipped by their opponents, providing an engaging and strategic dynamic. </p><p> The main goal of this project was to explore the possibilities and experience of a full-duplex connection through WebSockets, an area in which I had no prior experience. Although it was a complex challenge with moments of uncertainty, the emotional support from family and friends was crucial in overcoming obstacles, allowing me to complete the project within the established deadline for submission to the CS50 course at Harvard University in the year 2022. </p><p> 🚀 Key Tech Stack: <br> * Backend: Python with Websockets <br> * Frontend: Pure JavaScript (no framework) <br> * Deployment: Heroku Server <br> * Database: SQLite3 </p><p> LINKS: <br><a class="font-bold" href="https://memory-in-pairs.herokuapp.com/" target="_blank">🎮 To play</a><br><a href="https://github.com/leandroximenes/memory-in-pairs/tree/memory-game" target="_blank" class="font-bold flex items-center"><img class="h-6 w-6 mr-1"${ssrRenderAttr("src", _imports_0$4)} alt="github"> Github </a></p><p>Check out the game in action on my YouTube link:</p></div><iframe class="mx-auto w-full h-60 lg:w-2/3 lg:h-96" src="https://www.youtube.com/embed/L4aAvp24ofY"></iframe></article><!--]-->`);
+      _push(`<article><h1 class="title text-center">CS50 Final Project: A Real-Time Memory Game</h1><h2 class="text-sm py-2">Published on February 18th, 2024.</h2><div class="p-2 text-justify w-full space-y-10 mt-6 text-lg"><p> CS50&#39;s final project consists of an online memory game to be played with a friend, developed using Python (Flask and WebSockets), JavaScript, CSS, and SQLite. The link to play online can be found <a class="font-bold" href="https://memory-in-pairs.herokuapp.com/">here</a> . </p><p> The game includes a waiting room where users wait for their partners to connect while simultaneously keeping track of the scores of ongoing matches at that moment. Played in pairs, participants have the ability to view the cards flipped by their opponents, providing an engaging and strategic dynamic. </p><p> The main goal of this project was to explore the possibilities and experience of a full-duplex connection through WebSockets, an area in which I had no prior experience. Although it was a complex challenge with moments of uncertainty, the emotional support from family and friends was crucial in overcoming obstacles, allowing me to complete the project within the established deadline for submission to the CS50 course at Harvard University in the year 2022. </p><p> 🚀 Key Tech Stack: <br> * Backend: Python with Websockets <br> * Frontend: Pure JavaScript (no framework) <br> * Deployment: Heroku Server <br> * Database: SQLite3 </p><p> LINKS: <br><a class="font-bold" href="https://memory-in-pairs.herokuapp.com/" target="_blank">🎮 To play</a><br><a href="https://github.com/leandroximenes/memory-in-pairs/tree/memory-game" target="_blank" class="font-bold flex items-center"><img class="h-6 w-6 mr-1"${ssrRenderAttr("src", _imports_0$5)} alt="github"> Github </a></p><p>Check out the game in action on my YouTube link:</p></div><iframe class="mx-auto w-full h-60 lg:w-2/3 lg:h-96" src="https://www.youtube.com/embed/L4aAvp24ofY"></iframe></article><!--]-->`);
     };
   }
 };
