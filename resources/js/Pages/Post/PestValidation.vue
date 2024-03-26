@@ -395,7 +395,6 @@ expect()->extend('toBeOne', function () {
         your database:
         <VCodeBlock
           code="npm install
-npm run build
 php artisan migrate"
           highlightjs
           lang="bash"
@@ -449,6 +448,7 @@ php artisan migrate"
           highlightjs
           lang="bash"
         />
+        If this file doesn't exit. Create it.
 
         <MdPreview class="max-h-[40rem]" :modelValue="pestPHP" language="en-US" lang="php" />
 
