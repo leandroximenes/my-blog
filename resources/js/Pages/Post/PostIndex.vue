@@ -8,6 +8,27 @@
     <hr class="my-4" />
     <div class="space-y-4">
       <article class="articles">
+        <a class="title" href="posts/LaravelEnum"
+          ><img src="./img/enum.png" alt="debug Laravel" />
+        </a>
+        <div class="content">
+          <a class="title" href="posts/LaravelEnum"
+            >Enumerations: We have time for them. Crafting clearer, more reliable code</a
+          >
+          <p>
+            🤔 Choosing between native enum and Laravel Enum?<br />
+            🛠️ Debating between using enums or table relationships? 💡 <br />
+            How about simplifying with a value that's universally understood? Let's explore these
+            questions and find the best approach!
+          </p>
+          <div class="stacks">
+            <span>Laravel</span>
+            <span>Pest</span>
+            <span>PHP</span>
+          </div>
+        </div>
+      </article>
+      <article class="articles">
         <a class="title" href="posts/PestValidation"
           ><img src="./img/pest-output-min.png" alt="debug Laravel" />
         </a>

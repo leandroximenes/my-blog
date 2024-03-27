@@ -71,6 +71,15 @@ return new class extends Migration
             'slug' => 'PestValidation',
             'access_count' => 727,
         ]);
+
+        Post::create([
+            'id' => 7,
+            'title' => 'Laravel Enum',
+            'excerpt' => 'This is a Laravel enum conversation.',
+            'content' => 'Laravel enum page is a page that contains info about Laravel enum.',
+            'slug' => 'LaravelEnum',
+            'access_count' => 0,
+        ]);
     }
 
     /**

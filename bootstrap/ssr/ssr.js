@@ -1,11 +1,11 @@
-import { mergeProps, unref, useSSRContext, computed, withCtx, createVNode, ref, createTextVNode, createSSRApp, h } from "vue";
+import { mergeProps, unref, useSSRContext, computed, ref, withCtx, createVNode, createTextVNode, createSSRApp, h } from "vue";
 import { ssrRenderAttrs, ssrRenderList, ssrInterpolate, ssrRenderAttr, ssrRenderComponent, ssrRenderClass, ssrRenderSlot } from "vue/server-renderer";
 import { usePage, useForm, Head, Link, createInertiaApp } from "@inertiajs/vue3";
 import VCodeBlock from "@wdns/vue-code-block";
 import { MdPreview, MdEditor } from "md-editor-v3";
 import createServer from "@inertiajs/vue3/server";
 import { renderToString } from "@vue/server-renderer";
-const _sfc_main$a = {
+const _sfc_main$b = {
   __name: "AccessCount",
   __ssrInlineRender: true,
   props: {
@@ -23,17 +23,17 @@ const _sfc_main$a = {
     };
   }
 };
-const _sfc_setup$a = _sfc_main$a.setup;
-_sfc_main$a.setup = (props, ctx) => {
+const _sfc_setup$b = _sfc_main$b.setup;
+_sfc_main$b.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/AccessCount.vue");
-  return _sfc_setup$a ? _sfc_setup$a(props, ctx) : void 0;
+  return _sfc_setup$b ? _sfc_setup$b(props, ctx) : void 0;
 };
 const __vite_glob_0_0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  default: _sfc_main$a
+  default: _sfc_main$b
 }, Symbol.toStringTag, { value: "Module" }));
-const _sfc_main$9 = {
+const _sfc_main$a = {
   __name: "ConfigPage",
   __ssrInlineRender: true,
   setup(__props) {
@@ -50,19 +50,19 @@ const _sfc_main$9 = {
     };
   }
 };
-const _sfc_setup$9 = _sfc_main$9.setup;
-_sfc_main$9.setup = (props, ctx) => {
+const _sfc_setup$a = _sfc_main$a.setup;
+_sfc_main$a.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/ConfigPage.vue");
-  return _sfc_setup$9 ? _sfc_setup$9(props, ctx) : void 0;
+  return _sfc_setup$a ? _sfc_setup$a(props, ctx) : void 0;
 };
 const __vite_glob_0_1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  default: _sfc_main$9
+  default: _sfc_main$a
 }, Symbol.toStringTag, { value: "Module" }));
-const _imports_0$5 = "/build/assets/me-7NLqheFn.jpg";
-const _imports_0$4 = "/build/assets/github-DJ4kBwNf.svg";
-const _imports_2$2 = "/build/assets/linkedin-CsZAhWbA.svg";
+const _imports_0$6 = "/build/assets/me-7NLqheFn.jpg";
+const _imports_0$5 = "/build/assets/github-DJ4kBwNf.svg";
+const _imports_2$3 = "/build/assets/linkedin-CsZAhWbA.svg";
 const _export_sfc = (sfc, props) => {
   const target = sfc.__vccOpts || sfc;
   for (const [key, val] of props) {
@@ -70,26 +70,23 @@ const _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const _sfc_main$8 = {};
+const _sfc_main$9 = {};
 function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs) {
-  _push(`<div${ssrRenderAttrs(mergeProps({ class: "lg:flex lg:space-x-2" }, _attrs))}><img${ssrRenderAttr("src", _imports_0$5)} alt="me" class="p-1 mx-auto lg:w-1/2"><div class="p-2 lg:w-1/2"><h1 class="title text-center">About me</h1><div class="text-justify w-full space-y-10 mt-6 text-lg"><p> Hello there! 👋 I&#39;m married 💑 and a proud father of a daughter 👧, residing in Brasilia, DF 🇧🇷. </p><p>I&#39;m a Full Stack Developer, passionate about technology, and a lifelong learner.&quot;</p><p> With the values and expertise instilled during my tenure in the Brazilian Army as an Officer, coupled with my experience as a Full Stack Developer, I possess a robust background in leadership, teamwork, and problem-solving. I am passionate about constructing and managing web applications, constantly seeking new challenges and opportunities to enhance my skills and grow professionally. </p><div class="flex flex-col space-y-2"><a href="https://github.com/leandroximenes" target="_blank" class="flex items-center"><img class="h-6 w-6 mr-1"${ssrRenderAttr("src", _imports_0$4)} alt="github"> Github </a><a href="https://www.linkedin.com/in/leandroximenes" target="_blank" class="flex items-center"><img class="h-6 w-6 mr-1"${ssrRenderAttr("src", _imports_2$2)} alt="linkedin"> Linkedin </a></div></div></div></div>`);
+  _push(`<div${ssrRenderAttrs(mergeProps({ class: "lg:flex lg:space-x-2" }, _attrs))}><img${ssrRenderAttr("src", _imports_0$6)} alt="me" class="p-1 mx-auto lg:w-1/2"><div class="p-2 lg:w-1/2"><h1 class="title text-center">About me</h1><div class="text-justify w-full space-y-10 mt-6 text-lg"><p> Hello there! 👋 I&#39;m married 💑 and a proud father of a daughter 👧, residing in Brasilia, DF 🇧🇷. </p><p>I&#39;m a Full Stack Developer, passionate about technology, and a lifelong learner.&quot;</p><p> With the values and expertise instilled during my tenure in the Brazilian Army as an Officer, coupled with my experience as a Full Stack Developer, I possess a robust background in leadership, teamwork, and problem-solving. I am passionate about constructing and managing web applications, constantly seeking new challenges and opportunities to enhance my skills and grow professionally. </p><div class="flex flex-col space-y-2"><a href="https://github.com/leandroximenes" target="_blank" class="flex items-center"><img class="h-6 w-6 mr-1"${ssrRenderAttr("src", _imports_0$5)} alt="github"> Github </a><a href="https://www.linkedin.com/in/leandroximenes" target="_blank" class="flex items-center"><img class="h-6 w-6 mr-1"${ssrRenderAttr("src", _imports_2$3)} alt="linkedin"> Linkedin </a></div></div></div></div>`);
 }
-const _sfc_setup$8 = _sfc_main$8.setup;
-_sfc_main$8.setup = (props, ctx) => {
+const _sfc_setup$9 = _sfc_main$9.setup;
+_sfc_main$9.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/MainPage.vue");
-  return _sfc_setup$8 ? _sfc_setup$8(props, ctx) : void 0;
+  return _sfc_setup$9 ? _sfc_setup$9(props, ctx) : void 0;
 };
-const MainPage = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["ssrRender", _sfc_ssrRender$2]]);
+const MainPage = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["ssrRender", _sfc_ssrRender$2]]);
 const __vite_glob_0_2 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: MainPage
 }, Symbol.toStringTag, { value: "Module" }));
-const _imports_0$3 = "/build/assets/devcontainerfolder-DTN3fVqK.png";
-const _imports_1$2 = "/build/assets/vsextension-BUuXiwhS.png";
-const _imports_2$1 = "/build/assets/dockerfile-C_VCj5mP.png";
-const _imports_3$1 = "/build/assets/debug-CtGYDOVf.png";
-const _sfc_main$7 = {
+const _imports_0$4 = "/build/assets/enum_test-DQrK5dKz.png";
+const _sfc_main$8 = {
   __name: "CommentarySection",
   __ssrInlineRender: true,
   props: {
@@ -132,12 +129,404 @@ const _sfc_main$7 = {
     };
   }
 };
+const _sfc_setup$8 = _sfc_main$8.setup;
+_sfc_main$8.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Components/CommentarySection.vue");
+  return _sfc_setup$8 ? _sfc_setup$8(props, ctx) : void 0;
+};
+const phpEnum = `
+\`\`\` PHP
+<?php
+
+enum UserRole: string
+{
+    case 'ADM' = 'Admin',
+    case 'USR' = 'User',
+    case 'MNG' = 'Manager',
+    case 'NON' = 'None',
+
+    public function label(): string
+    {
+        return match($this) {
+            static::Admin => 'Admin',
+            static::User => 'User',
+            static::Manager => 'Manager',
+            static::None => 'User non classified',
+        };
+    }
+}
+?>
+
+\`\`\`
+`;
+const _sfc_main$7 = {
+  __name: "LaravelEnum",
+  __ssrInlineRender: true,
+  props: {
+    commentaries: Array
+  },
+  setup(__props) {
+    const enunName = ref("UserRoleEnum");
+    const columnName = ref("role");
+    const modelClass = ref("User");
+    const columnNameFirstUp = computed(
+      () => columnName.value.charAt(0).toUpperCase() + columnName.value.slice(1)
+    );
+    const modelClassFirsDown = computed(
+      () => modelClass.value.charAt(0).toLowerCase() + modelClass.value.slice(1) + "s"
+    );
+    const UserRoleEnum = computed(() => {
+      return `
+\`\`\` app/Enums/${enunName.value}.php
+<?php
+
+namespace App\\Enums;
+use Spatie\\Enum\\Laravel\\Enum;
+
+/**
+ * The Status enum.
+ *
+ * @method static self ADM()
+ * @method static self USR()
+ * @method static self MNG()
+ * @method static self NON()
+ */
+ class ${enunName.value} extends Enum
+{
+    const DEFAULT = 'NON';
+
+    protected static function values(): array
+    {
+        return [
+            'ADM' => 'Admin',
+            'USR' => 'User',
+            'MNG' => 'Manager',
+            'NON' => 'User non classified',
+        ];
+    }
+}
+\`\`\`
+`;
+    });
+    const migrations = computed(() => {
+      return `
+\`\`\` database/migrations/2024_03_21_193121_add_${columnName.value}_to_${modelClassFirsDown.value}_table.php
+<?php
+
+use App\\Enums\\${enunName.value};
+use Illuminate\\Database\\Migrations\\Migration;
+use Illuminate\\Database\\Schema\\Blueprint;
+use Illuminate\\Support\\Facades\\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::table('${modelClassFirsDown.value}', function (Blueprint $table) {
+            $table->enum(${columnName.value}, ${enunName.value}::toArray())->default(${enunName.value}::DEFAULT)->after('password');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::table('${modelClassFirsDown.value}', function (Blueprint $table) {
+            $table->dropColumn(${columnName.value});
+        });
+    }
+};
+\`\`\`
+`;
+    });
+    const factory = computed(() => {
+      return `
+\`\`\` database/factories/${modelClass.value}Factory.php
+<?php
+
+namespace Database\\Factories;
+
+use App\\Enums\\${enunName.value}; // ADD THIS
+use Illuminate\\Database\\Eloquent\\Factories\\Factory;
+use Illuminate\\Support\\Facades\\Hash;
+use Illuminate\\Support\\Str;
+
+/**
+ * @extends \\Illuminate\\Database\\Eloquent\\Factories\\Factory<\\App\\Models\\${modelClass.value}>
+ */
+class ${modelClass.value}Factory extends Factory
+{
+    ...
+
+    public function definition(): array
+    {
+        return [
+            'name' => fake()->name(),
+            ...
+            '${columnName.value}'' => fake()->randomElement(${enunName.value}::toArray()),               // ADD THIS
+        ];
+    }
+
+    ...
+}
+\`\`\`
+`;
+    });
+    const model = computed(() => {
+      return `
+\`\`\` app/Models/${modelClass.value}.php
+<?php
+
+namespace App\\Models;
+
+use App\\Enums\\${enunName.value}; // ADD THIS
+
+
+class ${modelClass.value}
+{
+   ...
+
+    public function get${columnNameFirstUp.value}Attribute($value): string
+    {
+        return ${enunName.value}::from($value)->value;
+    }
+
+    public function set${columnNameFirstUp.value}Attribute($value): void
+    {
+        if (!empty($value))
+            // check if value is a value or label
+            if (in_array($value, ${enunName.value}::toValues()))
+                $this->attributes[${columnName.value}] = ${enunName.value}::from($value)->label;
+            else if (in_array($value, ${enunName.value}::toLabels()))
+                $this->attributes[${columnName.value}] = $value;
+            else
+                throw new \\InvalidArgumentException('Invalid ${modelClass.value} ${columnName.value} value.');
+        else
+            $this->attributes[${columnName.value}] = ${enunName.value}::DEFAULT;
+    }
+}
+\`\`\`
+`;
+    });
+    const tinker = computed(() => {
+      return `
+\`\`\` bash
+$${modelClassFirsDown.value} = ${modelClass.value}::find(3);
+
+[!] Aliasing '${modelClass.value}' to 'App\\Models\\${modelClass.value}' for this Tinker session.
+= App\\Models\\${modelClass.value} {#5050
+    id: 3,
+    name: "Tamia Borer",
+    email: "brenna13@example.org",
+    email_verified_at: "2024-03-21 20:04:50",
+    #password: "$2y$12$S5bDxjRM4E6nuXQzTX2BjeJKVWhvzi5sMe0UZiLs5PxB0fg7y.Y4O",
+    #remember_token: "xyOyRzeuMV",
+    created_at: "2024-03-21 20:04:50",
+    updated_at: "2024-03-21 20:04:50",
+    ${columnName.value}: "NON",
+  }
+
+> $${modelClassFirsDown.value}->${columnName.value}
+= "${modelClass.value} non classified"
+
+> App\\Enums\\${enunName.value}::ADM()->label
+= "ADM"
+
+> App\\Enums\\${enunName.value}::ADM()->value
+= "Admin"
+\`\`\`
+`;
+    });
+    const test = computed(() => {
+      return `
+\`\`\` tests/Feature/${enunName.value}Test.php
+<?php
+
+//create a new ${modelClassFirsDown.value} and check if the ${modelClassFirsDown.value} ${columnName.value} is Ini
+
+use App\\Models\\${modelClass.value};
+use App\\Enums\\${enunName.value};
+
+test('create ${modelClassFirsDown.value} random ${columnName.value}', function () {
+    $${modelClassFirsDown.value} = ${modelClass.value}::factory()->create();
+    expect($${modelClassFirsDown.value}->${columnName.value})->toBeString();
+})->skip('This test is skipped because the ${modelClassFirsDown.value} ${columnName.value} is random');
+
+test('create ${modelClassFirsDown.value} with ${columnName.value} ADM', function () {
+    $${modelClassFirsDown.value} = ${modelClass.value}::factory()->create([${columnName.value} => ${enunName.value}::ADM()->label]);
+    expect($${modelClassFirsDown.value}->${columnName.value})->toBe('Admin');
+});
+
+test('create ${modelClassFirsDown.value} with ${columnName.value} Admin', function () {
+    $${modelClassFirsDown.value} = ${modelClass.value}::factory()->create([${columnName.value} => ${enunName.value}::ADM()->value]);
+    expect($${modelClassFirsDown.value}->${columnName.value})->toBe('Admin');
+});
+
+test('does not set an invalid ${columnName.value} attribute', function () {
+    $${modelClassFirsDown.value} = new ${modelClass.value}();
+    $invalid${columnNameFirstUp.value} = 'Invalid${columnNameFirstUp.value}';
+
+    // Act & Assert
+    $this->expectException(\\InvalidArgumentException::class);
+    $this->expectExceptionMessage('Invalid ${modelClassFirsDown.value} ${columnName.value} value.');
+
+    // Attempt to set an invalid ${columnName.value} attribute
+    $${modelClassFirsDown.value}->set${columnName.value}Attribute($invalid${columnNameFirstUp.value});
+});
+\`\`\`
+`;
+    });
+    return (_ctx, _push, _parent, _attrs) => {
+      _push(`<!--[-->`);
+      _push(ssrRenderComponent(unref(Head), null, {
+        default: withCtx((_, _push2, _parent2, _scopeId) => {
+          if (_push2) {
+            _push2(`<title data-v-a1ca7024${_scopeId}>Enumerations: We have time for them. Crafting clearer, more reliable code</title><meta name="description" content="Enumerations: We have time for them. Crafting clearer, more reliable code" data-v-a1ca7024${_scopeId}><meta name="keywords" content="Laravel, PHP, Enum, PET" data-v-a1ca7024${_scopeId}>`);
+          } else {
+            return [
+              createVNode("title", null, "Enumerations: We have time for them. Crafting clearer, more reliable code"),
+              createVNode("meta", {
+                name: "description",
+                content: "Enumerations: We have time for them. Crafting clearer, more reliable code"
+              }),
+              createVNode("meta", {
+                name: "keywords",
+                content: "Laravel, PHP, Enum, PET"
+              })
+            ];
+          }
+        }),
+        _: 1
+      }, _parent));
+      _push(`<article data-v-a1ca7024><h1 class="title text-center" data-v-a1ca7024> Enumerations: We have time for them. Crafting clearer, more reliable code </h1><h2 class="text-md py-2" data-v-a1ca7024>Published on March 21st, 2024.</h2><div class="p-2 text-justify w-full space-y-10 mt-6 text-lg" data-v-a1ca7024><h1 class="topic" data-v-a1ca7024>Questions</h1><p data-v-a1ca7024> If you find yourself needing to categorize roles like &#39;admin&#39;, &#39;user&#39;, &#39;manager&#39; or &#39;user non classified&#39; within your user table in a Laravel application. <br data-v-a1ca7024> What approach would you take in your Laravel application? 🤔 </p><ul class="font-bold" data-v-a1ca7024><li data-v-a1ca7024>Should you use a native PHP Enum?</li><li data-v-a1ca7024>Should you use a tool made for Laravel called spatie/laravel-enum?</li><li data-v-a1ca7024>Maybe you could make a relationship table to show the roles?</li><li data-v-a1ca7024> Or should you just create a column in you database and expects that everyone undestands? </li></ul><p data-v-a1ca7024> Each of these approaches has its own pros and cons. In this particular case, I chose to use a Laravel Enum. </p><h1 class="topic" data-v-a1ca7024>The goal</h1><p data-v-a1ca7024> The goal of this article is to show you how to use Laravel Enum to create a more reliable and clear code. We will also see how to use it in migration, model, factory and how to test it. </p><h1 class="topic" data-v-a1ca7024>What is an Enum?</h1><p data-v-a1ca7024><a target="_blank" href="https://www.php.net/manual/en/language.types.enumerations.php" data-v-a1ca7024> &quot;Enumerations are a restricting layer on top of classes and class constants, intended to provide a way to define a closed set of possible values for a type.&quot; </a>`);
+      _push(ssrRenderComponent(unref(MdPreview), {
+        class: "max-h-[40rem]",
+        modelValue: phpEnum,
+        language: "en-US"
+      }, null, _parent));
+      _push(`</p><h1 class="topic" data-v-a1ca7024>Why Laravel Enum?</h1><p data-v-a1ca7024> Laravel Enum is a package that allows you to create and use enumerations in your Laravel application. It is a simple and powerful package that can help you to create more reliable and clear code. It is also allows you to use pollimorphic relationships instead of native PHP enums that you can&#39;t. <br data-v-a1ca7024><a target="_blank" href="https://php.watch/versions/8.1/enums#enum-inheritance" data-v-a1ca7024><b data-v-a1ca7024> &quot;Enums cannot be extended, and must not inherit&quot; </b></a></p><h1 class="topic" data-v-a1ca7024>Instalation</h1><p data-v-a1ca7024> In this example I&#39;ll use a empty laravel application. <br data-v-a1ca7024> Then, install the package: `);
+      _push(ssrRenderComponent(unref(VCodeBlock), {
+        code: "composer require spatie/laravel-enum",
+        highlightjs: "",
+        cssPath: "vcodeblock",
+        lang: "bash"
+      }, null, _parent));
+      _push(`</p><h1 class="topic" data-v-a1ca7024>Inputs</h1><div class="sticky top-1 bg-green-100 z-40 p-2 rounded shadow-md text-center" data-v-a1ca7024><b data-v-a1ca7024>You can use this custom inputs to create your own enum:</b><div class="flex justify-between" data-v-a1ca7024><div data-v-a1ca7024><label for="" data-v-a1ca7024>Enum name:</label><input type="text" name="enumName"${ssrRenderAttr("value", enunName.value)} data-v-a1ca7024></div><div data-v-a1ca7024><label for="" data-v-a1ca7024>Column name:</label><input type="text" name="columnName"${ssrRenderAttr("value", columnName.value)} data-v-a1ca7024></div><div data-v-a1ca7024><label for="" data-v-a1ca7024>Model:</label><input type="text" name="model"${ssrRenderAttr("value", modelClass.value)} data-v-a1ca7024></div></div></div><h1 class="topic" data-v-a1ca7024>Enum</h1><p data-v-a1ca7024> Use the following command to create a new enum: `);
+      _push(ssrRenderComponent(unref(VCodeBlock), {
+        code: `php artisan make:spatie-enum ${enunName.value}`,
+        highlightjs: "",
+        cssPath: "vcodeblock",
+        lang: "bash"
+      }, null, _parent));
+      _push(` Past this code to the new file: `);
+      _push(ssrRenderComponent(unref(MdPreview), {
+        class: "max-h-[40rem]",
+        modelValue: UserRoleEnum.value,
+        language: "en-US"
+      }, null, _parent));
+      _push(`</p><h1 class="topic" data-v-a1ca7024>Migration</h1><p data-v-a1ca7024> Let&#39;s create a new migration to add the ${ssrInterpolate(columnName.value)} column to the ${ssrInterpolate(modelClassFirsDown.value)} table: `);
+      _push(ssrRenderComponent(unref(VCodeBlock), {
+        code: `php artisan make:migration add_${columnName.value}_to_${modelClassFirsDown.value}_table --table=${modelClassFirsDown.value}`,
+        highlightjs: "",
+        cssPath: "vcodeblock",
+        lang: "bash"
+      }, null, _parent));
+      _push(` Past this code to the new file: `);
+      _push(ssrRenderComponent(unref(MdPreview), {
+        class: "max-h-[40rem]",
+        modelValue: migrations.value,
+        language: "en-US"
+      }, null, _parent));
+      _push(` Run the migration: `);
+      _push(ssrRenderComponent(unref(VCodeBlock), {
+        code: "php artisan migrate",
+        highlightjs: "",
+        cssPath: "vcodeblock",
+        lang: "bash"
+      }, null, _parent));
+      _push(`</p><h1 class="topic" data-v-a1ca7024>Factory</h1><p data-v-a1ca7024>`);
+      _push(ssrRenderComponent(unref(MdPreview), {
+        class: "max-h-[40rem]",
+        modelValue: factory.value,
+        language: "en-US"
+      }, null, _parent));
+      _push(`</p><h1 class="topic" data-v-a1ca7024>Model</h1><p data-v-a1ca7024> I like to adjust the model to use the enum description. For example: <br data-v-a1ca7024> If the ${ssrInterpolate(modelClassFirsDown.value)} ${ssrInterpolate(columnName.value)} is &#39;ADM&#39; the description will be &#39;Admin&#39;. And I also adjust set method to ensure that will convert to database required enum. `);
+      _push(ssrRenderComponent(unref(MdPreview), {
+        class: "max-h-[40rem]",
+        modelValue: model.value,
+        language: "en-US"
+      }, null, _parent));
+      _push(`</p><h1 class="topic" data-v-a1ca7024>Let&#39;s check with tinker</h1><p data-v-a1ca7024> Lets open it and check if everything is working as expected: `);
+      _push(ssrRenderComponent(unref(VCodeBlock), {
+        code: "php artisan tinker",
+        highlightjs: "",
+        cssPath: "vcodeblock",
+        lang: "bash"
+      }, null, _parent));
+      _push(ssrRenderComponent(unref(VCodeBlock), {
+        code: `App\\Models\\${modelClass.value}::factory()->count(10)->create()`,
+        highlightjs: "",
+        cssPath: "vcodeblock",
+        lang: "bash"
+      }, null, _parent));
+      _push(ssrRenderComponent(unref(MdPreview), {
+        class: "max-h-[40rem]",
+        modelValue: tinker.value,
+        language: "en-US"
+      }, null, _parent));
+      _push(`</p><h1 class="topic" data-v-a1ca7024>Testing</h1><p data-v-a1ca7024> I will create a Test to ensure that the enum is working as expected. <br data-v-a1ca7024> Let&#39;s install Pest; </p>`);
+      _push(ssrRenderComponent(unref(VCodeBlock), {
+        code: "composer require pestphp/pest --dev --with-all-dependencies",
+        highlightjs: "",
+        cssPath: "vcodeblock",
+        lang: "bash"
+      }, null, _parent));
+      _push(` Now, create a test file <p data-v-a1ca7024>`);
+      _push(ssrRenderComponent(unref(VCodeBlock), {
+        code: `php artisan make:test ${enunName.value}Test --pest`,
+        highlightjs: "",
+        cssPath: "vcodeblock",
+        lang: "bash"
+      }, null, _parent));
+      _push(` Past this code to the new file: `);
+      _push(ssrRenderComponent(unref(MdPreview), {
+        class: "max-h-[40rem]",
+        modelValue: test.value,
+        language: "en-US"
+      }, null, _parent));
+      _push(`</p><p data-v-a1ca7024> Run the test: `);
+      _push(ssrRenderComponent(unref(VCodeBlock), {
+        code: "php artisan test",
+        highlightjs: "",
+        cssPath: "vcodeblock",
+        lang: "bash"
+      }, null, _parent));
+      _push(`</p><img${ssrRenderAttr("src", _imports_0$4)} alt="list test" data-v-a1ca7024><h1 class="topic" data-v-a1ca7024>Conclusion</h1><p data-v-a1ca7024> Enumerations are a great way to create more reliable and clear code. Laravel Enum is a powerful package that can help you to create enumerations in your Laravel application. It is simple to use and can help you to create more reliable and clear code. I hope this article has helped you to understand how to use Laravel Enum to create more reliable and clear code. </p></div></article>`);
+      _push(ssrRenderComponent(_sfc_main$8, { commentaries: __props.commentaries }, null, _parent));
+      _push(`<!--]-->`);
+    };
+  }
+};
 const _sfc_setup$7 = _sfc_main$7.setup;
 _sfc_main$7.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Components/CommentarySection.vue");
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Post/LaravelEnum.vue");
   return _sfc_setup$7 ? _sfc_setup$7(props, ctx) : void 0;
 };
+const LaravelEnum = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__scopeId", "data-v-a1ca7024"]]);
+const __vite_glob_0_3 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  default: LaravelEnum
+}, Symbol.toStringTag, { value: "Module" }));
+const _imports_0$3 = "/build/assets/devcontainerfolder-DTN3fVqK.png";
+const _imports_1$2 = "/build/assets/vsextension-BUuXiwhS.png";
+const _imports_2$2 = "/build/assets/dockerfile-C_VCj5mP.png";
+const _imports_3$1 = "/build/assets/debug-CtGYDOVf.png";
 const devcontainer = `
 \`\`\` .devcontainer/.devcontainer.json
 // https://aka.ms/devcontainer.json
@@ -352,7 +741,7 @@ const _sfc_main$6 = {
         modelValue: dockerfile,
         language: "en-US"
       }, null, _parent));
-      _push(` Your Dockerfile will look like this: <img${ssrRenderAttr("src", _imports_2$1)} alt="Dockerfile"><br> 4) Add this code in <b>php.ini</b>`);
+      _push(` Your Dockerfile will look like this: <img${ssrRenderAttr("src", _imports_2$2)} alt="Dockerfile"><br> 4) Add this code in <b>php.ini</b>`);
       _push(ssrRenderComponent(unref(MdPreview), {
         class: "max-h-[40rem]",
         modelValue: phpini,
@@ -377,7 +766,7 @@ const _sfc_main$6 = {
         language: "en-US"
       }, null, _parent));
       _push(`<br></p><h1 class="topic">Let&#39;s put to work!!</h1><p> After installing the extension, you can open the command palette (Ctrl+Shift+P) and type <i>&#39;Remote-Containers: Reopen in Container&#39;</i>. This will build the container and open the project inside it. Or it will appear a button in the bottom right corner of the window. </p><p> Now you can start the container and debug your Laravel application. You can set a breakpoint in your code and start the debug configuration in Visual Studio Code. You can check the progress in the bottom right corner of Visual Studio Code. </p><p> To open you application use the browser with the URL localhost. <br><br> Ensure there is no other service running on port 80. <br><br><img${ssrRenderAttr("src", _imports_3$1)} alt="devcontainer folder"></p><p> That&#39;s it! You now have a Laravel environment using Docker, Devcontainer, and Xdebug. You can use this environment to develop your Laravel applications and debug them using Visual Studio Code. I hope this post was helpful to you. If you have any questions, feel free to ask in the comments section below. Thank you for reading! </p></div></article>`);
-      _push(ssrRenderComponent(_sfc_main$7, { commentaries: __props.commentaries }, null, _parent));
+      _push(ssrRenderComponent(_sfc_main$8, { commentaries: __props.commentaries }, null, _parent));
       _push(`<!--]-->`);
     };
   }
@@ -388,13 +777,13 @@ _sfc_main$6.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Post/LaravelEnvironmentPost.vue");
   return _sfc_setup$6 ? _sfc_setup$6(props, ctx) : void 0;
 };
-const __vite_glob_0_3 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const __vite_glob_0_4 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: _sfc_main$6
 }, Symbol.toStringTag, { value: "Module" }));
 const _imports_0$2 = "/build/assets/laravel-welcome-page-ez6egKWo.png";
 const _imports_1$1 = "/build/assets/laravel-welcome-Jetstream-BNoQpVBe.png";
-const _imports_2 = "/build/assets/laravel-dashborad-C6SkwNc0.png";
+const _imports_2$1 = "/build/assets/laravel-dashborad-C6SkwNc0.png";
 const _imports_3 = "/build/assets/requirefields-CEQ8spP0.png";
 const _imports_4 = "/build/assets/pest-output-DAWTyeAj.png";
 const _imports_5 = "/build/assets/pest-error-output-DlXUmicb.png";
@@ -692,7 +1081,7 @@ const _sfc_main$5 = {
       _push(ssrRenderComponent(unref(Head), null, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<title data-v-29deaa37${_scopeId}>Using PEST to Test Form Validations: Require, Type, Length, and More</title><meta name="description" content="Laravel, Inertia, and Vue.js, when combined as a monolith, offer a powerful stack for building modern web applications. In this post, we&#39;ll explore how these technologies integrate and how we can leverage PEST to test form validations effectively." data-v-29deaa37${_scopeId}><meta name="keywords" content="Laravel, Inertia, Vue, PEST" data-v-29deaa37${_scopeId}>`);
+            _push2(`<title data-v-522a71e1${_scopeId}>Using PEST to Test Form Validations: Require, Type, Length, and More</title><meta name="description" content="Laravel, Inertia, and Vue.js, when combined as a monolith, offer a powerful stack for building modern web applications. In this post, we&#39;ll explore how these technologies integrate and how we can leverage PEST to test form validations effectively." data-v-522a71e1${_scopeId}><meta name="keywords" content="Laravel, Inertia, Vue, PEST" data-v-522a71e1${_scopeId}>`);
           } else {
             return [
               createVNode("title", null, "Using PEST to Test Form Validations: Require, Type, Length, and More"),
@@ -709,14 +1098,14 @@ const _sfc_main$5 = {
         }),
         _: 1
       }, _parent));
-      _push(`<article data-v-29deaa37><h1 class="title text-center" data-v-29deaa37> Using PEST to Test Form Validations: Require, Type, Length, and More </h1><h2 class="text-md py-2" data-v-29deaa37>Published on February 22sd, 2024.</h2><div class="p-2 text-justify w-full space-y-10 mt-6 text-lg" data-v-29deaa37><h1 class="topic" data-v-29deaa37>Introduction</h1><p data-v-29deaa37> In the realm of web development, integrating various technologies seamlessly can significantly streamline the development process. Laravel, Inertia, and Vue.js, when combined as a monolith, offer a powerful stack for building modern web applications. In this post, we&#39;ll explore how these technologies integrate and how we can leverage PEST to test form validations effectively. <br data-v-29deaa37> In this tutorial, we&#39;ll cover the following topics: </p><ul class="font-bold" data-v-29deaa37><li data-v-29deaa37>* Understand about Laravel, Inertia, Vue.js and PEST working in a Monolith</li><li data-v-29deaa37>* Use Laravel Jetstream as a starting point for our application</li><li data-v-29deaa37> * How to conver form validation from client side in PEST like required fields, data types, field lengths, and more. </li></ul><p data-v-29deaa37><span class="font-bold flex" data-v-29deaa37>Laravel, Inertia, and Vue.js as a Monolith</span> Before delving into form validations and testing, let&#39;s briefly discuss the synergy between Laravel, Inertia, and Vue.js. Laravel serves as the backend framework, providing robust features for routing, database interaction, and validation. Inertia.js facilitates the creation of single-page applications by allowing us to use Vue.js components within Laravel views seamlessly. </p><p data-v-29deaa37><span class="font-bold flex" data-v-29deaa37>Integration and Validation</span> One notable aspect of this integration is the handling of form validations. While Vue.js enables client-side validation, Laravel&#39;s validation capabilities are equally powerful and can be seamlessly integrated into our application. By validating forms on the server-side with Laravel, we ensure consistent validation rules across the application and enhance security. </p><p data-v-29deaa37><span class="font-bold flex" data-v-29deaa37>Introduction to PEST</span> Now, let&#39;s introduce PEST. PEST is a delightful PHP testing framework that focuses on simplicity and readability. It allows us to write expressive and feature-rich tests that ensure our application behaves as expected. In this tutorial, we&#39;ll harness the power of PEST to include form validations in our test suite seamlessly. </p><p data-v-29deaa37><span class="font-bold flex" data-v-29deaa37>Getting Started with Laravel Jetstream</span> To kickstart our journey into testing form validations, we&#39;ll use Laravel Jetstream, a popular scaffolding tool for Laravel applications. Jetstream provides authentication, team management, and robust scaffolding for our Laravel applications, allowing us to focus on building features rather than reinventing the wheel. <br data-v-29deaa37> In the upcoming sections, we&#39;ll dive into practical examples of using PEST to test various form validations, including required fields, data types, field lengths, and more. By the end of this tutorial, you&#39;ll have a solid understanding of how to leverage PEST to ensure the integrity and reliability of your form validations. <br data-v-29deaa37> Stay tuned for the next installment, where we&#39;ll delve into writing PEST tests for form validations in Laravel Jetstream. </p><h1 class="topic" data-v-29deaa37>Starting a New Laravel Project</h1><p data-v-29deaa37> Let&#39;s start with a new Laravel Jetstream project. You can create a new Laravel Jetstream project using the following command: `);
+      _push(`<article data-v-522a71e1><h1 class="title text-center" data-v-522a71e1> Using PEST to Test Form Validations: Require, Type, Length, and More </h1><h2 class="text-md py-2" data-v-522a71e1>Published on February 22sd, 2024.</h2><div class="p-2 text-justify w-full space-y-10 mt-6 text-lg" data-v-522a71e1><h1 class="topic" data-v-522a71e1>Introduction</h1><p data-v-522a71e1> In the realm of web development, integrating various technologies seamlessly can significantly streamline the development process. Laravel, Inertia, and Vue.js, when combined as a monolith, offer a powerful stack for building modern web applications. In this post, we&#39;ll explore how these technologies integrate and how we can leverage PEST to test form validations effectively. <br data-v-522a71e1> In this tutorial, we&#39;ll cover the following topics: </p><ul class="font-bold" data-v-522a71e1><li data-v-522a71e1>* Understand about Laravel, Inertia, Vue.js and PEST working in a Monolith</li><li data-v-522a71e1>* Use Laravel Jetstream as a starting point for our application</li><li data-v-522a71e1> * How to conver form validation from client side in PEST like required fields, data types, field lengths, and more. </li></ul><p data-v-522a71e1><span class="font-bold flex" data-v-522a71e1>Laravel, Inertia, and Vue.js as a Monolith</span> Before delving into form validations and testing, let&#39;s briefly discuss the synergy between Laravel, Inertia, and Vue.js. Laravel serves as the backend framework, providing robust features for routing, database interaction, and validation. Inertia.js facilitates the creation of single-page applications by allowing us to use Vue.js components within Laravel views seamlessly. </p><p data-v-522a71e1><span class="font-bold flex" data-v-522a71e1>Integration and Validation</span> One notable aspect of this integration is the handling of form validations. While Vue.js enables client-side validation, Laravel&#39;s validation capabilities are equally powerful and can be seamlessly integrated into our application. By validating forms on the server-side with Laravel, we ensure consistent validation rules across the application and enhance security. </p><p data-v-522a71e1><span class="font-bold flex" data-v-522a71e1>Introduction to PEST</span> Now, let&#39;s introduce PEST. PEST is a delightful PHP testing framework that focuses on simplicity and readability. It allows us to write expressive and feature-rich tests that ensure our application behaves as expected. In this tutorial, we&#39;ll harness the power of PEST to include form validations in our test suite seamlessly. </p><p data-v-522a71e1><span class="font-bold flex" data-v-522a71e1>Getting Started with Laravel Jetstream</span> To kickstart our journey into testing form validations, we&#39;ll use Laravel Jetstream, a popular scaffolding tool for Laravel applications. Jetstream provides authentication, team management, and robust scaffolding for our Laravel applications, allowing us to focus on building features rather than reinventing the wheel. <br data-v-522a71e1> In the upcoming sections, we&#39;ll dive into practical examples of using PEST to test various form validations, including required fields, data types, field lengths, and more. By the end of this tutorial, you&#39;ll have a solid understanding of how to leverage PEST to ensure the integrity and reliability of your form validations. <br data-v-522a71e1> Stay tuned for the next installment, where we&#39;ll delve into writing PEST tests for form validations in Laravel Jetstream. </p><h1 class="topic" data-v-522a71e1>Starting a New Laravel Project</h1><p data-v-522a71e1> Let&#39;s start with a new Laravel Jetstream project. You can create a new Laravel Jetstream project using the following command: `);
       _push(ssrRenderComponent(unref(VCodeBlock), {
         code: 'curl -s "https://laravel.build/form-validation?with=mysql" | bash',
         highlightjs: "",
         cssPath: "vcodeblock",
         lang: "bash"
       }, null, _parent));
-      _push(`</p><p data-v-29deaa37> Open you form-validation project in Visual Studio Code and let&#39;s start the app. The Laravel home page will be displayed in your browser. <br data-v-29deaa37><br data-v-29deaa37><img${ssrRenderAttr("src", _imports_0$2)} alt="laravel home page" data-v-29deaa37></p><h1 class="topic" data-v-29deaa37> Installing Jetstream and Building the NPM Dependencies and Migrating the Database </h1><p data-v-29deaa37> Now, let&#39;s install Jetstream using the following command: `);
+      _push(`</p><p data-v-522a71e1> Open you form-validation project in Visual Studio Code and let&#39;s start the app. The Laravel home page will be displayed in your browser. <br data-v-522a71e1><br data-v-522a71e1><img${ssrRenderAttr("src", _imports_0$2)} alt="laravel home page" data-v-522a71e1></p><h1 class="topic" data-v-522a71e1> Installing Jetstream and Building the NPM Dependencies and Migrating the Database </h1><p data-v-522a71e1> Now, let&#39;s install Jetstream using the following command: `);
       _push(ssrRenderComponent(unref(VCodeBlock), {
         code: "composer require laravel/jetstream",
         highlightjs: "",
@@ -730,7 +1119,7 @@ const _sfc_main$5 = {
       }, null, _parent));
       _push(` After installing Jetstream, you should install and build your NPM dependencies and migrate your database: `);
       _push(ssrRenderComponent(unref(VCodeBlock), {
-        code: "npm install\nnpm run build\nphp artisan migrate",
+        code: "npm install\nphp artisan migrate",
         highlightjs: "",
         lang: "bash"
       }, null, _parent));
@@ -740,15 +1129,15 @@ const _sfc_main$5 = {
         highlightjs: "",
         lang: "bash"
       }, null, _parent));
-      _push(`</p><p data-v-29deaa37> Your page will look like this: <img${ssrRenderAttr("src", _imports_1$1)} alt="jetstream welcome page" data-v-29deaa37></p><p data-v-29deaa37> Register a user and login to the application. You will see the dashboard page. <img${ssrRenderAttr("src", _imports_2)} alt="dashboard page" data-v-29deaa37></p><h1 class="topic" data-v-29deaa37>Let&#39;s understand out goal</h1><p data-v-29deaa37> Form validation is a crucial aspect of web applications. It important to ensure that these rules are checked in server-side and in tests as well. <img${ssrRenderAttr("src", _imports_3)} alt="dashboard page" data-v-29deaa37></p><p data-v-29deaa37>In controller validation we have the following rules:</p><ul class="list-disc pl-6" data-v-29deaa37><li data-v-29deaa37><b data-v-29deaa37>name</b> has 3 validations: <i data-v-29deaa37> required, string type and max length</i></li><li data-v-29deaa37><b data-v-29deaa37>email</b> has 4 validations: <i data-v-29deaa37> required, email type, max length and unique</i></li><li data-v-29deaa37><b data-v-29deaa37>photo</b> has 3 validations: <i data-v-29deaa37> nullable, mimes and max length</i></li></ul><p data-v-29deaa37> Look at the following code to understand the validation rules in the controller: <br data-v-29deaa37>`);
+      _push(`</p><p data-v-522a71e1> Your page will look like this: <img${ssrRenderAttr("src", _imports_1$1)} alt="jetstream welcome page" data-v-522a71e1></p><p data-v-522a71e1> Register a user and login to the application. You will see the dashboard page. <img${ssrRenderAttr("src", _imports_2$1)} alt="dashboard page" data-v-522a71e1></p><h1 class="topic" data-v-522a71e1>Let&#39;s understand out goal</h1><p data-v-522a71e1> Form validation is a crucial aspect of web applications. It important to ensure that these rules are checked in server-side and in tests as well. <img${ssrRenderAttr("src", _imports_3)} alt="dashboard page" data-v-522a71e1></p><p data-v-522a71e1>In controller validation we have the following rules:</p><ul class="list-disc pl-6" data-v-522a71e1><li data-v-522a71e1><b data-v-522a71e1>name</b> has 3 validations: <i data-v-522a71e1> required, string type and max length</i></li><li data-v-522a71e1><b data-v-522a71e1>email</b> has 4 validations: <i data-v-522a71e1> required, email type, max length and unique</i></li><li data-v-522a71e1><b data-v-522a71e1>photo</b> has 3 validations: <i data-v-522a71e1> nullable, mimes and max length</i></li></ul><p data-v-522a71e1> Look at the following code to understand the validation rules in the controller: <br data-v-522a71e1>`);
       _push(ssrRenderComponent(unref(MdPreview), {
         class: "max-h-[40rem]",
         modelValue: updateUser,
         language: "en-US"
       }, null, _parent));
-      _push(`</p><h1 class="topic" data-v-29deaa37>Installing PEST and Writing Tests.</h1><p data-v-29deaa37><span data-v-29deaa37>Let&#39;s use pest to check the validation controller</span> First, let&#39;s install pest using the following command: `);
+      _push(`</p><h1 class="topic" data-v-522a71e1>Installing PEST and Writing Tests.</h1><p data-v-522a71e1><span data-v-522a71e1>Let&#39;s use pest to check the validation controller</span> First, let&#39;s install pest using the following command: `);
       _push(ssrRenderComponent(unref(VCodeBlock), {
-        code: "composer require pestphp/pest --dev",
+        code: "composer require pestphp/pest --dev --with-all-dependencies",
         highlightjs: "",
         lang: "bash"
       }, null, _parent));
@@ -758,27 +1147,28 @@ const _sfc_main$5 = {
         highlightjs: "",
         lang: "bash"
       }, null, _parent));
+      _push(` If this file doesn&#39;t exit. Create it. `);
       _push(ssrRenderComponent(unref(MdPreview), {
         class: "max-h-[40rem]",
         modelValue: pestPHP,
         language: "en-US",
         lang: "php"
       }, null, _parent));
-      _push(` Now, let&#39;s write the tests for the controller validation. <br data-v-29deaa37>`);
+      _push(` Now, let&#39;s write the tests for the controller validation. <br data-v-522a71e1>`);
       _push(ssrRenderComponent(unref(MdPreview), {
         class: "max-h-[40rem]",
         modelValue: UserInputTest,
         language: "en-US",
         lang: "php"
       }, null, _parent));
-      _push(`</p><h1 class="topic" data-v-29deaa37>It&#39;s time to test!!!</h1><p data-v-29deaa37> Run the tests using the following command: `);
+      _push(`</p><h1 class="topic" data-v-522a71e1>It&#39;s time to test!!!</h1><p data-v-522a71e1> Run the tests using the following command: `);
       _push(ssrRenderComponent(unref(VCodeBlock), {
         code: "./vendor/bin/pest tests/Feature/UserInputValidationTest.php",
         highlightjs: "",
         lang: "bash"
       }, null, _parent));
-      _push(` You will see the following output: <img${ssrRenderAttr("src", _imports_4)} alt="pest output" data-v-29deaa37> If we change email require validation, we will see the following output: <img${ssrRenderAttr("src", _imports_5)} alt="pest output" data-v-29deaa37></p><p data-v-29deaa37> That&#39;s it! We explored the integration of Laravel, Inertia, and Vue.js and how we can leverage PEST to test form validations effectively. We used Laravel Jetstream as a starting point for our application and covered various form validations, including required fields, data types, field lengths, and more. By the end of this tutorial, you should have a solid understanding of how to use PEST to ensure the integrity and reliability of your form validations. <br data-v-29deaa37> In the next installment, we&#39;ll delve into writing PEST tests for form validations in Laravel Jetstream. Stay tuned! </p></div></article>`);
-      _push(ssrRenderComponent(_sfc_main$7, { commentaries: __props.commentaries }, null, _parent));
+      _push(` You will see the following output: <img${ssrRenderAttr("src", _imports_4)} alt="pest output" data-v-522a71e1> If we change email require validation, we will see the following output: <img${ssrRenderAttr("src", _imports_5)} alt="pest output" data-v-522a71e1></p><p data-v-522a71e1> That&#39;s it! We explored the integration of Laravel, Inertia, and Vue.js and how we can leverage PEST to test form validations effectively. We used Laravel Jetstream as a starting point for our application and covered various form validations, including required fields, data types, field lengths, and more. By the end of this tutorial, you should have a solid understanding of how to use PEST to ensure the integrity and reliability of your form validations. <br data-v-522a71e1> In the next installment, we&#39;ll delve into writing PEST tests for form validations in Laravel Jetstream. Stay tuned! </p></div></article>`);
+      _push(ssrRenderComponent(_sfc_main$8, { commentaries: __props.commentaries }, null, _parent));
       _push(`<!--]-->`);
     };
   }
@@ -789,8 +1179,8 @@ _sfc_main$5.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Post/PestValidation.vue");
   return _sfc_setup$5 ? _sfc_setup$5(props, ctx) : void 0;
 };
-const PestValidation = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-29deaa37"]]);
-const __vite_glob_0_4 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const PestValidation = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-522a71e1"]]);
+const __vite_glob_0_5 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: PestValidation
 }, Symbol.toStringTag, { value: "Module" }));
@@ -827,15 +1217,16 @@ _sfc_main$4.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Post/PostForm.vue");
   return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
 };
-const __vite_glob_0_5 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const __vite_glob_0_6 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: _sfc_main$4
 }, Symbol.toStringTag, { value: "Module" }));
-const _imports_0$1 = "/build/assets/pest-output-min-rUg6y2nq.png";
-const _imports_1 = "/build/assets/debug_ini-ac2PUNJ1.png";
+const _imports_0$1 = "/build/assets/enum-2MMUij1Y.png";
+const _imports_1 = "/build/assets/pest-output-min-rUg6y2nq.png";
+const _imports_2 = "/build/assets/debug_ini-ac2PUNJ1.png";
 const _sfc_main$3 = {};
 function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs) {
-  _push(`<div${ssrRenderAttrs(_attrs)}><div class="flex space-x-2"><h1 class="title">Articles</h1></div><hr class="my-4"><div class="space-y-4"><article class="articles"><a class="title" href="posts/PestValidation"><img${ssrRenderAttr("src", _imports_0$1)} alt="debug Laravel"></a><div class="content"><a class="title" href="posts/PestValidation">Using PEST to Test Form Validations: Require, Type, Length, and More </a><p> 🧪 Every test matters. <br> 🚀 In this post, we explored the integration of Laravel, Inertia, and Vue.js and how we can leverage PEST to test form validations effectively. </p><div class="stacks"><span>Laravel</span><span>Pest</span><span>Vue.js</span></div></div></article><article class="articles"><a class="title" href="posts/LaravelEnvironmentPost"><img${ssrRenderAttr("src", _imports_1)} alt="debug Laravel"></a><div class="content"><a class="title" href="posts/LaravelEnvironmentPost">Laravel environment: docker, devcontainer, VS Code debug </a><p> In this article, we&#39;ll explore how you can supercharge your Laravel development workflow by harnessing the power of Docker, DevContainer, and VS Code debug. </p><p> 🚀 Additionally, we&#39;ll also look at how you can custom your terminal to display the current git branch and status. </p><p> I like and use this environment because I can install and test new software without affecting my local machine. </p><div class="stacks"><span>Laravel</span><span>Docker</span><span>Linux</span></div></div></article></div></div>`);
+  _push(`<div${ssrRenderAttrs(_attrs)}><div class="flex space-x-2"><h1 class="title">Articles</h1></div><hr class="my-4"><div class="space-y-4"><article class="articles"><a class="title" href="posts/LaravelEnum"><img${ssrRenderAttr("src", _imports_0$1)} alt="debug Laravel"></a><div class="content"><a class="title" href="posts/LaravelEnum">Enumerations: We have time for them. Crafting clearer, more reliable code</a><p> 🤔 Choosing between native enum and Laravel Enum?<br> 🛠️ Debating between using enums or table relationships? 💡 <br> How about simplifying with a value that&#39;s universally understood? Let&#39;s explore these questions and find the best approach! </p><div class="stacks"><span>Laravel</span><span>Pest</span><span>PHP</span></div></div></article><article class="articles"><a class="title" href="posts/PestValidation"><img${ssrRenderAttr("src", _imports_1)} alt="debug Laravel"></a><div class="content"><a class="title" href="posts/PestValidation">Using PEST to Test Form Validations: Require, Type, Length, and More </a><p> 🧪 Every test matters. <br> 🚀 In this post, we explored the integration of Laravel, Inertia, and Vue.js and how we can leverage PEST to test form validations effectively. </p><div class="stacks"><span>Laravel</span><span>Pest</span><span>Vue.js</span></div></div></article><article class="articles"><a class="title" href="posts/LaravelEnvironmentPost"><img${ssrRenderAttr("src", _imports_2)} alt="debug Laravel"></a><div class="content"><a class="title" href="posts/LaravelEnvironmentPost">Laravel environment: docker, devcontainer, VS Code debug </a><p> In this article, we&#39;ll explore how you can supercharge your Laravel development workflow by harnessing the power of Docker, DevContainer, and VS Code debug. </p><p> 🚀 Additionally, we&#39;ll also look at how you can custom your terminal to display the current git branch and status. </p><p> I like and use this environment because I can install and test new software without affecting my local machine. </p><div class="stacks"><span>Laravel</span><span>Docker</span><span>Linux</span></div></div></article></div></div>`);
 }
 const _sfc_setup$3 = _sfc_main$3.setup;
 _sfc_main$3.setup = (props, ctx) => {
@@ -844,7 +1235,7 @@ _sfc_main$3.setup = (props, ctx) => {
   return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
 };
 const PostIndex = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender$1]]);
-const __vite_glob_0_6 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const __vite_glob_0_7 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: PostIndex
 }, Symbol.toStringTag, { value: "Module" }));
@@ -874,7 +1265,7 @@ const _sfc_main$2 = {
         }),
         _: 1
       }, _parent));
-      _push(`<article><h1 class="title text-center">CS50 Final Project: A Real-Time Memory Game</h1><h2 class="text-sm py-2">Published on February 18th, 2023.</h2><div class="p-2 text-justify w-full space-y-10 mt-6 text-lg"><p> CS50&#39;s final project consists of an online memory game to be played with a friend, developed using Python (Flask and WebSockets), JavaScript, CSS, and SQLite. The link to play online can be found <a class="font-bold" href="https://memory-in-pairs.herokuapp.com/">here</a> . </p><p> The game includes a waiting room where users wait for their partners to connect while simultaneously keeping track of the scores of ongoing matches at that moment. Played in pairs, participants have the ability to view the cards flipped by their opponents, providing an engaging and strategic dynamic. </p><p> The main goal of this project was to explore the possibilities and experience of a full-duplex connection through WebSockets, an area in which I had no prior experience. Although it was a complex challenge with moments of uncertainty, the emotional support from family and friends was crucial in overcoming obstacles, allowing me to complete the project within the established deadline for submission to the CS50 course at Harvard University in the year 2022. </p><p> 🚀 Key Tech Stack: <br> * Backend: Python with Websockets <br> * Frontend: Pure JavaScript (no framework) <br> * Deployment: Heroku Server <br> * Database: SQLite3 </p><p> LINKS: <br><a class="font-bold" href="https://memory-in-pairs.herokuapp.com/" target="_blank">🎮 To play</a><br><a href="https://github.com/leandroximenes/memory-in-pairs/tree/memory-game" target="_blank" class="font-bold flex items-center"><img class="h-6 w-6 mr-1"${ssrRenderAttr("src", _imports_0$4)} alt="github"> Github </a></p><p>Check out the game in action on my YouTube link:</p></div><iframe class="mx-auto w-full h-60 lg:w-2/3 lg:h-96" src="https://www.youtube.com/embed/L4aAvp24ofY"></iframe></article><!--]-->`);
+      _push(`<article><h1 class="title text-center">CS50 Final Project: A Real-Time Memory Game</h1><h2 class="text-sm py-2">Published on February 18th, 2024.</h2><div class="p-2 text-justify w-full space-y-10 mt-6 text-lg"><p> CS50&#39;s final project consists of an online memory game to be played with a friend, developed using Python (Flask and WebSockets), JavaScript, CSS, and SQLite. The link to play online can be found <a class="font-bold" href="https://memory-in-pairs.herokuapp.com/">here</a> . </p><p> The game includes a waiting room where users wait for their partners to connect while simultaneously keeping track of the scores of ongoing matches at that moment. Played in pairs, participants have the ability to view the cards flipped by their opponents, providing an engaging and strategic dynamic. </p><p> The main goal of this project was to explore the possibilities and experience of a full-duplex connection through WebSockets, an area in which I had no prior experience. Although it was a complex challenge with moments of uncertainty, the emotional support from family and friends was crucial in overcoming obstacles, allowing me to complete the project within the established deadline for submission to the CS50 course at Harvard University in the year 2022. </p><p> 🚀 Key Tech Stack: <br> * Backend: Python with Websockets <br> * Frontend: Pure JavaScript (no framework) <br> * Deployment: Heroku Server <br> * Database: SQLite3 </p><p> LINKS: <br><a class="font-bold" href="https://memory-in-pairs.herokuapp.com/" target="_blank">🎮 To play</a><br><a href="https://github.com/leandroximenes/memory-in-pairs/tree/memory-game" target="_blank" class="font-bold flex items-center"><img class="h-6 w-6 mr-1"${ssrRenderAttr("src", _imports_0$5)} alt="github"> Github </a></p><p>Check out the game in action on my YouTube link:</p></div><iframe class="mx-auto w-full h-60 lg:w-2/3 lg:h-96" src="https://www.youtube.com/embed/L4aAvp24ofY"></iframe></article><!--]-->`);
     };
   }
 };
@@ -884,7 +1275,7 @@ _sfc_main$2.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Project/CS50Project.vue");
   return _sfc_setup$2 ? _sfc_setup$2(props, ctx) : void 0;
 };
-const __vite_glob_0_7 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const __vite_glob_0_8 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: _sfc_main$2
 }, Symbol.toStringTag, { value: "Module" }));
@@ -900,7 +1291,7 @@ _sfc_main$1.setup = (props, ctx) => {
   return _sfc_setup$1 ? _sfc_setup$1(props, ctx) : void 0;
 };
 const ProjectIndex = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["ssrRender", _sfc_ssrRender]]);
-const __vite_glob_0_8 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const __vite_glob_0_9 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: ProjectIndex
 }, Symbol.toStringTag, { value: "Module" }));
@@ -995,7 +1386,7 @@ createServer(
     page,
     render: renderToString,
     resolve: (name) => {
-      const pages = /* @__PURE__ */ Object.assign({ "./Pages/AccessCount.vue": __vite_glob_0_0, "./Pages/ConfigPage.vue": __vite_glob_0_1, "./Pages/MainPage.vue": __vite_glob_0_2, "./Pages/Post/LaravelEnvironmentPost.vue": __vite_glob_0_3, "./Pages/Post/PestValidation.vue": __vite_glob_0_4, "./Pages/Post/PostForm.vue": __vite_glob_0_5, "./Pages/Post/PostIndex.vue": __vite_glob_0_6, "./Pages/Project/CS50Project.vue": __vite_glob_0_7, "./Pages/Project/ProjectIndex.vue": __vite_glob_0_8 });
+      const pages = /* @__PURE__ */ Object.assign({ "./Pages/AccessCount.vue": __vite_glob_0_0, "./Pages/ConfigPage.vue": __vite_glob_0_1, "./Pages/MainPage.vue": __vite_glob_0_2, "./Pages/Post/LaravelEnum.vue": __vite_glob_0_3, "./Pages/Post/LaravelEnvironmentPost.vue": __vite_glob_0_4, "./Pages/Post/PestValidation.vue": __vite_glob_0_5, "./Pages/Post/PostForm.vue": __vite_glob_0_6, "./Pages/Post/PostIndex.vue": __vite_glob_0_7, "./Pages/Project/CS50Project.vue": __vite_glob_0_8, "./Pages/Project/ProjectIndex.vue": __vite_glob_0_9 });
       let page2 = pages[`./Pages/${name}.vue`];
       page2.default.layout = page2.default.layout || _sfc_main;
       return pages[`./Pages/${name}.vue`];
