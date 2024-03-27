@@ -1,4 +1,4 @@
-import { mergeProps, unref, useSSRContext, computed, withCtx, createVNode, ref, createTextVNode, createSSRApp, h } from "vue";
+import { mergeProps, unref, useSSRContext, computed, ref, withCtx, createVNode, createTextVNode, createSSRApp, h } from "vue";
 import { ssrRenderAttrs, ssrRenderList, ssrInterpolate, ssrRenderAttr, ssrRenderComponent, ssrRenderClass, ssrRenderSlot } from "vue/server-renderer";
 import { usePage, useForm, Head, Link, createInertiaApp } from "@inertiajs/vue3";
 import VCodeBlock from "@wdns/vue-code-block";
@@ -160,8 +160,25 @@ enum UserRole: string
 
 \`\`\`
 `;
-const UserRoleEnum = `
-\`\`\` app/Enums/UserRoleEnum.php
+const _sfc_main$7 = {
+  __name: "LaravelEnum",
+  __ssrInlineRender: true,
+  props: {
+    commentaries: Array
+  },
+  setup(__props) {
+    const enunName = ref("UserRoleEnum");
+    const columnName = ref("role");
+    const modelClass = ref("User");
+    const columnNameFirstUp = computed(
+      () => columnName.value.charAt(0).toUpperCase() + columnName.value.slice(1)
+    );
+    const modelClassFirsDown = computed(
+      () => modelClass.value.charAt(0).toLowerCase() + modelClass.value.slice(1) + "s"
+    );
+    const UserRoleEnum = computed(() => {
+      return `
+\`\`\` app/Enums/${enunName.value}.php
 <?php
 
 namespace App\\Enums;
@@ -175,7 +192,7 @@ use Spatie\\Enum\\Laravel\\Enum;
  * @method static self MNG()
  * @method static self NON()
  */
- class UserRoleEnum extends Enum
+ class ${enunName.value} extends Enum
 {
     const DEFAULT = 'NON';
 
@@ -190,13 +207,14 @@ use Spatie\\Enum\\Laravel\\Enum;
     }
 }
 \`\`\`
-
 `;
-const migrations = `
-\`\`\` database/migrations/2024_03_21_193121_add_role_to_users_table.php
+    });
+    const migrations = computed(() => {
+      return `
+\`\`\` database/migrations/2024_03_21_193121_add_${columnName.value}_to_${modelClassFirsDown.value}_table.php
 <?php
 
-use App\\Enums\\UserRoleEnum;
+use App\\Enums\\${enunName.value};
 use Illuminate\\Database\\Migrations\\Migration;
 use Illuminate\\Database\\Schema\\Blueprint;
 use Illuminate\\Support\\Facades\\Schema;
@@ -208,8 +226,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->enum('role', UserRoleEnum::toArray())->default(UserRoleEnum::DEFAULT)->after('password');
+        Schema::table('${modelClassFirsDown.value}', function (Blueprint $table) {
+            $table->enum(${columnName.value}, ${enunName.value}::toArray())->default(${enunName.value}::DEFAULT)->after('password');
         });
     }
 
@@ -218,109 +236,90 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('role');
+        Schema::table('${modelClassFirsDown.value}', function (Blueprint $table) {
+            $table->dropColumn(${columnName.value});
         });
     }
 };
 \`\`\`
 `;
-const factory = `
-\`\`\` database/factories/UserFactory.php
+    });
+    const factory = computed(() => {
+      return `
+\`\`\` database/factories/${modelClass.value}Factory.php
 <?php
 
 namespace Database\\Factories;
 
-use App\\Enums\\UserRoleEnum; // add this
+use App\\Enums\\${enunName.value}; // ADD THIS
 use Illuminate\\Database\\Eloquent\\Factories\\Factory;
 use Illuminate\\Support\\Facades\\Hash;
 use Illuminate\\Support\\Str;
 
 /**
- * @extends \\Illuminate\\Database\\Eloquent\\Factories\\Factory<\\App\\Models\\User>
+ * @extends \\Illuminate\\Database\\Eloquent\\Factories\\Factory<\\App\\Models\\${modelClass.value}>
  */
-class UserFactory extends Factory
+class ${modelClass.value}Factory extends Factory
 {
-    /**
-     * The current password being used by the factory.
-     */
-    protected static ?string $password;
+    ...
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
             'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
-            'role' => fake()->randomElement(UserRoleEnum::toArray()), // add this
+            ...
+            '${columnName.value}'' => fake()->randomElement(${enunName.value}::toArray()),               // ADD THIS
         ];
     }
 
-    /**
-     * Indicate that the model's email address should be unverified.
-     */
-    public function unverified(): static
-    {
-        return $this->state(fn (array $attributes) => [
-            'email_verified_at' => null,
-        ]);
-    }
+    ...
 }
 \`\`\`
 `;
-const model = `
-\`\`\` app/Models/User.php
+    });
+    const model = computed(() => {
+      return `
+\`\`\` app/Models/${modelClass.value}.php
 <?php
 
 namespace App\\Models;
 
-// use Illuminate\\Contracts\\Auth\\MustVerifyEmail;
-use App\\Enums\\UserRoleEnum; // add this
-use Illuminate\\Database\\Eloquent\\Factories\\HasFactory;
-use Illuminate\\Foundation\\Auth\\User as Authenticatable;
-use Illuminate\\Notifications\\Notifiable;
-use Laravel\\Sanctum\\HasApiTokens;
+use App\\Enums\\${enunName.value}; // ADD THIS
 
-class User extends Authenticatable
+
+class ${modelClass.value}
 {
-    use HasApiTokens, HasFactory, Notifiable;
-
    ...
 
-    public function getRoleAttribute($value): string
+    public function get${columnNameFirstUp.value}Attribute($value): string
     {
-        return UserRoleEnum::from($value)->value;
+        return ${enunName.value}::from($value)->value;
     }
 
-    public function setRoleAttribute($value): void
+    public function set${columnNameFirstUp.value}Attribute($value): void
     {
         if (!empty($value))
             // check if value is a value or label
-            if (in_array($value, UserRoleEnum::toValues()))
-                $this->attributes['role'] = UserRoleEnum::from($value)->label;
-            else if (in_array($value, UserRoleEnum::toLabels()))
-                $this->attributes['role'] = $value;
+            if (in_array($value, ${enunName.value}::toValues()))
+                $this->attributes[${columnName.value}] = ${enunName.value}::from($value)->label;
+            else if (in_array($value, ${enunName.value}::toLabels()))
+                $this->attributes[${columnName.value}] = $value;
             else
-                throw new \\InvalidArgumentException('Invalid user role value.');
+                throw new \\InvalidArgumentException('Invalid ${modelClass.value} ${columnName.value} value.');
         else
-            $this->attributes['role'] = UserRoleEnum::DEFAULT;
+            $this->attributes[${columnName.value}] = ${enunName.value}::DEFAULT;
     }
 }
 \`\`\`
 `;
-const tinker = `
+    });
+    const tinker = computed(() => {
+      return `
 \`\`\` bash
-$user = User::find(3);
+$${modelClassFirsDown.value} = ${modelClass.value}::find(3);
 
-[!] Aliasing 'User' to 'App\\Models\\User' for this Tinker session.
-= App\\Models\\User {#5050
+[!] Aliasing '${modelClass.value}' to 'App\\Models\\${modelClass.value}' for this Tinker session.
+= App\\Models\\${modelClass.value} {#5050
     id: 3,
     name: "Tamia Borer",
     email: "brenna13@example.org",
@@ -329,69 +328,65 @@ $user = User::find(3);
     #remember_token: "xyOyRzeuMV",
     created_at: "2024-03-21 20:04:50",
     updated_at: "2024-03-21 20:04:50",
-    role: "NON",
+    ${columnName.value}: "NON",
   }
 
-> $user->role
-= "User non classified"
+> $${modelClassFirsDown.value}->${columnName.value}
+= "${modelClass.value} non classified"
 
-> App\\Enums\\UserRoleEnum::ADM()->label
+> App\\Enums\\${enunName.value}::ADM()->label
 = "ADM"
 
-> App\\Enums\\UserRoleEnum::ADM()->value
+> App\\Enums\\${enunName.value}::ADM()->value
 = "Admin"
 \`\`\`
 `;
-const test = `
-\`\`\` tests/Feature/UserRoleEnumTest.php
+    });
+    const test = computed(() => {
+      return `
+\`\`\` tests/Feature/${enunName.value}Test.php
 <?php
 
-//create a new user and check if the user role is Ini
+//create a new ${modelClassFirsDown.value} and check if the ${modelClassFirsDown.value} ${columnName.value} is Ini
 
-use App\\Models\\User;
-use App\\Enums\\UserRoleEnum;
+use App\\Models\\${modelClass.value};
+use App\\Enums\\${enunName.value};
 
-test('create user random role', function () {
-    $user = User::factory()->create();
-    expect($user->role)->toBeString();
-})->skip('This test is skipped because the user role is random');
+test('create ${modelClassFirsDown.value} random ${columnName.value}', function () {
+    $${modelClassFirsDown.value} = ${modelClass.value}::factory()->create();
+    expect($${modelClassFirsDown.value}->${columnName.value})->toBeString();
+})->skip('This test is skipped because the ${modelClassFirsDown.value} ${columnName.value} is random');
 
-test('create user with role ADM', function () {
-    $user = User::factory()->create(['role' => UserRoleEnum::ADM()->label]);
-    expect($user->role)->toBe('Admin');
+test('create ${modelClassFirsDown.value} with ${columnName.value} ADM', function () {
+    $${modelClassFirsDown.value} = ${modelClass.value}::factory()->create([${columnName.value} => ${enunName.value}::ADM()->label]);
+    expect($${modelClassFirsDown.value}->${columnName.value})->toBe('Admin');
 });
 
-test('create user with role Admin', function () {
-    $user = User::factory()->create(['role' => UserRoleEnum::ADM()->value]);
-    expect($user->role)->toBe('Admin');
+test('create ${modelClassFirsDown.value} with ${columnName.value} Admin', function () {
+    $${modelClassFirsDown.value} = ${modelClass.value}::factory()->create([${columnName.value} => ${enunName.value}::ADM()->value]);
+    expect($${modelClassFirsDown.value}->${columnName.value})->toBe('Admin');
 });
 
-test('does not set an invalid role attribute', function () {
-    $user = new User();
-    $invalidRole = 'InvalidRole';
+test('does not set an invalid ${columnName.value} attribute', function () {
+    $${modelClassFirsDown.value} = new ${modelClass.value}();
+    $invalid${columnNameFirstUp.value} = 'Invalid${columnNameFirstUp.value}';
 
     // Act & Assert
     $this->expectException(\\InvalidArgumentException::class);
-    $this->expectExceptionMessage('Invalid user role value.');
+    $this->expectExceptionMessage('Invalid ${modelClassFirsDown.value} ${columnName.value} value.');
 
-    // Attempt to set an invalid role attribute
-    $user->setRoleAttribute($invalidRole);
+    // Attempt to set an invalid ${columnName.value} attribute
+    $${modelClassFirsDown.value}->set${columnName.value}Attribute($invalid${columnNameFirstUp.value});
 });
 \`\`\`
 `;
-const _sfc_main$7 = {
-  __name: "LaravelEnum",
-  __ssrInlineRender: true,
-  props: {
-    commentaries: Array
-  },
-  setup(__props) {
+    });
     return (_ctx, _push, _parent, _attrs) => {
       _push(`<!--[-->`);
       _push(ssrRenderComponent(unref(Head), null, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<title data-v-b469ca17${_scopeId}>Enumerations: We have time for them. Crafting clearer, more reliable code</title><meta name="description" content="Enumerations: We have time for them. Crafting clearer, more reliable code" data-v-b469ca17${_scopeId}><meta name="keywords" content="Laravel, PHP, Enum, PET" data-v-b469ca17${_scopeId}>`);
+            _push2(`<title data-v-a1ca7024${_scopeId}>Enumerations: We have time for them. Crafting clearer, more reliable code</title><meta name="description" content="Enumerations: We have time for them. Crafting clearer, more reliable code" data-v-a1ca7024${_scopeId}><meta name="keywords" content="Laravel, PHP, Enum, PET" data-v-a1ca7024${_scopeId}>`);
           } else {
             return [
               createVNode("title", null, "Enumerations: We have time for them. Crafting clearer, more reliable code"),
@@ -408,22 +403,22 @@ const _sfc_main$7 = {
         }),
         _: 1
       }, _parent));
-      _push(`<article data-v-b469ca17><h1 class="title text-center" data-v-b469ca17> Enumerations: We have time for them. Crafting clearer, more reliable code </h1><h2 class="text-md py-2" data-v-b469ca17>Published on March 21st, 2024.</h2><div class="p-2 text-justify w-full space-y-10 mt-6 text-lg" data-v-b469ca17><h1 class="topic" data-v-b469ca17>Questions</h1><p data-v-b469ca17> If you find yourself needing to categorize roles like &#39;admin&#39;, &#39;user&#39;, &#39;manager&#39; or &#39;user non classified&#39; within your user table in a Laravel application. <br data-v-b469ca17> What approach would you take in your Laravel application? 🤔 </p><ul class="font-bold" data-v-b469ca17><li data-v-b469ca17>Should you use a native PHP Enum?</li><li data-v-b469ca17>Should you use a tool made for Laravel called spatie/laravel-enum?</li><li data-v-b469ca17>Maybe you could make a relationship table to show the roles?</li><li data-v-b469ca17> Or should you just create a column in you database and expects that everyone undestands? </li></ul><p data-v-b469ca17> Each of these approaches has its own pros and cons. In this particular case, I chose to use a Laravel Enum. </p><h1 class="topic" data-v-b469ca17>The goal</h1><p data-v-b469ca17> The goal of this article is to show you how to use Laravel Enum to create a more reliable and clear code. We will also see how to use it in migration, model, factory and how to test it. </p><h1 class="topic" data-v-b469ca17>What is an Enum?</h1><p data-v-b469ca17><a target="_blank" href="https://www.php.net/manual/en/language.types.enumerations.php" data-v-b469ca17> &quot;Enumerations are a restricting layer on top of classes and class constants, intended to provide a way to define a closed set of possible values for a type.&quot; </a>`);
+      _push(`<article data-v-a1ca7024><h1 class="title text-center" data-v-a1ca7024> Enumerations: We have time for them. Crafting clearer, more reliable code </h1><h2 class="text-md py-2" data-v-a1ca7024>Published on March 21st, 2024.</h2><div class="p-2 text-justify w-full space-y-10 mt-6 text-lg" data-v-a1ca7024><h1 class="topic" data-v-a1ca7024>Questions</h1><p data-v-a1ca7024> If you find yourself needing to categorize roles like &#39;admin&#39;, &#39;user&#39;, &#39;manager&#39; or &#39;user non classified&#39; within your user table in a Laravel application. <br data-v-a1ca7024> What approach would you take in your Laravel application? 🤔 </p><ul class="font-bold" data-v-a1ca7024><li data-v-a1ca7024>Should you use a native PHP Enum?</li><li data-v-a1ca7024>Should you use a tool made for Laravel called spatie/laravel-enum?</li><li data-v-a1ca7024>Maybe you could make a relationship table to show the roles?</li><li data-v-a1ca7024> Or should you just create a column in you database and expects that everyone undestands? </li></ul><p data-v-a1ca7024> Each of these approaches has its own pros and cons. In this particular case, I chose to use a Laravel Enum. </p><h1 class="topic" data-v-a1ca7024>The goal</h1><p data-v-a1ca7024> The goal of this article is to show you how to use Laravel Enum to create a more reliable and clear code. We will also see how to use it in migration, model, factory and how to test it. </p><h1 class="topic" data-v-a1ca7024>What is an Enum?</h1><p data-v-a1ca7024><a target="_blank" href="https://www.php.net/manual/en/language.types.enumerations.php" data-v-a1ca7024> &quot;Enumerations are a restricting layer on top of classes and class constants, intended to provide a way to define a closed set of possible values for a type.&quot; </a>`);
       _push(ssrRenderComponent(unref(MdPreview), {
         class: "max-h-[40rem]",
         modelValue: phpEnum,
         language: "en-US"
       }, null, _parent));
-      _push(`</p><h1 class="topic" data-v-b469ca17>Why Laravel Enum?</h1><p data-v-b469ca17> Laravel Enum is a package that allows you to create and use enumerations in your Laravel application. It is a simple and powerful package that can help you to create more reliable and clear code. It is also allows you to use pollimorphic relationships instead of native PHP enums that you can&#39;t. <br data-v-b469ca17><a target="_blank" href="https://php.watch/versions/8.1/enums#enum-inheritance" data-v-b469ca17><b data-v-b469ca17> &quot;Enums cannot be extended, and must not inherit&quot; </b></a></p><h1 class="topic" data-v-b469ca17>Instalation</h1><p data-v-b469ca17> In this example I&#39;ll use a empty laravel application. <br data-v-b469ca17> Then, install the package: `);
+      _push(`</p><h1 class="topic" data-v-a1ca7024>Why Laravel Enum?</h1><p data-v-a1ca7024> Laravel Enum is a package that allows you to create and use enumerations in your Laravel application. It is a simple and powerful package that can help you to create more reliable and clear code. It is also allows you to use pollimorphic relationships instead of native PHP enums that you can&#39;t. <br data-v-a1ca7024><a target="_blank" href="https://php.watch/versions/8.1/enums#enum-inheritance" data-v-a1ca7024><b data-v-a1ca7024> &quot;Enums cannot be extended, and must not inherit&quot; </b></a></p><h1 class="topic" data-v-a1ca7024>Instalation</h1><p data-v-a1ca7024> In this example I&#39;ll use a empty laravel application. <br data-v-a1ca7024> Then, install the package: `);
       _push(ssrRenderComponent(unref(VCodeBlock), {
         code: "composer require spatie/laravel-enum",
         highlightjs: "",
         cssPath: "vcodeblock",
         lang: "bash"
       }, null, _parent));
-      _push(`</p><h1 class="topic" data-v-b469ca17>Enum</h1><p data-v-b469ca17> Use the following command to create a new enum: `);
+      _push(`</p><h1 class="topic" data-v-a1ca7024>Inputs</h1><div class="sticky top-1 bg-green-100 z-40 p-2 rounded shadow-md text-center" data-v-a1ca7024><b data-v-a1ca7024>You can use this custom inputs to create your own enum:</b><div class="flex justify-between" data-v-a1ca7024><div data-v-a1ca7024><label for="" data-v-a1ca7024>Enum name:</label><input type="text" name="enumName"${ssrRenderAttr("value", enunName.value)} data-v-a1ca7024></div><div data-v-a1ca7024><label for="" data-v-a1ca7024>Column name:</label><input type="text" name="columnName"${ssrRenderAttr("value", columnName.value)} data-v-a1ca7024></div><div data-v-a1ca7024><label for="" data-v-a1ca7024>Model:</label><input type="text" name="model"${ssrRenderAttr("value", modelClass.value)} data-v-a1ca7024></div></div></div><h1 class="topic" data-v-a1ca7024>Enum</h1><p data-v-a1ca7024> Use the following command to create a new enum: `);
       _push(ssrRenderComponent(unref(VCodeBlock), {
-        code: "php artisan make:spatie-enum UserRoleEnum",
+        code: `php artisan make:spatie-enum ${enunName.value}`,
         highlightjs: "",
         cssPath: "vcodeblock",
         lang: "bash"
@@ -431,12 +426,12 @@ const _sfc_main$7 = {
       _push(` Past this code to the new file: `);
       _push(ssrRenderComponent(unref(MdPreview), {
         class: "max-h-[40rem]",
-        modelValue: UserRoleEnum,
+        modelValue: UserRoleEnum.value,
         language: "en-US"
       }, null, _parent));
-      _push(`</p><h1 class="topic" data-v-b469ca17>Migration</h1><p data-v-b469ca17> Let&#39;s create a new migration to add the role column to the users table: `);
+      _push(`</p><h1 class="topic" data-v-a1ca7024>Migration</h1><p data-v-a1ca7024> Let&#39;s create a new migration to add the ${ssrInterpolate(columnName.value)} column to the ${ssrInterpolate(modelClassFirsDown.value)} table: `);
       _push(ssrRenderComponent(unref(VCodeBlock), {
-        code: "php artisan make:migration add_role_to_users_table --table=users",
+        code: `php artisan make:migration add_${columnName.value}_to_${modelClassFirsDown.value}_table --table=${modelClassFirsDown.value}`,
         highlightjs: "",
         cssPath: "vcodeblock",
         lang: "bash"
@@ -444,7 +439,7 @@ const _sfc_main$7 = {
       _push(` Past this code to the new file: `);
       _push(ssrRenderComponent(unref(MdPreview), {
         class: "max-h-[40rem]",
-        modelValue: migrations,
+        modelValue: migrations.value,
         language: "en-US"
       }, null, _parent));
       _push(` Run the migration: `);
@@ -454,19 +449,19 @@ const _sfc_main$7 = {
         cssPath: "vcodeblock",
         lang: "bash"
       }, null, _parent));
-      _push(`</p><h1 class="topic" data-v-b469ca17>Factory</h1><p data-v-b469ca17>`);
+      _push(`</p><h1 class="topic" data-v-a1ca7024>Factory</h1><p data-v-a1ca7024>`);
       _push(ssrRenderComponent(unref(MdPreview), {
         class: "max-h-[40rem]",
-        modelValue: factory,
+        modelValue: factory.value,
         language: "en-US"
       }, null, _parent));
-      _push(`</p><h1 class="topic" data-v-b469ca17>Model</h1><p data-v-b469ca17> I like to adjust the model to use the enum description. For example: <br data-v-b469ca17> If the user role is &#39;ADM&#39; the description will be &#39;Admin&#39;. And I also adjust set method to ensure that will convert to database required enum. `);
+      _push(`</p><h1 class="topic" data-v-a1ca7024>Model</h1><p data-v-a1ca7024> I like to adjust the model to use the enum description. For example: <br data-v-a1ca7024> If the ${ssrInterpolate(modelClassFirsDown.value)} ${ssrInterpolate(columnName.value)} is &#39;ADM&#39; the description will be &#39;Admin&#39;. And I also adjust set method to ensure that will convert to database required enum. `);
       _push(ssrRenderComponent(unref(MdPreview), {
         class: "max-h-[40rem]",
-        modelValue: model,
+        modelValue: model.value,
         language: "en-US"
       }, null, _parent));
-      _push(`</p><h1 class="topic" data-v-b469ca17>Let&#39;s check with tinker</h1><p data-v-b469ca17> Lets open it and check if everything is working as expected: `);
+      _push(`</p><h1 class="topic" data-v-a1ca7024>Let&#39;s check with tinker</h1><p data-v-a1ca7024> Lets open it and check if everything is working as expected: `);
       _push(ssrRenderComponent(unref(VCodeBlock), {
         code: "php artisan tinker",
         highlightjs: "",
@@ -474,26 +469,26 @@ const _sfc_main$7 = {
         lang: "bash"
       }, null, _parent));
       _push(ssrRenderComponent(unref(VCodeBlock), {
-        code: "App\\Models\\User::factory()->count(10)->create()",
+        code: `App\\Models\\${modelClass.value}::factory()->count(10)->create()`,
         highlightjs: "",
         cssPath: "vcodeblock",
         lang: "bash"
       }, null, _parent));
       _push(ssrRenderComponent(unref(MdPreview), {
         class: "max-h-[40rem]",
-        modelValue: tinker,
+        modelValue: tinker.value,
         language: "en-US"
       }, null, _parent));
-      _push(`</p><h1 class="topic" data-v-b469ca17>Testing</h1><p data-v-b469ca17> I will create a Test to ensure that the enum is working as expected. <br data-v-b469ca17> Let&#39;s install Pest; </p>`);
+      _push(`</p><h1 class="topic" data-v-a1ca7024>Testing</h1><p data-v-a1ca7024> I will create a Test to ensure that the enum is working as expected. <br data-v-a1ca7024> Let&#39;s install Pest; </p>`);
       _push(ssrRenderComponent(unref(VCodeBlock), {
         code: "composer require pestphp/pest --dev --with-all-dependencies",
         highlightjs: "",
         cssPath: "vcodeblock",
         lang: "bash"
       }, null, _parent));
-      _push(` Now, create a test file <p data-v-b469ca17>`);
+      _push(` Now, create a test file <p data-v-a1ca7024>`);
       _push(ssrRenderComponent(unref(VCodeBlock), {
-        code: "php artisan make:test UserRoleEnumTest --pest",
+        code: `php artisan make:test ${enunName.value}Test --pest`,
         highlightjs: "",
         cssPath: "vcodeblock",
         lang: "bash"
@@ -501,17 +496,17 @@ const _sfc_main$7 = {
       _push(` Past this code to the new file: `);
       _push(ssrRenderComponent(unref(MdPreview), {
         class: "max-h-[40rem]",
-        modelValue: test,
+        modelValue: test.value,
         language: "en-US"
       }, null, _parent));
-      _push(`</p><p data-v-b469ca17> Run the test: `);
+      _push(`</p><p data-v-a1ca7024> Run the test: `);
       _push(ssrRenderComponent(unref(VCodeBlock), {
         code: "php artisan test",
         highlightjs: "",
         cssPath: "vcodeblock",
         lang: "bash"
       }, null, _parent));
-      _push(`</p><img${ssrRenderAttr("src", _imports_0$4)} alt="list test" data-v-b469ca17><h1 class="topic" data-v-b469ca17>Conclusion</h1><p data-v-b469ca17> Enumerations are a great way to create more reliable and clear code. Laravel Enum is a powerful package that can help you to create enumerations in your Laravel application. It is simple to use and can help you to create more reliable and clear code. I hope this article has helped you to understand how to use Laravel Enum to create more reliable and clear code. </p></div></article>`);
+      _push(`</p><img${ssrRenderAttr("src", _imports_0$4)} alt="list test" data-v-a1ca7024><h1 class="topic" data-v-a1ca7024>Conclusion</h1><p data-v-a1ca7024> Enumerations are a great way to create more reliable and clear code. Laravel Enum is a powerful package that can help you to create enumerations in your Laravel application. It is simple to use and can help you to create more reliable and clear code. I hope this article has helped you to understand how to use Laravel Enum to create more reliable and clear code. </p></div></article>`);
       _push(ssrRenderComponent(_sfc_main$8, { commentaries: __props.commentaries }, null, _parent));
       _push(`<!--]-->`);
     };
@@ -523,7 +518,7 @@ _sfc_main$7.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Post/LaravelEnum.vue");
   return _sfc_setup$7 ? _sfc_setup$7(props, ctx) : void 0;
 };
-const LaravelEnum = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__scopeId", "data-v-b469ca17"]]);
+const LaravelEnum = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__scopeId", "data-v-a1ca7024"]]);
 const __vite_glob_0_3 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: LaravelEnum

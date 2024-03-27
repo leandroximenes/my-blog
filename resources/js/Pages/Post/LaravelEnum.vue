@@ -1,10 +1,21 @@
 <script setup>
+import { ref, computed } from 'vue'
 import { Head } from '@inertiajs/vue3'
 import VCodeBlock from '@wdns/vue-code-block'
 import CommentarySection from '@/Components/CommentarySection.vue'
 
 import { MdPreview } from 'md-editor-v3'
 import 'md-editor-v3/lib/preview.css'
+
+const enunName = ref('UserRoleEnum')
+const columnName = ref('role')
+const modelClass = ref('User')
+const columnNameFirstUp = computed(
+  () => columnName.value.charAt(0).toUpperCase() + columnName.value.slice(1)
+)
+const modelClassFirsDown = computed(
+  () => modelClass.value.charAt(0).toLowerCase() + modelClass.value.slice(1) + 's'
+)
 
 const phpEnum = `
 \`\`\` PHP
@@ -32,8 +43,9 @@ enum UserRole: string
 \`\`\`
 `
 
-const UserRoleEnum = `
-\`\`\` app/Enums/UserRoleEnum.php
+const UserRoleEnum = computed(() => {
+  return `
+\`\`\` app/Enums/${enunName.value}.php
 <?php
 
 namespace App\\Enums;
@@ -47,7 +59,7 @@ use Spatie\\Enum\\Laravel\\Enum;
  * @method static self MNG()
  * @method static self NON()
  */
- class UserRoleEnum extends Enum
+ class ${enunName.value} extends Enum
 {
     const DEFAULT = 'NON';
 
@@ -62,14 +74,15 @@ use Spatie\\Enum\\Laravel\\Enum;
     }
 }
 \`\`\`
-
 `
+})
 
-const migrations = `
-\`\`\` database/migrations/2024_03_21_193121_add_role_to_users_table.php
+const migrations = computed(() => {
+  return `
+\`\`\` database/migrations/2024_03_21_193121_add_${columnName.value}_to_${modelClassFirsDown.value}_table.php
 <?php
 
-use App\\Enums\\UserRoleEnum;
+use App\\Enums\\${enunName.value};
 use Illuminate\\Database\\Migrations\\Migration;
 use Illuminate\\Database\\Schema\\Blueprint;
 use Illuminate\\Support\\Facades\\Schema;
@@ -81,8 +94,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->enum('role', UserRoleEnum::toArray())->default(UserRoleEnum::DEFAULT)->after('password');
+        Schema::table('${modelClassFirsDown.value}', function (Blueprint $table) {
+            $table->enum(${columnName.value}, ${enunName.value}::toArray())->default(${enunName.value}::DEFAULT)->after('password');
         });
     }
 
@@ -91,112 +104,93 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('role');
+        Schema::table('${modelClassFirsDown.value}', function (Blueprint $table) {
+            $table->dropColumn(${columnName.value});
         });
     }
 };
 \`\`\`
 `
+})
 
-const factory = `
-\`\`\` database/factories/UserFactory.php
+const factory = computed(() => {
+  return `
+\`\`\` database/factories/${modelClass.value}Factory.php
 <?php
 
 namespace Database\\Factories;
 
-use App\\Enums\\UserRoleEnum; // add this
+use App\\Enums\\${enunName.value}; // ADD THIS
 use Illuminate\\Database\\Eloquent\\Factories\\Factory;
 use Illuminate\\Support\\Facades\\Hash;
 use Illuminate\\Support\\Str;
 
 /**
- * @extends \\Illuminate\\Database\\Eloquent\\Factories\\Factory<\\App\\Models\\User>
+ * @extends \\Illuminate\\Database\\Eloquent\\Factories\\Factory<\\App\\Models\\${modelClass.value}>
  */
-class UserFactory extends Factory
+class ${modelClass.value}Factory extends Factory
 {
-    /**
-     * The current password being used by the factory.
-     */
-    protected static ?string $password;
+    ...
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
             'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
-            'role' => fake()->randomElement(UserRoleEnum::toArray()), // add this
+            ...
+            '${columnName.value}'' => fake()->randomElement(${enunName.value}::toArray()),               // ADD THIS
         ];
     }
 
-    /**
-     * Indicate that the model's email address should be unverified.
-     */
-    public function unverified(): static
-    {
-        return $this->state(fn (array $attributes) => [
-            'email_verified_at' => null,
-        ]);
-    }
+    ...
 }
 \`\`\`
 `
+})
 
-const model = `
-\`\`\` app/Models/User.php
+const model = computed(() => {
+  return `
+\`\`\` app/Models/${modelClass.value}.php
 <?php
 
 namespace App\\Models;
 
-// use Illuminate\\Contracts\\Auth\\MustVerifyEmail;
-use App\\Enums\\UserRoleEnum; // add this
-use Illuminate\\Database\\Eloquent\\Factories\\HasFactory;
-use Illuminate\\Foundation\\Auth\\User as Authenticatable;
-use Illuminate\\Notifications\\Notifiable;
-use Laravel\\Sanctum\\HasApiTokens;
+use App\\Enums\\${enunName.value}; // ADD THIS
 
-class User extends Authenticatable
+
+class ${modelClass.value}
 {
-    use HasApiTokens, HasFactory, Notifiable;
-
    ...
 
-    public function getRoleAttribute($value): string
+    public function get${columnNameFirstUp.value}Attribute($value): string
     {
-        return UserRoleEnum::from($value)->value;
+        return ${enunName.value}::from($value)->value;
     }
 
-    public function setRoleAttribute($value): void
+    public function set${columnNameFirstUp.value}Attribute($value): void
     {
         if (!empty($value))
             // check if value is a value or label
-            if (in_array($value, UserRoleEnum::toValues()))
-                $this->attributes['role'] = UserRoleEnum::from($value)->label;
-            else if (in_array($value, UserRoleEnum::toLabels()))
-                $this->attributes['role'] = $value;
+            if (in_array($value, ${enunName.value}::toValues()))
+                $this->attributes[${columnName.value}] = ${enunName.value}::from($value)->label;
+            else if (in_array($value, ${enunName.value}::toLabels()))
+                $this->attributes[${columnName.value}] = $value;
             else
-                throw new \\InvalidArgumentException('Invalid user role value.');
+                throw new \\InvalidArgumentException('Invalid ${modelClass.value} ${columnName.value} value.');
         else
-            $this->attributes['role'] = UserRoleEnum::DEFAULT;
+            $this->attributes[${columnName.value}] = ${enunName.value}::DEFAULT;
     }
 }
 \`\`\`
 `
+})
 
-const tinker = `
+const tinker = computed(() => {
+  return `
 \`\`\` bash
-$user = User::find(3);
+$${modelClassFirsDown.value} = ${modelClass.value}::find(3);
 
-[!] Aliasing 'User' to 'App\\Models\\User' for this Tinker session.
-= App\\Models\\User {#5050
+[!] Aliasing '${modelClass.value}' to 'App\\Models\\${modelClass.value}' for this Tinker session.
+= App\\Models\\${modelClass.value} {#5050
     id: 3,
     name: "Tamia Borer",
     email: "brenna13@example.org",
@@ -205,57 +199,60 @@ $user = User::find(3);
     #remember_token: "xyOyRzeuMV",
     created_at: "2024-03-21 20:04:50",
     updated_at: "2024-03-21 20:04:50",
-    role: "NON",
+    ${columnName.value}: "NON",
   }
 
-> $user->role
-= "User non classified"
+> $${modelClassFirsDown.value}->${columnName.value}
+= "${modelClass.value} non classified"
 
-> App\\Enums\\UserRoleEnum::ADM()->label
+> App\\Enums\\${enunName.value}::ADM()->label
 = "ADM"
 
-> App\\Enums\\UserRoleEnum::ADM()->value
+> App\\Enums\\${enunName.value}::ADM()->value
 = "Admin"
 \`\`\`
 `
+})
 
-const test = `
-\`\`\` tests/Feature/UserRoleEnumTest.php
+const test = computed(() => {
+  return `
+\`\`\` tests/Feature/${enunName.value}Test.php
 <?php
 
-//create a new user and check if the user role is Ini
+//create a new ${modelClassFirsDown.value} and check if the ${modelClassFirsDown.value} ${columnName.value} is Ini
 
-use App\\Models\\User;
-use App\\Enums\\UserRoleEnum;
+use App\\Models\\${modelClass.value};
+use App\\Enums\\${enunName.value};
 
-test('create user random role', function () {
-    $user = User::factory()->create();
-    expect($user->role)->toBeString();
-})->skip('This test is skipped because the user role is random');
+test('create ${modelClassFirsDown.value} random ${columnName.value}', function () {
+    $${modelClassFirsDown.value} = ${modelClass.value}::factory()->create();
+    expect($${modelClassFirsDown.value}->${columnName.value})->toBeString();
+})->skip('This test is skipped because the ${modelClassFirsDown.value} ${columnName.value} is random');
 
-test('create user with role ADM', function () {
-    $user = User::factory()->create(['role' => UserRoleEnum::ADM()->label]);
-    expect($user->role)->toBe('Admin');
+test('create ${modelClassFirsDown.value} with ${columnName.value} ADM', function () {
+    $${modelClassFirsDown.value} = ${modelClass.value}::factory()->create([${columnName.value} => ${enunName.value}::ADM()->label]);
+    expect($${modelClassFirsDown.value}->${columnName.value})->toBe('Admin');
 });
 
-test('create user with role Admin', function () {
-    $user = User::factory()->create(['role' => UserRoleEnum::ADM()->value]);
-    expect($user->role)->toBe('Admin');
+test('create ${modelClassFirsDown.value} with ${columnName.value} Admin', function () {
+    $${modelClassFirsDown.value} = ${modelClass.value}::factory()->create([${columnName.value} => ${enunName.value}::ADM()->value]);
+    expect($${modelClassFirsDown.value}->${columnName.value})->toBe('Admin');
 });
 
-test('does not set an invalid role attribute', function () {
-    $user = new User();
-    $invalidRole = 'InvalidRole';
+test('does not set an invalid ${columnName.value} attribute', function () {
+    $${modelClassFirsDown.value} = new ${modelClass.value}();
+    $invalid${columnNameFirstUp.value} = 'Invalid${columnNameFirstUp.value}';
 
     // Act & Assert
     $this->expectException(\\InvalidArgumentException::class);
-    $this->expectExceptionMessage('Invalid user role value.');
+    $this->expectExceptionMessage('Invalid ${modelClassFirsDown.value} ${columnName.value} value.');
 
-    // Attempt to set an invalid role attribute
-    $user->setRoleAttribute($invalidRole);
+    // Attempt to set an invalid ${columnName.value} attribute
+    $${modelClassFirsDown.value}->set${columnName.value}Attribute($invalid${columnNameFirstUp.value});
 });
 \`\`\`
 `
+})
 
 defineProps({
   commentaries: Array
@@ -330,11 +327,29 @@ defineProps({
           lang="bash"
         />
       </p>
+      <h1 class="topic">Inputs</h1>
+      <div class="sticky top-1 bg-green-100 z-40 p-2 rounded shadow-md text-center">
+        <b>You can use this custom inputs to create your own enum:</b>
+        <div class="flex justify-between">
+          <div>
+            <label for="">Enum name:</label>
+            <input type="text" name="enumName" v-model="enunName" />
+          </div>
+          <div>
+            <label for="">Column name:</label>
+            <input type="text" name="columnName" v-model="columnName" />
+          </div>
+          <div>
+            <label for="">Model:</label>
+            <input type="text" name="model" v-model="modelClass" />
+          </div>
+        </div>
+      </div>
       <h1 class="topic">Enum</h1>
       <p>
         Use the following command to create a new enum:
         <VCodeBlock
-          code="php artisan make:spatie-enum UserRoleEnum"
+          :code="`php artisan make:spatie-enum ${enunName}`"
           highlightjs
           cssPath="vcodeblock"
           lang="bash"
@@ -344,9 +359,9 @@ defineProps({
       </p>
       <h1 class="topic">Migration</h1>
       <p>
-        Let's create a new migration to add the role column to the users table:
+        Let's create a new migration to add the {{ columnName }} column to the {{ modelClassFirsDown }} table:
         <VCodeBlock
-          code="php artisan make:migration add_role_to_users_table --table=users"
+          :code="`php artisan make:migration add_${columnName}_to_${modelClassFirsDown}_table --table=${modelClassFirsDown}`"
           highlightjs
           cssPath="vcodeblock"
           lang="bash"
@@ -363,8 +378,8 @@ defineProps({
       <h1 class="topic">Model</h1>
       <p>
         I like to adjust the model to use the enum description. For example: <br />
-        If the user role is 'ADM' the description will be 'Admin'. And I also adjust set method to
-        ensure that will convert to database required enum.
+        If the {{ modelClassFirsDown }} {{ columnName }} is 'ADM' the description will be 'Admin'. And I also
+        adjust set method to ensure that will convert to database required enum.
         <MdPreview class="max-h-[40rem]" :modelValue="model" language="en-US" />
       </p>
       <h1 class="topic">Let's check with tinker</h1>
@@ -372,7 +387,7 @@ defineProps({
         Lets open it and check if everything is working as expected:
         <VCodeBlock code="php artisan tinker" highlightjs cssPath="vcodeblock" lang="bash" />
         <VCodeBlock
-          code="App\Models\User::factory()->count(10)->create()"
+          :code="`App\\Models\\${modelClass}::factory()->count(10)->create()`"
           highlightjs
           cssPath="vcodeblock"
           lang="bash"
@@ -393,7 +408,7 @@ defineProps({
       Now, create a test file
       <p>
         <VCodeBlock
-          code="php artisan make:test UserRoleEnumTest --pest"
+          :code="`php artisan make:test ${enunName}Test --pest`"
           highlightjs
           cssPath="vcodeblock"
           lang="bash"

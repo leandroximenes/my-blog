@@ -27,6 +27,10 @@
     @apply text-lg;
   }
 
+  input{
+    @apply m-2 p-2 border border-gray-300 rounded-lg;
+  }
+
   .title {
     @apply text-4xl font-bold mt-6;
   }
