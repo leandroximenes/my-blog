@@ -16,6 +16,7 @@
         "editorconfig.editorconfig",
         "Vue.volar",
         "GitHub.copilot",
+        "mhutchie.git-graph",
         "damms005.devdb"
       ],
       "settings": {
