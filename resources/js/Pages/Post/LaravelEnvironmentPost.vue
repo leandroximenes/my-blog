@@ -200,6 +200,7 @@ WWWUSER=1000
         code='curl -s "https://laravel.build/example-app?with=mysql&devcontainer" | bash'
         highlightjs
         lang="bash"
+        class="ml-4"
       />
       <p>
         You can change <b>'example-app'</b> to another name. <br />
@@ -208,16 +209,16 @@ WWWUSER=1000
         built. You can check the progress in the bottom right corner of Visual Studio Code.
       </p>
       <h1 class="topic">VsCode and DevContainer</h1>
-      <VCodeBlock code="code example-app" highlightjs lang="bash" />
+      <VCodeBlock code="code example-app" highlightjs lang="bash" class="ml-4" />
       <p>
         With the VSCode oppened, you will install the devcontainer extension. You will notice this
         .devcontainer folder in the root of the project.
-        <img src="./img/devcontainerfolder.png" alt="devcontainer folder" />
       </p>
+      <img src="./img/devcontainerfolder.png" alt="devcontainer folder" />
       <p>
         You can install the extension by clicking on the extensions icon in the sidebar and search
-        <img src="./img/vsextension.png" alt="vscodeextensioninstall" />
       </p>
+      <img src="./img/vsextension.png" alt="vscodeextensioninstall" />
 
       <p>
         I use php inteliphense and xdebug extensions. You can add more extensions.
@@ -225,7 +226,7 @@ WWWUSER=1000
         <MdPreview class="max-h-[40rem]" :modelValue="devcontainer" language="en-US" />
       </p>
       <h1 class="topic">Docker configurations</h1>
-      <p>
+      <div>
         1) You need to change docker-compose.yml to add new port for xdebug. <br /><br />
 
         2) Change the context and add a copy of vendor/laravel/sail/runtimes/8.3<br />
@@ -248,7 +249,7 @@ WWWUSER=1000
         5) I like to custom my bash prompt to show my git branch and the current directory. <br />
 
         <MdPreview class="max-h-[40rem]" :modelValue="startContainer" language="en-US" /><br />
-      </p>
+      </div>
 
       <h1 class="topic">Debug configurations</h1>
 
@@ -275,9 +276,8 @@ WWWUSER=1000
       <p>
         To open you application use the browser with the URL localhost. <br /><br />
         Ensure there is no other service running on port 80. <br /><br />
-
-        <img src="./img/debug.png" alt="devcontainer folder" />
       </p>
+      <img src="./img/debug.png" alt="devcontainer folder" />
 
       <p>
         That's it! You now have a Laravel environment using Docker, Devcontainer, and Xdebug. You
@@ -289,3 +289,8 @@ WWWUSER=1000
   </article>
   <CommentarySection :commentaries="commentaries" />
 </template>
+<style scoped>
+article img {
+  padding-left: 18px;
+}
+</style>
